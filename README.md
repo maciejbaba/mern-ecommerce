@@ -1,1 +1,1 @@
-## This will be ECommerce store built with MERN stack
+## This will be e-commerce store built with MERN stack
