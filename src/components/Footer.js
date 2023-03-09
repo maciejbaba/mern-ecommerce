@@ -1,6 +1,10 @@
+import "../css/Footer.css"
+
 const Footer = () => {
+  const year = new Date().getFullYear()
+
   return (
-    <footer>Footer</footer>
+    <footer>Copyright {year} Maciej Bąba</footer>
   )
 }
 
