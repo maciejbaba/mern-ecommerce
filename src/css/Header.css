@@ -1,10 +1,17 @@
 header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1rem;
 }
 
 .header__logo {
   font-size: large;
   font-weight: bold;
+}
+
+
+.header__logo a {
+  text-decoration: none;
+  color: inherit;
 }
