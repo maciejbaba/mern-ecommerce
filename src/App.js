@@ -12,7 +12,7 @@ function App() {
         <Route index element={<Public />} />
         <Route path="login" element={<Login />} />
         <Route path="cart" element={<Cart />} />
-        <Route path=":id" element={<ItemPage />} />
+        <Route path="item/:id" element={<ItemPage />} />
       </Route>
     </Routes>
   );
