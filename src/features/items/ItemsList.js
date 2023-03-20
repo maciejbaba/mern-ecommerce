@@ -1,4 +1,5 @@
 import Item from "./Item";
+import "../../css/ItemsList.css"
 import { useGetItemsQuery } from "./itemsApiSlice";
 import { forwardRef } from "react";
 
@@ -17,7 +18,7 @@ const ItemsList = forwardRef(({}, ref) => {
     content = <div ref={ref}>Loading...</div>;
   } else if (isSuccess) {
     content = (
-      <div ref={ref}>
+      <div ref={ref} className="items-list-component">
         {items.ids.map((itemId) => (
           <Item key={itemId} id={itemId}></Item>
         ))}
