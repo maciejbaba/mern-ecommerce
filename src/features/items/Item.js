@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux";
 import { selectItemById } from "./itemsApiSlice";
+import "../../css/Item.css"
 
 const Item = ({ id }) => {
   const item = useSelector((state) => selectItemById(state, id));
 
   return (
-    <div>
+    <div className="item-container">
       <img
         src={item.photoURL}
         alt={
@@ -14,6 +15,10 @@ const Item = ({ id }) => {
             : `Photo of ${item.name}`
         }
       />
+      <p className="description">
+        {item.description}
+      </p>
+      <p className="price">Price: {item.price}</p>
     </div>
   );
 };
