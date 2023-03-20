@@ -1,7 +1,8 @@
 import Item from "./Item";
 import { useGetItemsQuery } from "./itemsApiSlice";
+import { forwardRef } from "react";
 
-const ItemsList = () => {
+const ItemsList = forwardRef(({}, ref) => {
   const {
     data: items,
     isLoading,
@@ -10,13 +11,13 @@ const ItemsList = () => {
     error,
   } = useGetItemsQuery();
 
-  let content;
+  let content = <div></div>;
 
   if (isLoading) {
-    content = <div>Loading...</div>;
+    content = <div ref={ref}>Loading...</div>;
   } else if (isSuccess) {
     content = (
-      <div>
+      <div ref={ref}>
         {items.ids.map((itemId) => (
           <Item key={itemId} id={itemId}></Item>
         ))}
@@ -24,7 +25,7 @@ const ItemsList = () => {
     );
   } else if (isError) {
     content = (
-      <div>
+      <div ref={ref}>
         <h1>Bip boop ERROR</h1>
         <p>{error.message}</p>
       </div>
@@ -32,6 +33,6 @@ const ItemsList = () => {
   }
 
   return content;
-};
+});
 
 export default ItemsList;
