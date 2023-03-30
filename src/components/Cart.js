@@ -1,4 +1,4 @@
-import "../css/Cart.css"
+import "../css/Cart.css";
 
 const Cart = () => {
   return (
@@ -11,7 +11,7 @@ const Cart = () => {
         <p>second item...</p>
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;

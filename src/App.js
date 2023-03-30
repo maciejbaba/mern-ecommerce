@@ -6,6 +6,7 @@ import ItemPage from "./components/ItemPage";
 import Missing from "./components/Missing";
 import Login from "./features/auth/Login";
 import Prefetch from "./features/auth/Prefetch";
+import UsersList from "./components/UsersList";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route index element={<Public />} />
           <Route path="login" element={<Login />} />
           <Route path="cart" element={<Cart />} />
+          <Route path="users" element={<UsersList />}></Route>
           <Route path="item/:id" element={<ItemPage />} />
           <Route path="*" element={<Missing />} />
         </Route>
