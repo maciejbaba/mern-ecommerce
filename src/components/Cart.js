@@ -2,7 +2,7 @@ import "../css/Cart.css";
 
 const Cart = () => {
   return (
-    <main>
+    <main className="main-cart">
       <div className="cart-heading">
         <h1>Your items</h1>
       </div>
