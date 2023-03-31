@@ -8,6 +8,7 @@ const Item = ({ id }) => {
   return (
     <div className="item-container">
       <img
+      className="item-img"
         src={item.photoURL}
         alt={
           item.photoURL === "no-image.png"
