@@ -1,0 +1,12 @@
+.login-form {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rebeccapurple;
+  border-radius: 1rem;
+}
+
+.main-login {
+  margin: 2rem auto;
+  gap: 1rem;
+}
