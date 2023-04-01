@@ -1,3 +1,4 @@
+import "../css/Missing.css"
 
 const Missing = () => {
   return (
