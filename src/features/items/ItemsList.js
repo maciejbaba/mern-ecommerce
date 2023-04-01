@@ -1,5 +1,5 @@
 import Item from "./Item";
-import "../../css/ItemsList.css"
+import "../../css/ItemsList.css";
 import { useGetItemsQuery } from "./itemsApiSlice";
 import { forwardRef } from "react";
 
