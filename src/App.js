@@ -2,11 +2,15 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Public from "./components/Public";
 import Cart from "./components/Cart";
-import ItemPage from "./components/ItemPage";
+import ItemPage from "./features/items/ItemPage";
 import Missing from "./components/Missing";
 import Login from "./features/auth/Login";
 import Prefetch from "./features/auth/Prefetch";
 import UsersList from "./features/users/UsersList";
+import NewUser from "./features/users/NewUser";
+import UserPage from "./features/users/UserPage";
+import NewItem from "./features/items/NewItem";
+import ItemsList from "./features/items/ItemsList";
 
 function App() {
   return (
@@ -16,8 +20,16 @@ function App() {
           <Route index element={<Public />} />
           <Route path="login" element={<Login />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="users" element={<UsersList />}></Route>
-          <Route path="item/:id" element={<ItemPage />} />
+          <Route path="users">
+            <Route index element={<UsersList />} />
+            <Route path="newUser" element={<NewUser />} />
+            <Route path=":id" element={<UserPage />} />
+          </Route>
+          <Route path="items">
+            <Route index element={<ItemsList />} />
+            <Route path=":id" element={<ItemPage />} />
+            <Route path="newItem" element={<NewItem />} />
+          </Route>
           <Route path="*" element={<Missing />} />
         </Route>
       </Route>
