@@ -23,7 +23,7 @@ const UsersList = () => {
     content = (
       <main>
         <div>
-          <h1>Other users</h1>
+          <h1>Users</h1>
         </div>
         <div className="users-list">
           {users.ids.map((userId) => (
