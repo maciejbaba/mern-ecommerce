@@ -19,8 +19,8 @@ const Public = () => {
           Browse Items
         </button>
       </div>
-      <div>
-        <ItemsList ref={itemsListRef} />
+      <div ref={itemsListRef}>
+        <ItemsList />
       </div>
     </main>
   );
