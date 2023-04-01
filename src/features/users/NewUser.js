@@ -1,9 +1,14 @@
-import React from 'react'
+import { useState } from "react";
 
 const NewUser = () => {
-  return (
-    <div>NewUser</div>
-  )
-}
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
-export default NewUser
+  return <div className="new-user">
+    
+  </div>;
+};
+
+export default NewUser;

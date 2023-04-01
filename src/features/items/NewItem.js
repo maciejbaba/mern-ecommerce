@@ -1,9 +1,5 @@
-import React from 'react'
-
 const NewItem = () => {
-  return (
-    <div>NewItem</div>
-  )
-}
+  return <div>NewItem</div>;
+};
 
-export default NewItem
+export default NewItem;
