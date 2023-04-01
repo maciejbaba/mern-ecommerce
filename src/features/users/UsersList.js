@@ -41,7 +41,7 @@ const UsersList = () => {
     );
   }
 
-  return content;
+  return <div className="content">{content}</div>;
 };
 
 export default UsersList;
