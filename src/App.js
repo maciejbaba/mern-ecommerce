@@ -6,7 +6,7 @@ import ItemPage from "./components/ItemPage";
 import Missing from "./components/Missing";
 import Login from "./features/auth/Login";
 import Prefetch from "./features/auth/Prefetch";
-import UsersList from "./components/UsersList";
+import UsersList from "./features/users/UsersList";
 
 function App() {
   return (

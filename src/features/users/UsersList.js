@@ -1,4 +1,4 @@
-import "../css/UsersList.css"
+import "../../css/UsersList.css"
 
 const UsersList = () => {
   return (
