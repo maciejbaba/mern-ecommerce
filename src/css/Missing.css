@@ -1,0 +1,21 @@
+.missing {
+  margin: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.missing-page-link {
+  display: block;
+  margin: 0 auto;
+  border-radius: 1rem;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid grey;
+  padding: 0.5rem;
+}
+
+.missing-page-link:hover {
+  background-color: rgb(236, 233, 233);
+}

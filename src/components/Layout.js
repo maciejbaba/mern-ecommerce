@@ -7,7 +7,10 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <Outlet />
+      {/* very hacky */}
+      <div style={{"margin-top": "5rem"}}>
+        <Outlet />
+      </div>
       <Footer />
     </>
   );
