@@ -13,9 +13,14 @@ const User = ({ id }) => {
     return ddmmyyyyDate;
   };
 
+  const [deleteUser, { isLoading, isSuccess, isError, error }] =
+    useDeleteUserMutation();
+
   const handleEditUser = () => {};
 
-  const handleDeleteUser = () => {};
+  const handleDeleteUser = () => {
+    deleteUser(user);
+  };
 
   return (
     <div className="user">
@@ -25,7 +30,9 @@ const User = ({ id }) => {
       <p>Created at: {changeDateFormat(user.createdAt)}</p>
       <p>Last update: {changeDateFormat(user.updatedAt)}</p>
       <button onClick={handleEditUser}>Edit</button>
-      <button onClick={handleDeleteUser}>Delete</button>
+      <button onClick={handleDeleteUser}>
+        Delete
+      </button>
     </div>
   );
 };
