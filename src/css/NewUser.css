@@ -1,0 +1,12 @@
+.new-user-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-user {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+}

@@ -1,14 +1,67 @@
 import { useState } from "react";
+import "../../css/NewUser.css";
+import { useAddNewUserMutation } from "./usersApiSlice";
+import { useNavigate } from "react-router-dom";
 
 const NewUser = () => {
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
 
-  return <div className="new-user">
-    
-  </div>;
+  const [addNewUser, { isLoading, isSuccess, isError, error }] =
+    useAddNewUserMutation();
+
+  const navigate = useNavigate();
+
+  return (
+    <main className="new-user">
+      <h1>Add new user</h1>
+      <form action="" className="new-user-form">
+        <label htmlFor="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.currentTarget.value)}
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.currentTarget.value)}
+        />
+        <label htmlFor="confirm-password">Confirm password</label>
+        <input
+          type="password"
+          id="confirm-password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.currentTarget.value)}
+        />
+        <div>
+          <label htmlFor="admin">Admin</label>
+          <input
+            type="checkbox"
+            id="admin"
+            value={isAdmin}
+            onChange={() => setIsAdmin(!isAdmin)}
+          />
+        </div>
+        <div>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              addNewUser({ username, password, isAdmin });
+            }}
+          >
+            Add
+          </button>
+          <button type="reset">Reset</button>
+        </div>
+      </form>
+    </main>
+  );
 };
 
 export default NewUser;
