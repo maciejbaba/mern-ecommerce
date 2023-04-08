@@ -1,8 +1,15 @@
 import "../../css/UsersList.css";
 import { useGetUsersQuery } from "./usersApiSlice";
 import User from "./User";
+import { useNavigate } from "react-router-dom";
 
 const UsersList = () => {
+  const navigate = useNavigate();
+
+  const handleAddUser = () => {
+    navigate("/users/newUser");
+  };
+
   const {
     data: users,
     isLoading,
@@ -41,7 +48,12 @@ const UsersList = () => {
     );
   }
 
-  return <div className="content">{content}</div>;
+  return (
+    <>
+      <button className="users-list__add-user-button" onClick={handleAddUser}>Add user</button>
+      <div className="content">{content}</div>
+    </>
+  );
 };
 
 export default UsersList;
