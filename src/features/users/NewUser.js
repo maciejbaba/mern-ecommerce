@@ -20,6 +20,12 @@ const NewUser = () => {
     setIsAdmin(false);
   };
 
+  const handleAddNewUser = (e) => {
+    handleReset(e);
+    // should validate the form here and be awaited
+    addNewUser({ username, password, isAdmin }); // todo add result handling
+  }
+
   const navigate = useNavigate();
 
   return (
@@ -57,11 +63,7 @@ const NewUser = () => {
           />
         </div>
         <button
-          onClick={(e) => {
-            e.preventDefault();
-            // should validate the form here and be awaited
-            addNewUser({ username, password, isAdmin });
-          }}
+          onClick={handleAddNewUser}
         >
           Add
         </button>
