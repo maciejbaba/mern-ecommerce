@@ -12,6 +12,14 @@ const NewUser = () => {
   const [addNewUser, { isLoading, isSuccess, isError, error }] =
     useAddNewUserMutation();
 
+  const handleReset = (e) => {
+    e.preventDefault();
+    setUsername("");
+    setPassword("");
+    setConfirmPassword("");
+    setIsAdmin(false);
+  }
+
   const navigate = useNavigate();
 
   return (
@@ -57,7 +65,7 @@ const NewUser = () => {
         >
           Add
         </button>
-        <button type="reset">Reset</button>
+        <button onClick={(e) => handleReset(e)}>Reset</button>
       </form>
     </main>
   );
