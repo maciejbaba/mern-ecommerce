@@ -48,17 +48,16 @@ const NewUser = () => {
             onChange={() => setIsAdmin(!isAdmin)}
           />
         </div>
-        <div>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              addNewUser({ username, password, isAdmin });
-            }}
-          >
-            Add
-          </button>
-          <button type="reset">Reset</button>
-        </div>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            // should validate the form here and be awaited
+            addNewUser({ username, password, isAdmin });
+          }}
+        >
+          Add
+        </button>
+        <button type="reset">Reset</button>
       </form>
     </main>
   );
