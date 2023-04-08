@@ -11,6 +11,7 @@ import NewUser from "./features/users/NewUser";
 import UserPage from "./features/users/UserPage";
 import NewItem from "./features/items/NewItem";
 import ItemsList from "./features/items/ItemsList";
+import EditUser from "./features/users/EditUser";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route index element={<UsersList />} />
             <Route path="newUser" element={<NewUser />} />
             <Route path=":id" element={<UserPage />} />
+            <Route path="editUser/:id" element={< EditUser />}/>
           </Route>
           <Route path="items">
             <Route index element={<ItemsList />} />

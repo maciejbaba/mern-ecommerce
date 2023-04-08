@@ -18,7 +18,7 @@ const User = ({ id }) => {
     useDeleteUserMutation();
 
   const handleEditUser = () => {
-    navigate(`/users/${user.id}`);
+    navigate(`/users/editUser/${user.id}`);
   };
 
   const handleDeleteUser = () => {
