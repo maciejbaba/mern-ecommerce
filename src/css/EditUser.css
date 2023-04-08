@@ -1,0 +1,9 @@
+.edit-user-main {
+  text-align: center;
+}
+
+.edit-user-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
