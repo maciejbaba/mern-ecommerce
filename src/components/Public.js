@@ -15,7 +15,10 @@ const Public = () => {
       <div className="hero">
         <h1>Welcome to our store!</h1>
         <p>We hope that you will find something for yourself</p>
-        <button className="browse-items-button" onClick={handleBrowseItemsButtonClick}>
+        <button
+          className="browse-items-button"
+          onClick={handleBrowseItemsButtonClick}
+        >
           Browse Items
         </button>
       </div>

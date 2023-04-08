@@ -50,7 +50,9 @@ const UsersList = () => {
 
   return (
     <>
-      <button className="users-list__add-user-button" onClick={handleAddUser}>Add user</button>
+      <button className="users-list__add-user-button" onClick={handleAddUser}>
+        Add user
+      </button>
       <div className="content">{content}</div>
     </>
   );

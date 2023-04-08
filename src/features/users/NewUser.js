@@ -18,7 +18,7 @@ const NewUser = () => {
     setPassword("");
     setConfirmPassword("");
     setIsAdmin(false);
-  }
+  };
 
   const navigate = useNavigate();
 

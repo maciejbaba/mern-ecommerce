@@ -7,10 +7,12 @@ const UserPage = () => {
   const { id } = useParams();
   const user = useSelector((state) => selectUserById(state, id));
 
-  return <main style={{textAlign: "center"}}>
-    <h1>User {user.username}</h1>
-    <User id={id} />
-  </main>;
+  return (
+    <main style={{ textAlign: "center" }}>
+      <h1>User {user.username}</h1>
+      <User id={id} />
+    </main>
+  );
 };
 
 export default UserPage;
