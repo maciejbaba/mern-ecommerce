@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../../css/EditUserForm.css";
+import { useUpdateUserMutation } from "./usersApiSlice";
 
 const EditUserForm = ({ user }) => {
   const [username, setUsername] = useState(user.username);
@@ -7,15 +8,45 @@ const EditUserForm = ({ user }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const fetchedChecked = user.isAdmin ? true : false; // gets rid of warning in console about controlled/uncontrolled input
   const [isAdmin, setIsAdmin] = useState(fetchedChecked);
+  const [active, setActive] = useState(user.active); // todo - change to user.isActive
 
-  const handleSubmit = e => {
+  const [updateUser, { isSuccess, isLoading, error }] = useUpdateUserMutation(); // add error handling here
+
+  const handleSubmit = async e => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+    await updateUser({
+      id: user.id,
+      username,
+      password,
+      isAdmin,
+      active: active,
+    });
+    setPassword("");
+    setConfirmPassword("");
+
+    if (isSuccess) {
+      alert("User has been updated successfully");
+    }
+  };
+
+  const handleReset = e => {
+    e.preventDefault();
+    setUsername(user.username);
+    setPassword("");
+    setConfirmPassword("");
+    setIsAdmin(fetchedChecked);
+    setActive(user.active);
   };
 
   const handleUsernameChange = e => setUsername(e.target.value);
   const handlePasswordChange = e => setPassword(e.target.value);
   const handleConfirmPasswordChange = e => setConfirmPassword(e.target.value);
-  const handleAdminChange = () => setIsAdmin((prevIsAdmin) => !prevIsAdmin);
+  const handleAdminChange = () => setIsAdmin(prevIsAdmin => !prevIsAdmin);
+  const handleActiveChange = () => setActive(prevIsActive => !prevIsActive);
 
   return (
     <main>
@@ -42,13 +73,23 @@ const EditUserForm = ({ user }) => {
           value={confirmPassword}
           onChange={handleConfirmPasswordChange}
         />
-        <label htmlFor="admin" id="admin">
-          Admin
-        </label>
-        <input type="checkbox" id="admin" checked={isAdmin} onChange={handleAdminChange}/>
-
+        <div>
+          <label htmlFor="admin" id="admin">
+            Admin
+          </label>
+          <input
+            type="checkbox"
+            id="admin"
+            checked={isAdmin}
+            onChange={handleAdminChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="active">Active</label>
+          <input type="checkbox" id="active" checked={active} onChange={handleActiveChange} />
+        </div>
         <button onClick={handleSubmit}>Submit</button>
-        <button type="reset">Reset</button>
+        <button onClick={handleReset}>Reset</button>
       </form>
     </main>
   );
