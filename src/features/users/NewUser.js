@@ -65,7 +65,7 @@ const NewUser = () => {
         >
           Add
         </button>
-        <button onClick={(e) => handleReset(e)}>Reset</button>
+        <button onClick={handleReset}>Reset</button>
       </form>
     </main>
   );
