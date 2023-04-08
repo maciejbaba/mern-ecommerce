@@ -30,7 +30,7 @@ const User = ({ id }) => {
     <div className="user">
       <p>Username: {user.username}</p>
       <p>Status: {user.active ? "active" : "unactive"}</p>
-      <p>Roles: {user.roles}</p>
+      <p>isAdmin: {user.isAdmin ? "admin" : "client"}</p>
       <p>Created at: {changeDateFormat(user.createdAt)}</p>
       <p>Last update: {changeDateFormat(user.updatedAt)}</p>
       <div className="user-buttons">
