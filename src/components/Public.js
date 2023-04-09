@@ -7,6 +7,7 @@ import ItemsList from "../features/items/ItemsList";
 const Public = () => {
   const itemsListRef = useRef();
   const navigate = useNavigate();
+  const isPublicPage = true;
 
   const handleBrowseItemsButtonClick = () => {
     itemsListRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -29,7 +30,7 @@ const Public = () => {
         </button>
       </div>
       <div ref={itemsListRef}>
-        <ItemsList />
+        <ItemsList isPublicPage={isPublicPage} />
       </div>
       <button className="more-items-button" onClick={handleMoreItemsButton}>More items</button>
     </main>

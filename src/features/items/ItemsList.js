@@ -1,8 +1,9 @@
 import Item from "./Item";
 import "../../css/ItemsList.css";
 import { useGetItemsQuery } from "./itemsApiSlice";
+import { useNavigate } from "react-router-dom";
 
-const ItemsList = () => {
+const ItemsList = ({ isPublicPage }) => {
   const {
     data: items,
     isLoading,
@@ -10,6 +11,10 @@ const ItemsList = () => {
     isError,
     error,
   } = useGetItemsQuery();
+
+  const navigate = useNavigate();
+
+  const handleAddNewItem = () => navigate("/items/newItem");
 
   let content;
 
@@ -32,7 +37,19 @@ const ItemsList = () => {
     );
   }
 
-  return content;
+  return (
+    <div>
+      {!isPublicPage && (
+        <button
+          className="items-list-add-item-button"
+          onClick={handleAddNewItem}
+        >
+          Add new item
+        </button>
+      )}
+      {content}
+    </div>
+  );
 };
 
 export default ItemsList;

@@ -1,7 +1,12 @@
 .items-list-component {
-  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   width: 80vw;
+}
+
+.items-list-add-item-button {
+  padding: .2rem;
+  position: fixed;
+  right: 1rem;
 }
