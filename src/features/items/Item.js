@@ -3,8 +3,9 @@ import { selectItemById } from "./itemsApiSlice";
 import "../../css/Item.css";
 
 const Item = ({ id }) => {
-  const item = useSelector((state) => selectItemById(state, id));
+  const item = useSelector(state => selectItemById(state, id));
 
+  const handleAddToCart = () => {};
   return (
     <div className="item-container">
       <img
@@ -16,8 +17,12 @@ const Item = ({ id }) => {
             : `Photo of ${item.name}`
         }
       />
-      <p className="description">{item.description}</p>
-      <p className="price">Price: {item.price}</p>
+      <h2 className="item-name">{item.name}</h2>
+      <p className="item-description">{item.description.length < 150 ? item.description : item.description.slice(0, 150) + "..."}</p>
+      <p className="item-price">Price: {item.price}</p>
+      <button className="add-to-cart-button" onClick={handleAddToCart}>
+        Add to cart
+      </button>
     </div>
   );
 };
