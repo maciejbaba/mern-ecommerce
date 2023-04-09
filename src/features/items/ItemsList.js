@@ -11,14 +11,14 @@ const ItemsList = () => {
     error,
   } = useGetItemsQuery();
 
-  let content = <div></div>;
+  let content;
 
   if (isLoading) {
     content = <div>Loading...</div>;
   } else if (isSuccess) {
     content = (
       <div className="items-list-component">
-        {items.ids.map((itemId) => (
+        {items.ids.map(itemId => (
           <Item key={itemId} id={itemId}></Item>
         ))}
       </div>
