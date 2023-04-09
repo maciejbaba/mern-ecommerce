@@ -1,0 +1,14 @@
+.add-new-item-main {
+  justify-content: center;
+  display: flex;
+}
+
+.add-new-item-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-new-item-form-button {
+  padding: .2rem;
+}
