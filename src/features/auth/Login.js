@@ -9,7 +9,7 @@ const Login = () => {
 
   const handleRegister = () => {
     navigate("/register");
-  }
+  };
 
   return (
     <main className="main-login">
@@ -22,24 +22,26 @@ const Login = () => {
           id="username"
           type="text"
           value={username}
-          onChange={(e) => setUsername(e.currentTarget.value)}
+          onChange={e => setUsername(e.currentTarget.value)}
         />
         <label htmlFor="password">Password</label>
         <input
           id="password"
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.currentTarget.value)}
+          onChange={e => setPassword(e.currentTarget.value)}
         />
-        <button className="login-btn" onClick={(e) => e.preventDefault()}>
+        <button className="login-btn" onChange={e => e.preventDefault()}>
           Login
         </button>
       </form>
 
       <div>
         <p>
-          Don't have an account? <button onClick={handleRegister} style={{padding: ".2rem"
-          }}>Register</button>
+          Don't have an account?{" "}
+          <button onClick={handleRegister} style={{ padding: ".2rem" }}>
+            Register
+          </button>
         </p>
       </div>
     </main>

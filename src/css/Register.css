@@ -1,0 +1,12 @@
+.register-main {
+  text-align: center;
+  margin: 1rem auto;
+}
+
+.register-form {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
