@@ -1,9 +1,15 @@
 import "../../css/Login.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleRegister = () => {
+    navigate("/register");
+  }
 
   return (
     <main className="main-login">
@@ -29,6 +35,13 @@ const Login = () => {
           Login
         </button>
       </form>
+
+      <div>
+        <p>
+          Don't have an account? <button onClick={handleRegister} style={{padding: ".2rem"
+          }}>Register</button>
+        </p>
+      </div>
     </main>
   );
 };

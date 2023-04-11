@@ -12,6 +12,7 @@ import UserPage from "./features/users/UserPage";
 import NewItem from "./features/items/NewItem";
 import ItemsList from "./features/items/ItemsList";
 import EditUser from "./features/users/EditUser";
+import Register from "./features/auth/Register";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path=":id" element={<ItemPage />} />
             <Route path="newItem" element={<NewItem />} />
           </Route>
+          <Route path="register" element={<Register />} />
           <Route path="*" element={<Missing />} />
         </Route>
       </Route>
