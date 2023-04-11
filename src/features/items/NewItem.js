@@ -6,13 +6,13 @@ const NewItem = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
-  const [imageURL, setImageURL] = useState("");
+  const [photoURL, setPhotoURL] = useState("");
 
   const [addNewItem, { isSuccess, isLoading, isError }] =
     useAddNewItemMutation();
   const handleSubmit = e => {
     e.preventDefault();
-    addNewItem({ name, description, price, imageURL });
+    addNewItem({ name, description, price, photoURL });
   };
 
   const handleReset = e => {
@@ -20,7 +20,7 @@ const NewItem = () => {
     setName("");
     setDescription("");
     setPrice(0);
-    setImageURL("");
+    setPhotoURL("");
   }
 
   return (
@@ -51,8 +51,8 @@ const NewItem = () => {
         <input
           type="text"
           id="imageURL"
-          value={imageURL}
-          onChange={e => setImageURL(e.target.value)}
+          value={photoURL}
+          onChange={e => setPhotoURL(e.target.value)}
         />
         <button onClick={handleSubmit} className="add-new-item-form-button">Add</button>
         <button onClick={handleReset} className="add-new-item-form-button">Reset</button>

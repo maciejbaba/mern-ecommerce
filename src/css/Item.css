@@ -9,6 +9,7 @@
 
 .item-img {
   width: 60%;
+  border-radius: 1rem;
 }
 
 .item-description {
