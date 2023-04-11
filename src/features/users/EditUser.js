@@ -8,14 +8,12 @@ const EditUser = () => {
   const { id } = useParams();
 
   // fetch user, using selector resulted in an error due to attempting to access user.username before user was defined
-  const { user } = useGetUsersQuery("getUser", {
-    selectFromResult: ({ data }) => ({
-      user: data?.entities[id],
-    }),
-  });
+  const { data: users } = useGetUsersQuery();
+  const user = users?.entities[id];
 
   let content;
 
+  // todo - add error handling, loading state from api instead of using this
   if (!user) {
     content = <p>Loading user data...</p>;
   }

@@ -86,7 +86,12 @@ const EditUserForm = ({ user }) => {
         </div>
         <div>
           <label htmlFor="active">Active</label>
-          <input type="checkbox" id="active" checked={active} onChange={handleActiveChange} />
+          <input
+            type="checkbox"
+            id="active"
+            checked={active}
+            onChange={handleActiveChange}
+          />
         </div>
         <button onClick={handleSubmit}>Submit</button>
         <button onClick={handleReset}>Reset</button>

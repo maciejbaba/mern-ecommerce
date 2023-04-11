@@ -44,7 +44,7 @@ const ItemsList = ({ isPublicPage }) => {
           className="items-list-add-item-button"
           onClick={handleAddNewItem}
         >
-          Add new item
+          Add item
         </button>
       )}
       {content}
