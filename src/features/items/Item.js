@@ -2,11 +2,17 @@ import { useSelector } from "react-redux";
 import { selectItemById } from "./itemsApiSlice";
 import "../../css/Item.css";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../cart/CartProvider";
 
 const Item = ({ id }) => {
   const item = useSelector(state => selectItemById(state, id));
+  const cart = useContext(CartContext);
 
-  const handleAddToCart = () => {};
+  const handleAddToCart = () => {
+    cart.addItem(item);
+  };
+  
   return (
     <Link to={`/items/${item.id}`}>
       <div className="item-container">

@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Public from "./components/Public";
-import Cart from "./components/Cart";
 import ItemPage from "./features/items/ItemPage";
 import Missing from "./components/Missing";
 import Login from "./features/auth/Login";
@@ -13,6 +12,7 @@ import NewItem from "./features/items/NewItem";
 import ItemsList from "./features/items/ItemsList";
 import EditUser from "./features/users/EditUser";
 import Register from "./features/auth/Register";
+import Cart from "./features/cart/Cart";
 
 function App() {
   return (
