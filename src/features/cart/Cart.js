@@ -12,9 +12,9 @@ const Cart = () => {
       <div className="user-items-list">
         {items.map(item => (
           <div className="user-item" key={item.id}>
-            <img />
+            <img src={item.photoURL} />
             <h2>{item.name}</h2>
-            <p>{item.description}</p>
+            <p>{item.description.length > 50 ? item.description.slice(0, 50) + "..." : item.description}</p>
             <p>{item.price}</p>
           </div>
         ))}
