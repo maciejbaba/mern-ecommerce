@@ -8,6 +8,10 @@
   text-align: center;
 }
 
+.cart-img {
+  width: 60%;
+}
+
 .user-items-list {
   display: grid;
   width: 80vw;

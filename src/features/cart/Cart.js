@@ -1,10 +1,8 @@
 import "../../css/Cart.css";
-import { useContext } from "react";
-import { CartContext } from "./CartProvider";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
-  const cart = useContext(CartContext);
-  console.log(cart);
+  const items = useSelector(state => state.cart.items);
 
   return (
     <main className="main-cart">
@@ -12,18 +10,14 @@ const Cart = () => {
         <h1>Your items</h1>
       </div>
       <div className="user-items-list">
-        {cart.items.map((item) => {
-          return (
-            <div className="user-item" key={item.id}>
-              <img src={item.imageURL} alt={item.name} />
-              <div className="user-item-info">
-                <h3>{item.name}</h3>
-                <p>{item.description}</p>
-                <p>{item.price}</p>
-              </div>
-            </div>
-          );
-        })}
+        {items.map(item => (
+          <div className="user-item" key={item.id}>
+            <img />
+            <h2>{item.name}</h2>
+            <p>{item.description}</p>
+            <p>{item.price}</p>
+          </div>
+        ))}
       </div>
     </main>
   );

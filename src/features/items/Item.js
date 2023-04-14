@@ -1,18 +1,19 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectItemById } from "./itemsApiSlice";
 import "../../css/Item.css";
+import { addToCart } from "../cart/cartSlice";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { CartContext } from "../cart/CartProvider";
 
 const Item = ({ id }) => {
   const item = useSelector(state => selectItemById(state, id));
-  const cart = useContext(CartContext);
-
-  const handleAddToCart = () => {
-    cart.addItem(item);
-  };
   
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    dispatch(addToCart(item));
+  };
+
   return (
     <Link to={`/items/${item.id}`}>
       <div className="item-container">
@@ -27,9 +28,9 @@ const Item = ({ id }) => {
         />
         <h2 className="item-name">{item.name}</h2> {/* change magic number */}
         <p className="item-description">
-          {item.description.length < 150
+          {item.description.length < 50
             ? item.description
-            : item.description.slice(0, 150) + "..."}
+            : item.description.slice(0, 50) + "..."}
         </p>
         <p className="item-price">Price: {item.price}</p>
         <button className="add-to-cart-button" onClick={handleAddToCart}>
