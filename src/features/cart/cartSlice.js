@@ -32,7 +32,7 @@ export const cartSlice = createSlice({
     },
     removeFromCart: (state, action) => {
       const item = action.payload;
-      state.items = state.items.filter(cartItem => cartItem.id !== item);
+      state.items = state.items.filter(cartItem => cartItem.id !== item.id);
       state.quantity = state.items.length;
       state.total = state.items.reduce((acc, item) => acc + item.price, 0);
       saveItemsToLocalStorage(state.items);
