@@ -38,7 +38,9 @@ export const cartSlice = createSlice({
       saveItemsToLocalStorage(state.items);
     },
     emptyCart: state => {
-      state = initialState;
+      state.items = initialState.items; // state = initialState doesn't rerender the component
+      state.quantity = initialState.quantity;
+      state.total = initialState.total;
       removeItemsFromLocalStorage();
     },
   },
