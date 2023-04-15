@@ -7,7 +7,7 @@ import ItemsList from "../features/items/ItemsList";
 const Public = () => {
   const itemsListRef = useRef();
   const navigate = useNavigate();
-  const isPublicPage = true;
+  const isPublicPage = true; // change this functionality to button on public page
 
   const handleBrowseItemsButtonClick = () => {
     itemsListRef.current?.scrollIntoView({ behavior: "smooth" });
