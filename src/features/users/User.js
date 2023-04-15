@@ -5,10 +5,10 @@ import "../../css/User.css";
 import { useNavigate } from "react-router-dom";
 
 const User = ({ id }) => {
-  const user = useSelector((state) => selectUserById(state, id));
+  const user = useSelector(state => selectUserById(state, id));
   const navigate = useNavigate();
 
-  const changeDateFormat = (mongoDBDate) => {
+  const changeDateFormat = mongoDBDate => {
     // example, returns "18/03/2023" from "2023-03-18T20:06:37.926Z"
     const ddmmyyyyDate = new Date(mongoDBDate).toLocaleDateString();
     return ddmmyyyyDate;
@@ -25,6 +25,8 @@ const User = ({ id }) => {
     deleteUser(user);
     navigate("/users");
   };
+
+  let content;
 
   return (
     <div className="user">

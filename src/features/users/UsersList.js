@@ -6,9 +6,7 @@ import { useNavigate } from "react-router-dom";
 const UsersList = () => {
   const navigate = useNavigate();
 
-  const handleAddUser = () => {
-    navigate("/users/newUser");
-  };
+  const handleAddUser = () => navigate("/users/newUser");
 
   const {
     data: users,
@@ -18,14 +16,10 @@ const UsersList = () => {
     error,
   } = useGetUsersQuery();
 
-  let content = <div></div>;
+  let content;
 
   if (isLoading) {
-    content = (
-      <div>
-        <p>Loading users...</p>
-      </div>
-    );
+    content = <p>Loading users...</p>;
   } else if (isSuccess) {
     content = (
       <main>
@@ -33,7 +27,7 @@ const UsersList = () => {
           <h1>Users</h1>
         </div>
         <div className="users-list">
-          {users.ids.map((userId) => (
+          {users.ids.map(userId => (
             <User key={userId} id={userId} />
           ))}
         </div>

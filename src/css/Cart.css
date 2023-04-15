@@ -27,3 +27,10 @@
   position: fixed;
   right: 2rem;
 }
+
+.empty-cart {
+  font-size: larger;
+  font-weight: bold;
+  text-align: center;
+  padding: 2rem;
+}

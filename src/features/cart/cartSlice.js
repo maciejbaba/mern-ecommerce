@@ -1,17 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const saveItemsToLocalStorage = items => {
+const saveItemsToLocalStorage = items =>
   localStorage.setItem("cartItems", JSON.stringify(items));
-};
 
 const getItemsFromLocalStorage = () => {
   const items = localStorage.getItem("cartItems");
   return items ? JSON.parse(items) : [];
 };
 
-const removeItemsFromLocalStorage = () => {
-  localStorage.removeItem("cartItems");
-};
+const removeItemsFromLocalStorage = () => localStorage.removeItem("cartItems");
 
 const initialState = {
   items: getItemsFromLocalStorage(),
