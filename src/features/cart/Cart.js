@@ -1,6 +1,5 @@
 import "../../css/Cart.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { removeFromCart, emptyCart } from "./cartSlice";
 
 const Cart = () => {
@@ -24,6 +23,7 @@ const Cart = () => {
         </button>
         <h1>Your items</h1>
       </div>
+      {items.length === 0 && <p>Your cart is empty</p>}
       <div className="user-items-list">
         {items.map(item => (
           <div className="user-item" key={item.id}>

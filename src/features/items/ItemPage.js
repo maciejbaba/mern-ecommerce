@@ -1,13 +1,19 @@
 import { useParams } from "react-router-dom";
 import { useGetItemsQuery } from "./itemsApiSlice";
 import "../../css/ItemPage.css";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../cart/cartSlice";
 
 const ItemPage = () => {
   const { id } = useParams();
   const { data: items, isLoading, isSuccess } = useGetItemsQuery();
   const item = items?.entities[id];
 
-  const handleAddToCart = () => {};
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(item));
+  };
 
   let content;
 
