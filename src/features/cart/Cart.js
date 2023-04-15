@@ -19,7 +19,9 @@ const Cart = () => {
   return (
     <main className="main-cart">
       <div className="cart-heading">
-        <button className="remove-all-button" onClick={handleRemoveAll}>Remove all items</button>
+        <button className="remove-all-button" onClick={handleRemoveAll}>
+          Remove all items
+        </button>
         <h1>Your items</h1>
       </div>
       <div className="user-items-list">
