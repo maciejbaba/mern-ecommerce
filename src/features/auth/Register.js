@@ -32,9 +32,9 @@ const Register = () => {
   };
 
   return (
-    <main className="register-main">
+    <main className="register">
       <h1>Register</h1>
-      <form action="" className="register-form">
+      <form action="" className="register__form">
         <label htmlFor="username">Username</label>
         <input
           type="text"

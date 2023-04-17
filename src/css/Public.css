@@ -6,7 +6,7 @@
   gap: 3rem;
 }
 
-.hero {
+.public__hero {
   margin-top: 3rem;
   display: flex;
   align-items: center;
@@ -14,12 +14,12 @@
   gap: 1rem;
 }
 
-.browse-items-button {
+.public__browse-items-button {
   padding: 0.2rem;
   border-radius: 0.3rem;
 }
 
-.more-items-button {
+.public__more-items-button {
   padding: 0.2rem;
   border-radius: 0.3rem;
 }

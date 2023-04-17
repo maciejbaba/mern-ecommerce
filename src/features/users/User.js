@@ -37,7 +37,7 @@ const User = ({ id }) => {
       <p>isAdmin: {user.isAdmin ? "Yes" : "No"}</p>
       <p>Created at: {changeDateFormat(user.createdAt)}</p>
       <p>Last update: {changeDateFormat(user.updatedAt)}</p>
-      <div className="user-buttons">
+      <div className="user__buttons">
         <button onClick={handleEditUser}>Edit</button>
         <button onClick={handleDeleteUser}>Delete</button>
       </div>

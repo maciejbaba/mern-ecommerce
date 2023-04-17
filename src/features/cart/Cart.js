@@ -25,19 +25,21 @@ const Cart = () => {
 
   if (items.length > 0) {
     content = (
-      <main className="main-cart">
-        <div className="cart-heading">
-          <button className="remove-all-button" onClick={handleRemoveAll}>
+      <main className="cart">
+        <div className="cart__heading">
+          <button className="cart__remove-all-button" onClick={handleRemoveAll}>
             Remove all items
           </button>
-          <button className="buy-items-button" onClick={handleBuy}>Buy items</button>
+          <button className="cart__buy-items-button" onClick={handleBuy}>
+            Buy items
+          </button>
           <h1>Your items</h1>
         </div>
-        <div className="user-items-list">
+        <div className="cart__user-items-list">
           {items.map(item => (
-            <div className="user-item" key={item.id}>
+            <div className="cart__user-item" key={item.id}>
               <img
-                className="cart-img"
+                className="cart__img"
                 src={item.photoURL}
                 alt={`${item.name}`}
               />

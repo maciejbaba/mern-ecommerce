@@ -21,12 +21,12 @@ const ItemPage = () => {
     content = <p>Loading...</p>;
   } else if (isSuccess) {
     content = (
-      <main className="item-page-main">
+      <main className="item-page">
         <h1>Item {item?.name}</h1>
-        <img src={item?.photoURL} alt={item?.name} />
+        <img className="item-page__img" src={item?.photoURL} alt={item?.name} />
         <p>Description {item?.description}</p>
         <p>Price: {item?.price}</p>
-        <button className="item-page-button-add" onClick={handleAddToCart}>
+        <button className="item-page__add-to-cart-button" onClick={handleAddToCart}>
           Add to cart
         </button>
       </main>

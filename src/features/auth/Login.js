@@ -12,11 +12,11 @@ const Login = () => {
   };
 
   return (
-    <main className="main-login">
+    <main className="login">
       <div>
         <h1>Welcome!</h1>
       </div>
-      <form action="" className="login-form">
+      <form action="" className="login__form">
         <label htmlFor="username">Username</label>
         <input
           id="username"
@@ -31,7 +31,7 @@ const Login = () => {
           value={password}
           onChange={e => setPassword(e.currentTarget.value)}
         />
-        <button className="login-btn" onChange={e => e.preventDefault()}>
+        <button className="login__login-button" onChange={e => e.preventDefault()}>
           Login
         </button>
       </form>

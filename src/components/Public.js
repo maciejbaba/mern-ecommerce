@@ -19,11 +19,11 @@ const Public = () => {
 
   return (
     <main className="public">
-      <div className="hero">
+      <div className="public__hero">
         <h1>Welcome to our store!</h1>
         <p>We hope that you will find something for yourself</p>
         <button
-          className="browse-items-button"
+          className="public__browse-items-button"
           onClick={handleBrowseItemsButtonClick}
         >
           Browse Items
@@ -32,7 +32,7 @@ const Public = () => {
       <div ref={itemsListRef}>
         <ItemsList isPublicPage={isPublicPage} />
       </div>
-      <button className="more-items-button" onClick={handleMoreItemsButton}>More items</button>
+      <button className="public__more-items-button" onClick={handleMoreItemsButton}>More items</button>
     </main>
   );
 };

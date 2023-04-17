@@ -24,8 +24,9 @@ const NewItem = () => {
   }
 
   return (
-    <main className="add-new-item-main">
-      <form onSubmit={handleSubmit} className="add-new-item-form">
+    <main className="new-item">
+      <h1>Add new item</h1>
+      <form onSubmit={handleSubmit} className="new-item__form">
         <label htmlFor="name">Name</label>
         <input
           type="text"
@@ -54,8 +55,8 @@ const NewItem = () => {
           value={photoURL}
           onChange={e => setPhotoURL(e.target.value)}
         />
-        <button onClick={handleSubmit} className="add-new-item-form-button">Add</button>
-        <button onClick={handleReset} className="add-new-item-form-button">Reset</button>
+        <button onClick={handleSubmit} className="new-item__form-button">Add</button>
+        <button onClick={handleReset} className="new-item__form-button">Reset</button>
         {isSuccess && <p>Item added!</p>}
       </form>
     </main>

@@ -31,7 +31,7 @@ const NewUser = () => {
   return (
     <main className="new-user">
       <h1>Add new user</h1>
-      <form action="" className="new-user-form">
+      <form action="" className="new-user__form">
         <label htmlFor="username">Username</label>
         <input
           id="username"

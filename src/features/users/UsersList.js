@@ -26,7 +26,7 @@ const UsersList = () => {
         <div>
           <h1>Users</h1>
         </div>
-        <div className="users-list">
+        <div className="users-list__links-list">
           {users.ids.map(userId => (
             <Link to={`/users/${userId}`} key={userId}>
               <User id={userId} />
@@ -49,7 +49,7 @@ const UsersList = () => {
       <button className="users-list__add-user-button" onClick={handleAddUser}>
         Add user
       </button>
-      <div className="content">{content}</div>
+      <div className="users-list">{content}</div>
     </>
   );
 };

@@ -1,9 +1,9 @@
-.register-main {
+.register {
   text-align: center;
   margin: 1rem auto;
 }
 
-.register-form {
+.register__form {
   padding: 1rem;
   display: flex;
   flex-direction: column;

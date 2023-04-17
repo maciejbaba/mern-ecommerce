@@ -22,7 +22,7 @@ const ItemsList = ({ isPublicPage }) => {
     content = <div>Loading...</div>;
   } else if (isSuccess) {
     content = (
-      <div className="items-list-component">
+      <div className="items-list">
         {items.ids.map(itemId => (
           <Item key={itemId} id={itemId}></Item>
         ))}
@@ -41,7 +41,7 @@ const ItemsList = ({ isPublicPage }) => {
     <div>
       {!isPublicPage && (
         <button
-          className="items-list-add-item-button"
+          className="items-list__add-item-button"
           onClick={handleAddNewItem}
         >
           Add item

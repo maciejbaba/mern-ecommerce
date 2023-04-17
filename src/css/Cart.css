@@ -1,41 +1,41 @@
-.main-cart {
+.cart {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.cart-heading {
+.cart__heading {
   text-align: center;
   padding: 2rem;
 }
 
-.cart-img {
+.cart__img {
   width: 50%;
   height: 50%;
   object-fit: cover;
 }
 
-.user-items-list {
+.cart__user-items-list {
   display: grid;
   word-break: break-all;
   width: 80vw;
   grid-template-columns: 1fr 1fr;
 }
 
-.remove-all-button {
+.cart__remove-all-button {
   padding: 0.2rem;
   position: fixed;
   right: 2rem;
 }
 
-.buy-items-button {
+.cart__buy-items-button {
   padding: 0.2rem;
   position: fixed;
   top: 9rem;
   right: 2rem;
 }
 
-.empty-cart {
+.cart__empty-cart {
   font-size: larger;
   font-weight: bold;
   text-align: center;

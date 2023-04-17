@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
 import { useGetUsersQuery } from "./usersApiSlice";
 import "../../css/EditUser.css";
 import EditUserForm from "./EditUserForm";
@@ -22,7 +21,7 @@ const EditUser = () => {
     content = <EditUserForm user={user} />;
   }
 
-  return <main className="edit-user-main">{content}</main>;
+  return <main className="edit-user">{content}</main>;
 };
 
 export default EditUser;
