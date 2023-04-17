@@ -1,7 +1,7 @@
 import "../../css/UsersList.css";
 import { useGetUsersQuery } from "./usersApiSlice";
 import User from "./User";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const UsersList = () => {
   const navigate = useNavigate();
@@ -28,7 +28,9 @@ const UsersList = () => {
         </div>
         <div className="users-list">
           {users.ids.map(userId => (
-            <User key={userId} id={userId} />
+            <Link to={`/users/${userId}`} key={userId}>
+              <User id={userId} />
+            </Link>
           ))}
         </div>
       </main>
