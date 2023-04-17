@@ -28,6 +28,13 @@
   right: 2rem;
 }
 
+.buy-items-button {
+  padding: 0.2rem;
+  position: fixed;
+  top: 9rem;
+  right: 2rem;
+}
+
 .empty-cart {
   font-size: larger;
   font-weight: bold;

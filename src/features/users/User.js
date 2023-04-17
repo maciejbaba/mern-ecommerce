@@ -17,13 +17,15 @@ const User = ({ id }) => {
   const [deleteUser, { isLoading, isSuccess, isError, error }] =
     useDeleteUserMutation();
 
-  const handleEditUser = () => {
+  const handleEditUser = (e) => {
+    e.preventDefault();
     navigate(`/users/editUser/${user.id}`);
   };
 
-  const handleDeleteUser = () => {
+  const handleDeleteUser = (e) => {
+    e.preventDefault();
     deleteUser(user);
-    navigate("/users");
+    navigate("/users"); // todo add a confirmation message
   };
 
   let content;

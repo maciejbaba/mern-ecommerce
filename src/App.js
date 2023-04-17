@@ -13,6 +13,7 @@ import ItemsList from "./features/items/ItemsList";
 import EditUser from "./features/users/EditUser";
 import Register from "./features/auth/Register";
 import Cart from "./features/cart/Cart";
+import Checkout from "./components/Checkout";
 
 function App() {
   return (
@@ -21,7 +22,10 @@ function App() {
         <Route element={<Prefetch />}>
           <Route index element={<Public />} />
           <Route path="login" element={<Login />} />
-          <Route path="cart" element={<Cart />} />
+          <Route path="cart">
+            <Route index element={<Cart />} />
+            <Route path="checkout" element={<Checkout />} />
+          </Route>
           <Route path="users">
             <Route index element={<UsersList />} />
             <Route path="newUser" element={<NewUser />} />

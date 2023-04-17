@@ -1,11 +1,17 @@
 import "../../css/Cart.css";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, emptyCart, selectCartItems } from "./cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const items = useSelector(selectCartItems);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const handleBuy = () => {
+    navigate("/cart/checkout");
+  };
 
   const handleRemoveItem = item => dispatch(removeFromCart(item));
 
@@ -24,6 +30,7 @@ const Cart = () => {
           <button className="remove-all-button" onClick={handleRemoveAll}>
             Remove all items
           </button>
+          <button className="buy-items-button" onClick={handleBuy}>Buy items</button>
           <h1>Your items</h1>
         </div>
         <div className="user-items-list">
@@ -32,7 +39,7 @@ const Cart = () => {
               <img
                 className="cart-img"
                 src={item.photoURL}
-                alt={`Photo of a ${item.name}`}
+                alt={`${item.name}`}
               />
               <h2>{item.name}</h2>
               <p>
