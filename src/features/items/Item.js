@@ -32,7 +32,7 @@ const Item = ({ id }) => {
             ? item.description
             : item.description.slice(0, 50) + "..."}
         </p>
-        <p className="item__price">Price: {item.price}</p>
+        <p className="item__price">Price: {`${item.price} $`}</p>
         <button className="item__add-to-cart-button" onClick={handleAddToCart}>
           Add to cart
         </button>

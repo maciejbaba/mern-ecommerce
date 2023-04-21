@@ -18,5 +18,8 @@
 
 .login__login-button {
   padding: 0.2rem;
-  width: fit-content;
+}
+
+.login__register-button {
+  padding: 0.2rem;
 }

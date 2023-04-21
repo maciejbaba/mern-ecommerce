@@ -7,7 +7,7 @@
 }
 
 .item-page__img {
-  width: 60%;
+  max-width: 25rem;
   border-radius: 1rem;
 }
 
