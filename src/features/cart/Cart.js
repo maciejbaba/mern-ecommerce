@@ -20,7 +20,7 @@ const Cart = () => {
   let content;
 
   if (items.length === 0) {
-    content = <p className="empty-cart">Your cart is empty</p>;
+    content = <p className="cart__empty-cart">Your cart is empty</p>;
   }
 
   if (items.length > 0) {
