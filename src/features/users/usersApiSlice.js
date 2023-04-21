@@ -45,6 +45,10 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       query: newUserData => ({
         url: "/users",
         method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token") || "",
+        },
         body: {
           ...newUserData,
         },
@@ -57,7 +61,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer " + localStorage.getItem("token") || "",
+          Authorization: "Bearer " + localStorage.getItem("token") || "",
         },
         body: { id },
       }),
