@@ -37,6 +37,7 @@ const Login = () => {
           localStorage.setItem("token", accessToken);
           alert("Login successful");
           navigate("/");
+          window.location.reload();
         }
         else {
           alert("Invalid username or password");

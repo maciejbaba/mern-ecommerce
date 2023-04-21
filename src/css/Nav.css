@@ -7,11 +7,26 @@
   font-size: 0.8rem;
   text-decoration: none;
   color: inherit;
-  width: 3rem;
   border-radius: 0.5rem;
   box-shadow: 0 0 1px black;
   padding: 0.5rem;
   text-align: center;
+}
+
+.nav__logout-button {
+  background: inherit;
+	border: none;
+	font: inherit;
+	cursor: pointer;
+  font-size: 0.8rem;
+  color: inherit;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1px black;
+  padding: 0.5rem;
+}
+
+.nav__logout-button:hover {
+  background-color: ghostwhite;
 }
 
 .nav a:hover {
