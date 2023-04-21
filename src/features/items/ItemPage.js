@@ -25,7 +25,7 @@ const ItemPage = () => {
         <h1>Item {item?.name}</h1>
         <img className="item-page__img" src={item?.photoURL} alt={item?.name} />
         <p>Description {item?.description}</p>
-        <p>Price: {item?.price}</p>
+        <p>Price: {`${item?.price} $`}</p>
         <button className="item-page__add-to-cart-button" onClick={handleAddToCart}>
           Add to cart
         </button>
