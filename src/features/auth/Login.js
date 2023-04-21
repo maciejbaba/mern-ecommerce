@@ -1,6 +1,7 @@
 import "../../css/Login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../../app/api/apiSlice";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -9,6 +10,37 @@ const Login = () => {
 
   const handleRegister = () => {
     navigate("/register");
+  };
+
+  const handleUsernameChange = e => {
+    setUsername(e.currentTarget.value);
+  };
+
+  const handlePasswordChange = e => {
+    setPassword(e.currentTarget.value);
+  };
+
+  const handleLogin = e => {
+    e.preventDefault();
+    fetch(`${baseUrl}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(({ accessToken }) => {
+        if (accessToken) {
+          localStorage.setItem("token", accessToken);
+          navigate("/");
+        }
+        else {
+          alert("Invalid username or password");
+        }
+      });
   };
 
   return (
@@ -22,16 +54,16 @@ const Login = () => {
           id="username"
           type="text"
           value={username}
-          onChange={e => setUsername(e.currentTarget.value)}
+          onChange={handleUsernameChange}
         />
         <label htmlFor="password">Password</label>
         <input
           id="password"
           type="password"
           value={password}
-          onChange={e => setPassword(e.currentTarget.value)}
+          onChange={handlePasswordChange}
         />
-        <button className="login__login-button" onChange={e => e.preventDefault()}>
+        <button className="login__login-button" onClick={handleLogin}>
           Login
         </button>
       </form>

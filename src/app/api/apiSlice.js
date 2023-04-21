@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-let baseUrl = "https://mern-ecommerce-api-pt6x.onrender.com";
+export let baseUrl = "https://mern-ecommerce-api-pt6x.onrender.com";
 
 if (window.location.origin.includes("localhost")) {
   baseUrl = "http://localhost:3500";
