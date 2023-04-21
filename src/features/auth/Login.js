@@ -35,6 +35,7 @@ const Login = () => {
       .then(({ accessToken }) => {
         if (accessToken) {
           localStorage.setItem("token", accessToken);
+          alert("Login successful");
           navigate("/");
         }
         else {
@@ -71,7 +72,7 @@ const Login = () => {
       <div>
         <p>
           Don't have an account?{" "}
-          <button onClick={handleRegister} style={{ padding: ".2rem" }}>
+          <button className="login__register-button" onClick={handleRegister}>
             Register
           </button>
         </p>
