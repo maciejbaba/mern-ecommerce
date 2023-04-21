@@ -38,8 +38,7 @@ const Login = () => {
           alert("Login successful");
           navigate("/");
           window.location.reload();
-        }
-        else {
+        } else {
           alert("Invalid username or password");
         }
       });
