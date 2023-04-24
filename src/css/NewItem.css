@@ -7,10 +7,38 @@
 
 .new-item__form {
   display: flex;
-  flex-direction: column;
+  gap: 1rem;
   align-items: center;
+  flex-direction: column;
 }
 
-.new-item__form-button {
-  padding: .2rem;
+.new-item__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+}
+
+.new-item__buttons button {
+  padding: 0.2rem;
+  width: 3rem;
+}
+
+.new-item__input-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.new-item__input-container textarea {
+  width: 12rem;
+  font-size: 0.8rem;
+}
+
+.new-item__input-container input {
+  width: 12rem;
+  font-size: 0.8rem;
 }

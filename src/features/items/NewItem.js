@@ -10,6 +10,7 @@ const NewItem = () => {
 
   const [addNewItem, { isSuccess, isLoading, isError }] =
     useAddNewItemMutation();
+
   const handleSubmit = e => {
     e.preventDefault();
     addNewItem({ name, description, price, photoURL });
@@ -21,43 +22,60 @@ const NewItem = () => {
     setDescription("");
     setPrice(0);
     setPhotoURL("");
-  }
+  };
 
   return (
     <main className="new-item">
       <h1>Add new item</h1>
       <form onSubmit={handleSubmit} className="new-item__form">
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-        <label htmlFor="description">Description</label>
-        <input
-          type="text"
-          id="description"
-          value={description}
-          onChange={e => setDescription(e.target.value)}
-        />
-        <label htmlFor="price">Price</label>
-        <input
-          type="number"
-          id="price"
-          value={price}
-          onChange={e => setPrice(e.target.value)}
-        />
-        <label htmlFor="imageURL">Image URL</label>
-        <input
-          type="text"
-          id="imageURL"
-          value={photoURL}
-          onChange={e => setPhotoURL(e.target.value)}
-        />
-        <button onClick={handleSubmit} className="new-item__form-button">Add</button>
-        <button onClick={handleReset} className="new-item__form-button">Reset</button>
-        {isSuccess && <p>Item added!</p>}
+        <div className="new-item__input-container">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+        </div>
+        <div className="new-item__input-container">
+          <label htmlFor="description">Description</label>
+          <textarea
+            type="text"
+            id="description"
+            value={description}
+            placeholder="Enter a description..."
+            maxLength={200}
+            rows={4}
+            onChange={e => setDescription(e.target.value)}
+          />
+        </div>
+        <div className="new-item__input-container">
+          <label htmlFor="price">Price</label>
+          <input
+            type="number"
+            id="price"
+            value={price}
+            onChange={e => setPrice(e.target.value)}
+          />
+        </div>
+        <div className="new-item__input-container">
+          <label htmlFor="imageURL">Image URL</label>
+          <input
+            type="text"
+            id="imageURL"
+            value={photoURL}
+            onChange={e => setPhotoURL(e.target.value)}
+          />
+        </div>
+        <div className="new-item__buttons">
+          <button onClick={handleSubmit}>Add</button>
+          <button onClick={handleReset}>Reset</button>
+        </div>
+        <div className="new-item__result">
+          {isSuccess && <p>Item added!</p>}
+          {isLoading && <p>Adding item...</p>}
+          {isError && <p>Something went wrong!</p>}
+        </div>
       </form>
     </main>
   );
