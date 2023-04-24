@@ -4,13 +4,7 @@ import { useGetItemsQuery } from "./itemsApiSlice";
 import { useNavigate } from "react-router-dom";
 
 const ItemsList = ({ isPublicPage }) => {
-  const {
-    data: items,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  } = useGetItemsQuery();
+  let { data: items, isLoading, isSuccess, isError } = useGetItemsQuery();
 
   const navigate = useNavigate();
 
@@ -19,27 +13,32 @@ const ItemsList = ({ isPublicPage }) => {
   let content;
 
   if (isLoading) {
-    content = <div>Loading...</div>;
-  } else if (isSuccess) {
+    content = (
+      <div className="items-list__loading">Loading list of items...</div>
+    );
+  }
+
+  if (isSuccess) {
     content = (
       <div className="items-list">
         {items.ids.map(itemId => (
-          <Item key={itemId} id={itemId}></Item>
+          <Item key={itemId} id={itemId} />
         ))}
       </div>
     );
-  } else if (isError) {
+  }
+
+  if (isError) {
     content = (
-      <div>
-        <h1>Bip boop ERROR</h1>
-        <p>{error.message}</p>
+      <div className="items-list__error">
+        <p>Opss the list of items cannot be loaded. We are truly sorry</p>
       </div>
     );
   }
 
   return (
-    <div>
-      {!isPublicPage && (
+    <main>
+      {!isPublicPage && ( // used to hide the add item button on the public page
         <button
           className="items-list__add-item-button"
           onClick={handleAddNewItem}
@@ -48,7 +47,7 @@ const ItemsList = ({ isPublicPage }) => {
         </button>
       )}
       {content}
-    </div>
+    </main>
   );
 };
 
