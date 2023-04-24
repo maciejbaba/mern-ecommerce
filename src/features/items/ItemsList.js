@@ -4,7 +4,7 @@ import { useGetItemsQuery } from "./itemsApiSlice";
 import { useNavigate } from "react-router-dom";
 
 const ItemsList = ({ isPublicPage }) => {
-  let { data: items, isLoading, isSuccess, isError } = useGetItemsQuery();
+  const { data: items, isLoading, isSuccess, isError } = useGetItemsQuery();
 
   const navigate = useNavigate();
 
