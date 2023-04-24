@@ -14,3 +14,12 @@
 .item-page__add-to-cart-button {
   padding: 0.2rem;
 }
+
+.item-page__loading, .item-page__error {
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem; 
+  font-weight: bolder; 
+}
