@@ -4,6 +4,6 @@ This repo is a frontend part of the project click here to see backend repo -> <a
 
 link -> https://mern-ecommerce-beta.vercel.app/
 
-backend is hosted on render so it needs a while to spin up ~30 seconds
+## backend is hosted on render so it needs a while to spin up ~30 seconds
 
 work in progress
