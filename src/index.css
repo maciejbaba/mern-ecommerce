@@ -13,3 +13,7 @@ body {
   min-height: 100vh;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
+
+.overflow-hidden {
+  overflow: hidden;
+}
