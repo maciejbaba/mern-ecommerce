@@ -28,8 +28,6 @@ const User = ({ id }) => {
     alert("User deleted");
   };
 
-  let content;
-
   return (
     <div className="user">
       <p>Username: {user.username}</p>
