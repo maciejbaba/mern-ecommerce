@@ -1,6 +1,5 @@
-import { selectUserById } from "./usersApiSlice";
+import { selectUserById, useDeleteUserMutation } from "./usersApiSlice";
 import { useSelector } from "react-redux";
-import { useDeleteUserMutation } from "./usersApiSlice";
 import "../../css/User.css";
 import { useNavigate } from "react-router-dom";
 
@@ -14,18 +13,19 @@ const User = ({ id }) => {
     return ddmmyyyyDate;
   };
 
-  const [deleteUser, { isLoading, isSuccess, isError, error }] =
-    useDeleteUserMutation();
+  const [deleteUser, { isLoading, isError, error }] = useDeleteUserMutation();
 
-  const handleEditUser = (e) => {
+  const handleEditUser = e => {
     e.preventDefault();
     navigate(`/users/editUser/${user.id}`);
   };
 
-  const handleDeleteUser = (e) => {
+  const handleDeleteUser = e => {
     e.preventDefault();
     deleteUser(user);
-    navigate("/users"); // todo add a confirmation message
+    if (isError) return alert(error);
+    navigate("/users");
+    alert("User deleted");
   };
 
   let content;
@@ -41,6 +41,7 @@ const User = ({ id }) => {
         <button onClick={handleEditUser}>Edit</button>
         <button onClick={handleDeleteUser}>Delete</button>
       </div>
+      {isLoading && <p>Deleting user...</p>}
     </div>
   );
 };
