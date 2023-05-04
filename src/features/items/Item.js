@@ -18,7 +18,7 @@ const Item = ({ id }) => {
   };
 
   return (
-    <Link to={`/items/${item.id}`}>
+    <Link to={`/items/item/${item.id}`}>
       <main className="item">
         <img
           className="item__img"
