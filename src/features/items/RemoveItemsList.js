@@ -1,9 +1,7 @@
 import "../../css/RemoveItemsList.css";
 
 const RemoveItemsList = () => {
-  return (
-    <div>RemoveItemsList</div>
-  )
-}
+  return <div>RemoveItemsList</div>;
+};
 
-export default RemoveItemsList
+export default RemoveItemsList;

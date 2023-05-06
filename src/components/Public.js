@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import "../css/Public.css";
@@ -15,7 +14,7 @@ const Public = () => {
 
   const handleMoreItemsButton = () => {
     navigate("/items");
-  }
+  };
 
   return (
     <main className="public">
@@ -32,7 +31,12 @@ const Public = () => {
       <div ref={itemsListRef}>
         <ItemsList isPublicPage={isPublicPage} />
       </div>
-      <button className="public__more-items-button" onClick={handleMoreItemsButton}>More items</button>
+      <button
+        className="public__more-items-button"
+        onClick={handleMoreItemsButton}
+      >
+        More items
+      </button>
     </main>
   );
 };

@@ -20,16 +20,17 @@
   align-items: center;
 }
 
-.nav__mobile-links a, .nav__mobile__logout-button {
+.nav__mobile-links a,
+.nav__mobile__logout-button {
   font-size: 1.5rem;
   padding: 1rem;
   text-decoration: none;
   border-radius: 0.5rem;
   text-align: center;
   background: inherit;
-	border: none;
-	font: inherit;
-	cursor: pointer;
+  border: none;
+  font: inherit;
+  cursor: pointer;
   color: inherit;
 }
 
@@ -45,9 +46,9 @@
 
 .nav__desktop__logout-button {
   background: inherit;
-	border: none;
-	font: inherit;
-	cursor: pointer;
+  border: none;
+  font: inherit;
+  cursor: pointer;
   font-size: 0.8rem;
   color: inherit;
   border-radius: 0.5rem;

@@ -6,9 +6,8 @@ if (window.location.origin.includes("localhost")) {
   baseUrl = "http://localhost:3500";
 }
 
-
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl }),
   tagTypes: ["Item", "User"],
-  endpoints: (builder) => ({}),
+  endpoints: builder => ({}),
 });

@@ -1,4 +1,4 @@
-import "../css/Checkout.css"
+import "../css/Checkout.css";
 
 const Checkout = () => {
   return (

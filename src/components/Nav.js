@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "../css/Nav.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const closeButtonIcon = (
   <svg
@@ -49,27 +49,49 @@ const Nav = () => {
 
   const handleMenuShow = () => {
     setIsOpen(!isOpen);
-    document.body.classList.toggle("overflow-hidden")
+    document.body.classList.toggle("overflow-hidden");
+  };
+
+  const handleLinkCloseMobileMenu = () => {
+    setIsOpen(false);
+    document.body.classList.remove("overflow-hidden");
   };
 
   return (
     <nav className="nav">
       <div className="nav__mobile-nav">
-        <button className="nav__mobile-open-button" onClick={handleMenuShow}>{openButtonIcon}</button>
+        <button className="nav__mobile-open-button" onClick={handleMenuShow}>
+          {openButtonIcon}
+        </button>
       </div>
       {isOpen && (
         <div className="nav__mobile-links">
-          <button className="nav__mobile-close-button" onClick={handleMenuShow}>{closeButtonIcon}</button>
-          <Link to="/">Home</Link>
-          <Link to="/Cart">Cart</Link>
-          <Link to="/Items">Items</Link>
-          <Link to="/Users">Users</Link>
+          <button className="nav__mobile-close-button" onClick={handleMenuShow}>
+            {closeButtonIcon}
+          </button>
+          <Link onClick={handleLinkCloseMobileMenu} to="/">
+            Home
+          </Link>
+          <Link onClick={handleLinkCloseMobileMenu} to="/Cart">
+            Cart
+          </Link>
+          <Link onClick={handleLinkCloseMobileMenu} to="/Items">
+            Items
+          </Link>
+          <Link onClick={handleLinkCloseMobileMenu} to="/Users">
+            Users
+          </Link>
           {isLogged ? (
-            <button className="nav__mobile__logout-button" onClick={handleLogout}>
+            <button
+              className="nav__mobile__logout-button"
+              onClick={handleLogout}
+            >
               Logout
             </button>
           ) : (
-            <Link to="/Login">Login</Link>
+            <Link to="/Login" onClick={handleLinkCloseMobileMenu}>
+              Login
+            </Link>
           )}
         </div>
       )}
