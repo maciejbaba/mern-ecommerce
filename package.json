@@ -2,21 +2,7 @@
   "name": "mern-ecommerce",
   "version": "0.1.0",
   "private": true,
-  "jest": {
-    "verbose": true,
-    "testEnvironment": "react",
-    "testEnvironmentOptions": {
-      "resources": "usable"
-    },
-    "setupFilesAfterEnv": [
-      "./jest.setup.js"
-    ],
-    "moduleNameMapper": {
-      "\\.(css|less|scss|sass)$": "<rootDir>/tests/styleMock.js"
-    }
-  },
   "dependencies": {
-    "@babel/preset-react": "^7.0.0-beta.40",
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -26,38 +12,12 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
-    "whatwg-fetch": "^3.6.2"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "eslint:recommended"
-    ],
-    "parser": "@babel/eslint-parser",
-    "overrides": [
-      {
-        "files": [
-          "**/*.js?(x)"
-        ],
-        "rules": {
-          "no-unused-vars": "warn"
-        }
-      }
-    ]
-  },
-  "devDependencies": {
-    "babel-jest": "^29.5.0",
-    "jest": "^27.5.1",
-    "jest-cli": "^29.5.0",
-    "jest-environment-jsdom": "^29.5.0"
   },
   "browserslist": {
     "production": [
