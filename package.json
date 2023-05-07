@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "jest": {
+    "verbose": true,
     "testEnvironment": "react",
     "testEnvironmentOptions": {
       "resources": "usable"
