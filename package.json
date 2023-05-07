@@ -47,18 +47,6 @@
         ]
       }
     ],
-    "browserslist": {
-      "production": [
-        ">0.2%",
-        "not dead",
-        "not op_mini all"
-      ],
-      "development": [
-        "last 1 chrome version",
-        "last 1 firefox version",
-        "last 1 safari version"
-      ]
-    },
     "devDependencies": {
       "babel-jest": "^29.5.0",
       "babel-preset-react-app": "^10.0.1",
@@ -66,5 +54,17 @@
       "jest-cli": "^29.5.0",
       "jest-environment-jsdom": "^29.5.0"
     }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
