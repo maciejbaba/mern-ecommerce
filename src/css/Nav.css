@@ -1,9 +1,43 @@
-.nav {
+.nav__desktop-nav {
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
 
-.nav a {
+.nav__mobile-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  font-size: xx-large;
+  font-weight: bolder;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  align-items: center;
+}
+
+.nav__mobile-links a,
+.nav__mobile__logout-button {
+  font-size: 1.5rem;
+  padding: 1rem 1rem 2rem 1rem;
+  text-decoration: none;
+  text-align: center;
+  background: inherit;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+}
+/* not nth last child is used here in order to get rid of login link border bottom and add border bottom to other links */
+.nav__mobile-links a:not(:nth-last-child(1)) {
+  border-bottom: 2px solid black;
+}
+
+.nav__desktop-nav a {
   font-size: 0.8rem;
   text-decoration: none;
   color: inherit;
@@ -13,11 +47,11 @@
   text-align: center;
 }
 
-.nav__logout-button {
+.nav__desktop__logout-button {
   background: inherit;
-	border: none;
-	font: inherit;
-	cursor: pointer;
+  border: none;
+  font: inherit;
+  cursor: pointer;
   font-size: 0.8rem;
   color: inherit;
   border-radius: 0.5rem;
@@ -29,6 +63,40 @@
   background-color: ghostwhite;
 }
 
-.nav a:hover {
+.nav__desktop-nav a:hover {
   background-color: ghostwhite;
+}
+
+.nav__mobile-close-button {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  border: none;
+  background: inherit;
+}
+
+.nav__mobile-close-button:hover {
+  cursor: pointer;
+}
+
+.nav__mobile-open-button {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  border: none;
+  background: inherit;
+}
+
+.nav__mobile-open-button:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .nav__desktop-nav {
+    display: none;
+  }
+  .nav__mobile-open-button {
+    display: block;
+  }
 }

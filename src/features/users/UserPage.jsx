@@ -11,10 +11,9 @@ const UserPage = () => {
 
   if (!user) {
     content = <p>User not found</p>;
-  }
-  else if (user) {
+  } else if (user) {
     content = (
-      <main style={{textAlign: "center"}}>
+      <main style={{ textAlign: "center" }}>
         <h1>User {user.username}</h1>
         <User id={id} />
       </main>

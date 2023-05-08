@@ -1,34 +1,32 @@
-import { selectUserById } from "./usersApiSlice";
+import { selectUserById, useDeleteUserMutation } from "./usersApiSlice";
 import { useSelector } from "react-redux";
-import { useDeleteUserMutation } from "./usersApiSlice";
 import "../../css/User.css";
 import { useNavigate } from "react-router-dom";
+
+export const changeDateFormat = mongoDBDate => {
+  // example, returns "18/03/2023" from "2023-03-18T20:06:37.926Z"
+  const ddmmyyyyDate = new Date(mongoDBDate).toLocaleDateString("en-GB");
+  return ddmmyyyyDate;
+};
 
 const User = ({ id }) => {
   const user = useSelector(state => selectUserById(state, id));
   const navigate = useNavigate();
 
-  const changeDateFormat = mongoDBDate => {
-    // example, returns "18/03/2023" from "2023-03-18T20:06:37.926Z"
-    const ddmmyyyyDate = new Date(mongoDBDate).toLocaleDateString();
-    return ddmmyyyyDate;
-  };
+  const [deleteUser, { isLoading, isError, error }] = useDeleteUserMutation();
 
-  const [deleteUser, { isLoading, isSuccess, isError, error }] =
-    useDeleteUserMutation();
-
-  const handleEditUser = (e) => {
+  const handleEditUser = e => {
     e.preventDefault();
     navigate(`/users/editUser/${user.id}`);
   };
 
-  const handleDeleteUser = (e) => {
+  const handleDeleteUser = e => {
     e.preventDefault();
     deleteUser(user);
-    navigate("/users"); // todo add a confirmation message
+    if (isError) return alert(error);
+    navigate("/users");
+    alert("User deleted");
   };
-
-  let content;
 
   return (
     <div className="user">
@@ -41,6 +39,7 @@ const User = ({ id }) => {
         <button onClick={handleEditUser}>Edit</button>
         <button onClick={handleDeleteUser}>Delete</button>
       </div>
+      {isLoading && <p>Deleting user...</p>}
     </div>
   );
 };
