@@ -3,9 +3,13 @@ import { useSelector } from "react-redux";
 import "../../css/User.css";
 import { useNavigate } from "react-router-dom";
 
-export const changeDateFormat = mongoDBDate => {
+export const changeDateFormat = (mongoDBDate: string): string => {
   // example, returns "18/03/2023" from "2023-03-18T20:06:37.926Z"
-  const ddmmyyyyDate = new Date(mongoDBDate).toLocaleDateString("en-GB");
+  // function is only used with mongoDB dates that are auto generated so they should exist but just in case
+  if (typeof mongoDBDate !== "string") return "Not a string";
+  if (!mongoDBDate) return "Empty date";
+
+  const ddmmyyyyDate: string = new Date(mongoDBDate).toLocaleDateString("en-GB");
   return ddmmyyyyDate;
 };
 
