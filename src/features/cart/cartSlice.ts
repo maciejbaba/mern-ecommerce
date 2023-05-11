@@ -27,21 +27,21 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action) => {
+    addToCart: (state, action): void => {
       const item = action.payload;
       state.items = [...state.items, item];
       state.quantity = state.items.length;
       state.total = state.items.reduce((acc, item) => acc + item.price, 0);
       saveItemsToLocalStorage(state.items);
     },
-    removeFromCart: (state, action) => {
+    removeFromCart: (state, action): void => {
       const item = action.payload;
       state.items = state.items.filter(cartItem => cartItem.id !== item.id);
       state.quantity = state.items.length;
       state.total = state.items.reduce((acc, item) => acc + item.price, 0);
       saveItemsToLocalStorage(state.items);
     },
-    emptyCart: state => {
+    emptyCart: (state): void => {
       state = { ...initialState };
       removeItemsFromLocalStorage();
     },

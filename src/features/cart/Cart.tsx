@@ -2,6 +2,7 @@ import "../../css/Cart.css";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, emptyCart, selectCartItems } from "./cartSlice";
 import { useNavigate } from "react-router-dom";
+import MyButton from "../../components/myButton";
 
 type CartItem = {
   id: string;
@@ -21,7 +22,11 @@ const Cart = () => {
     navigate("/cart/checkout");
   };
 
-  const handleRemoveItem = (item: CartItem) => dispatch(removeFromCart(item));
+  const handleRemoveItem = (item: CartItem) =>
+    dispatch({
+      type: "cart/removeFromCart",
+      payload: item,
+    });
 
   const handleRemoveAll = () => dispatch(emptyCart());
 
@@ -35,12 +40,15 @@ const Cart = () => {
     content = (
       <main className="cart">
         <div className="cart__heading">
-          <button className="cart__remove-all-button" onClick={handleRemoveAll}>
+          <MyButton
+            className="cart__remove-all-button"
+            onClick={handleRemoveAll}
+          >
             Remove all items
-          </button>
-          <button className="cart__buy-items-button" onClick={handleBuy}>
+          </MyButton>
+          <MyButton className="cart__buy-items-button" onClick={handleBuy}>
             Buy items
-          </button>
+          </MyButton>
           <h1>Your items</h1>
         </div>
         <div className="cart__user-items-list">
@@ -58,7 +66,7 @@ const Cart = () => {
                   : item.description}
               </p>
               <p>{item.price}</p>
-              <button onClick={() => handleRemoveItem(item)}>Remove</button>
+              <MyButton onClick={() => handleRemoveItem(item)}>Remove</MyButton>
             </div>
           ))}
         </div>
