@@ -1,12 +1,39 @@
-import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
+import {
+  createSelector,
+  createEntityAdapter,
+  EntityAdapter,
+} from "@reduxjs/toolkit";
 import { apiSlice } from "../../app/api/apiSlice";
 
-const itemsAdapter = createEntityAdapter({});
+type RawItem = {
+  _id: string;
+  name: string;
+  price: number;
+  description: string;
+  photoURL: string;
+  createdAt: string;
+  updatedAt: string;
+};
 
-const initialState = itemsAdapter.getInitialState();
+export type Item = Omit<RawItem, "_id"> & {
+  id: string;
+};
+
+type ItemsEntity = {
+  ids: string[];
+  entities: {
+    [id: string]: Item;
+  };
+};
+
+const itemsAdapter: EntityAdapter<ItemsEntity> = createEntityAdapter({});
+
+type InitialState = ReturnType<typeof itemsAdapter.getInitialState>;
+
+const initialState: InitialState = itemsAdapter.getInitialState();
 
 export const itemsApiSlice = apiSlice.injectEndpoints({
-  endpoints: builder => ({
+  endpoints: (builder) => ({
     getItems: builder.query({
       query: () => ({
         url: "/items",
@@ -15,10 +42,10 @@ export const itemsApiSlice = apiSlice.injectEndpoints({
           return response.status === 200 && !result.isError;
         },
       }),
-      transformResponse: responseData => {
-        const loadedItems = responseData.map(item => {
-          item.id = item._id;
-          return item;
+      transformResponse: (responseData: RawItem[]) => {
+        const loadedItems = responseData.map((item: RawItem): Item => {
+          const newItem = { id: item._id, ...item };
+          return newItem;
         });
         return itemsAdapter.setAll(initialState, loadedItems);
       },
@@ -26,13 +53,13 @@ export const itemsApiSlice = apiSlice.injectEndpoints({
         if (result?.ids) {
           return [
             { type: "Item", id: "LIST" },
-            ...result.ids.map(id => ({ type: "Item", id })),
+            ...result.ids.map((id) => ({ type: "Item", id })),
           ];
         }
       },
     }),
     addNewItem: builder.mutation({
-      query: newItemData => ({
+      query: (newItemData) => ({
         url: "/items",
         method: "POST",
         body: {
@@ -42,7 +69,7 @@ export const itemsApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: [{ type: "Item", id: "LIST" }],
     }),
     updateItem: builder.mutation({
-      query: newItemData => ({
+      query: (newItemData) => ({
         url: "/items",
         method: "PATCH",
         body: {
@@ -78,11 +105,13 @@ export const selectItems = itemsApiSlice.endpoints.getItems.select();
 
 const selectItemsData = createSelector(
   selectItems,
-  itemsResult => itemsResult.data
+  (itemsResult) => itemsResult.data
 );
 
 export const {
   selectAll: selectAllItems,
   selectById: selectItemById,
   selectIds: selectItemsIds,
-} = itemsAdapter.getSelectors(state => selectItemsData(state) ?? initialState);
+} = itemsAdapter.getSelectors(
+  (state) => selectItemsData(state) ?? initialState
+);

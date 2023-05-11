@@ -1,14 +1,22 @@
-import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
+import {
+  createSelector,
+  createEntityAdapter,
+  EntityAdapter,
+} from "@reduxjs/toolkit";
 import { apiSlice } from "../../app/api/apiSlice";
 
-const usersAdapter = createEntityAdapter({});
+const usersAdapter: EntityAdapter<UsersEntity> = createEntityAdapter({});
 
-type UsersState = {
-  ids: EntityId[];
-  entities: User[];
+type InitialState = ReturnType<typeof usersAdapter.getInitialState>;
+
+const initialState: InitialState = usersAdapter.getInitialState();
+
+type UsersEntity = {
+  ids: string[];
+  entities: {
+    [id: string]: User;
+  };
 };
-
-const initialState: UsersState = usersAdapter.getInitialState();
 
 // basic type for user
 type RawUser = {
@@ -21,16 +29,14 @@ type RawUser = {
 };
 
 // type for user with id property instead of _id which is default from API
-type User = Omit<RawUser, "_id"> & {
+export type User = Omit<RawUser, "_id"> & {
   id: string;
 };
-
-type UsersResponse = User[];
 
 export const usersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     //
-    getUsers: builder.query<UsersResponse, void>({
+    getUsers: builder.query<User[], void>({
       query: () => ({
         url: "/users",
         method: "GET",
@@ -40,11 +46,11 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       }),
       transformResponse: (responseData: RawUser[]) => {
         const loadedUsers: User[] = responseData.map((user: RawUser): User => {
-          const newUser = { id: user._id, ...user };
+          const newUser: User = { id: user._id, ...user };
           return newUser;
         });
         const newState = usersAdapter.setAll(initialState, loadedUsers);
-        return newState as User[];
+        return newState;
       },
       providesTags: (result) =>
         result

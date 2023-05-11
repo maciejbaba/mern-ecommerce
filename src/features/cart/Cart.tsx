@@ -3,8 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, emptyCart, selectCartItems } from "./cartSlice";
 import { useNavigate } from "react-router-dom";
 
+type CartItem = {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  photoURL: string;
+};
+
 const Cart = () => {
-  const items = useSelector(selectCartItems);
+  const items: CartItem[] = useSelector(selectCartItems);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -13,7 +21,7 @@ const Cart = () => {
     navigate("/cart/checkout");
   };
 
-  const handleRemoveItem = item => dispatch(removeFromCart(item));
+  const handleRemoveItem = (item: CartItem) => dispatch(removeFromCart(item));
 
   const handleRemoveAll = () => dispatch(emptyCart());
 
@@ -36,7 +44,7 @@ const Cart = () => {
           <h1>Your items</h1>
         </div>
         <div className="cart__user-items-list">
-          {items.map(item => (
+          {items.map((item: CartItem) => (
             <div className="cart__user-item" key={item.id}>
               <img
                 className="cart__img"
