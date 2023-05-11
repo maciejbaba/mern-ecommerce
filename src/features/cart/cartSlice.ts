@@ -1,16 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Item } from "../items/itemsApiSlice";
 
-const saveItemsToLocalStorage = items =>
+const saveItemsToLocalStorage = (items: Item[]) =>
   localStorage.setItem("cartItems", JSON.stringify(items));
 
-const getItemsFromLocalStorage = () => {
-  const items = localStorage.getItem("cartItems");
+const getItemsFromLocalStorage = (): Item[] | [] => {
+  const items: string | null = localStorage.getItem("cartItems");
   return items ? JSON.parse(items) : [];
 };
 
 const removeItemsFromLocalStorage = () => localStorage.removeItem("cartItems");
 
-const initialState = {
+type CartState = {
+  items: Item[] | [];
+  total: number;
+  quantity: number;
+};
+
+const initialState: CartState = {
   items: getItemsFromLocalStorage(),
   total: 0,
   quantity: 0,
@@ -43,6 +50,6 @@ export const cartSlice = createSlice({
 
 export const { addToCart, removeFromCart, emptyCart } = cartSlice.actions;
 
-export const selectCartItems = state => state.cart.items;
+export const selectCartItems = (state: { cart: CartState }) => state.cart.items;
 
 export default cartSlice.reducer;
