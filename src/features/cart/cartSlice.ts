@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Item } from "../items/itemsApiSlice";
 
 const saveItemsToLocalStorage = (items: Item[]) =>
@@ -27,14 +27,14 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action): void => {
+    addToCart: (state, action: PayloadAction<Item>): void => {
       const item = action.payload;
       state.items = [...state.items, item];
       state.quantity = state.items.length;
       state.total = state.items.reduce((acc, item) => acc + item.price, 0);
       saveItemsToLocalStorage(state.items);
     },
-    removeFromCart: (state, action): void => {
+    removeFromCart: (state, action: PayloadAction<Item>): void => {
       const item = action.payload;
       state.items = state.items.filter(cartItem => cartItem.id !== item.id);
       state.quantity = state.items.length;
