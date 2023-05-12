@@ -4,6 +4,7 @@ import {
   EntityAdapter,
 } from "@reduxjs/toolkit";
 import { apiSlice } from "../../app/api/apiSlice";
+import { RootState } from "../../app/store";
 
 type RawItem = {
   _id: string;
@@ -36,17 +37,19 @@ export const itemsApiSlice = apiSlice.injectEndpoints({
         },
       }),
       transformResponse: (responseData: RawItem[]) => {
-        const loadedItems = responseData.map((item: RawItem): Item => {
+        const loadedItems: Item[] = responseData.map((item: RawItem): Item => {
           const newItem = { id: item._id, ...item };
           return newItem;
         });
         return itemsAdapter.setAll(initialState, loadedItems);
       },
-      providesTags: (result, error, arg) => {
-        result ? 
-          [...result?.ids.map(( id ) => ({ type: "Item", id })), { type: "Item", id: "LIST" }] : 
-          [{ type: "Item", id: "LIST" }];
-      },
+      providesTags: (result) =>
+        result
+          ? [
+              ...result?.ids.map((id) => ({ type: "Item" as const, id })),
+              { type: "Item", id: "LIST" },
+            ]
+          : [{ type: "Item", id: "LIST" }],
     }),
     addNewItem: builder.mutation({
       query: (newItemData) => ({
@@ -91,7 +94,9 @@ export const {
   useDeleteItemMutation,
 } = itemsApiSlice;
 
-export const selectItems = itemsApiSlice.endpoints.getItems.select();
+export const selectItems = itemsApiSlice.endpoints.getItems.select(
+  (state: RootState) => state
+);
 
 const selectItemsData = createSelector(
   selectItems,
@@ -103,5 +108,5 @@ export const {
   selectById: selectItemById,
   selectIds: selectItemsIds,
 } = itemsAdapter.getSelectors(
-  (state) => selectItemsData(state) ?? initialState
+  (state: RootState) => selectItemsData(state) ?? initialState
 );
