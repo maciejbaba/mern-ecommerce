@@ -32,7 +32,6 @@ const ItemPage = () => {
   }
 
   if (isSuccess) {
-    const handleAddToCart = () => dispatch(addToCart(item));
     const item = items.entities[newId];
 
     if (!item) {
@@ -45,6 +44,8 @@ const ItemPage = () => {
         </main>
       );
     } else {
+      const handleAddToCart = () => dispatch(addToCart(item)); // function declaration is inside else block to prevent dispatching undefined
+
       content = (
         <main className="item-page">
           <h1>Item {item.name}</h1>

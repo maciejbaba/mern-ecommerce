@@ -34,7 +34,7 @@ const Item = ({ id }: ItemProps) => {
       e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
       e.preventDefault();
-      dispatch(addToCart(item)); // function call is inside else block to prevent dispatching undefined
+      dispatch(addToCart(item)); // function declaration is inside else block to prevent dispatching undefined
     };
 
     content = (
