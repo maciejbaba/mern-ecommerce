@@ -2,10 +2,11 @@ import User from "./User";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUserById } from "./usersApiSlice";
+import { RootState } from "../../app/store";
 
 const UserPage = () => {
   const { id } = useParams();
-  const user = useSelector(state => selectUserById(state, id));
+  const user = useSelector((state: RootState) => selectUserById(state, id));
 
   let content;
 
