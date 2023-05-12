@@ -12,7 +12,7 @@ const EditUserForm = ({ user }) => {
 
   const [updateUser, { isSuccess, isLoading, error }] = useUpdateUserMutation(); // add error handling here
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords do not match");
@@ -33,7 +33,7 @@ const EditUserForm = ({ user }) => {
     }
   };
 
-  const handleReset = e => {
+  const handleReset = (e) => {
     e.preventDefault();
     setUsername(user.username);
     setPassword("");
@@ -42,11 +42,11 @@ const EditUserForm = ({ user }) => {
     setActive(user.active);
   };
 
-  const handleUsernameChange = e => setUsername(e.target.value);
-  const handlePasswordChange = e => setPassword(e.target.value);
-  const handleConfirmPasswordChange = e => setConfirmPassword(e.target.value);
-  const handleAdminChange = () => setIsAdmin(prevIsAdmin => !prevIsAdmin);
-  const handleActiveChange = () => setActive(prevIsActive => !prevIsActive);
+  const handleUsernameChange = (e) => setUsername(e.target.value);
+  const handlePasswordChange = (e) => setPassword(e.target.value);
+  const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
+  const handleAdminChange = () => setIsAdmin((prevIsAdmin) => !prevIsAdmin);
+  const handleActiveChange = () => setActive((prevIsActive) => !prevIsActive);
 
   return (
     <main>
@@ -93,8 +93,8 @@ const EditUserForm = ({ user }) => {
             onChange={handleActiveChange}
           />
         </div>
-        <button onClick={handleSubmit}>Submit</button>
-        <button onClick={handleReset}>Reset</button>
+        <MyButton onClick={handleSubmit}>Submit</MyButton>
+        <MyButton onClick={handleReset}>Reset</MyButton>
       </form>
     </main>
   );

@@ -11,12 +11,12 @@ const NewItem = () => {
   const [addNewItem, { isSuccess, isLoading, isError }] =
     useAddNewItemMutation();
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     addNewItem({ name, description, price, photoURL });
   };
 
-  const handleReset = e => {
+  const handleReset = (e) => {
     e.preventDefault();
     setName("");
     setDescription("");
@@ -34,7 +34,7 @@ const NewItem = () => {
             type="text"
             id="name"
             value={name}
-            onChange={e => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div className="new-item__input-container">
@@ -46,7 +46,7 @@ const NewItem = () => {
             placeholder="Enter a description..."
             maxLength={200}
             rows={4}
-            onChange={e => setDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
         <div className="new-item__input-container">
@@ -55,7 +55,7 @@ const NewItem = () => {
             type="number"
             id="price"
             value={price}
-            onChange={e => setPrice(e.target.value)}
+            onChange={(e) => setPrice(e.target.value)}
           />
         </div>
         <div className="new-item__input-container">
@@ -64,12 +64,12 @@ const NewItem = () => {
             type="text"
             id="imageURL"
             value={photoURL}
-            onChange={e => setPhotoURL(e.target.value)}
+            onChange={(e) => setPhotoURL(e.target.value)}
           />
         </div>
         <div className="new-item__buttons">
-          <button onClick={handleSubmit}>Add</button>
-          <button onClick={handleReset}>Reset</button>
+          <MyButton onClick={handleSubmit}>Add</MyButton>
+          <MyButton onClick={handleReset}>Reset</MyButton>
         </div>
         <div className="new-item__result">
           {isSuccess && <p>Item added!</p>}

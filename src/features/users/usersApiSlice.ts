@@ -2,14 +2,10 @@ import {
   createSelector,
   createEntityAdapter,
   EntityAdapter,
+  EntityState,
+  EntitySelectors,
 } from "@reduxjs/toolkit";
 import { apiSlice } from "../../app/api/apiSlice";
-
-const usersAdapter: EntityAdapter<UsersEntity> = createEntityAdapter({});
-
-type InitialState = ReturnType<typeof usersAdapter.getInitialState>;
-
-const initialState: InitialState = usersAdapter.getInitialState();
 
 type UsersEntity = {
   ids: string[];
@@ -17,6 +13,7 @@ type UsersEntity = {
     [id: string]: User;
   };
 };
+
 
 // basic type for user
 type RawUser = {
@@ -33,10 +30,15 @@ export type User = Omit<RawUser, "_id"> & {
   id: string;
 };
 
+const usersAdapter: EntityAdapter<User> = createEntityAdapter({});
+
+type InitialState = ReturnType<typeof usersAdapter.getInitialState>;
+
+const initialState: InitialState = usersAdapter.getInitialState();
+
 export const usersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    //
-    getUsers: builder.query<User[], void>({
+    getUsers: builder.query<UsersEntity, void>({
       query: () => ({
         url: "/users",
         method: "GET",
@@ -49,13 +51,21 @@ export const usersApiSlice = apiSlice.injectEndpoints({
           const newUser: User = { id: user._id, ...user };
           return newUser;
         });
-        const newState = usersAdapter.setAll(initialState, loadedUsers);
-        return newState;
+        const users: UsersEntity = {
+          ids: loadedUsers.map((user) => user.id),
+          entities: loadedUsers.reduce(
+            (entities: { [id: string]: User }, user: User) => {
+              return { ...entities, [user.id]: user };
+            },
+            {}
+          ),
+        };
+        return users;
       },
       providesTags: (result) =>
-        result
+        result?.ids
           ? [
-              ...result.map(({ id }) => ({ type: "User" as const, id })),
+              ...result.ids.map((id) => ({ type: "User" as const, id })),
               { type: "User", id: "LIST" },
             ]
           : [{ type: "User", id: "LIST" }],
@@ -122,6 +132,6 @@ export const {
   selectAll: selectAllUsers,
   selectById: selectUserById,
   selectIds: selectUsersIds,
-} = usersAdapter.getSelectors(
-  (state) => selectUsersData(state) ?? initialState
+}: EntitySelectors<User, InitialState> = usersAdapter.getSelectors(
+  (state) => selectUsersData(state) as InitialState ?? initialState
 );

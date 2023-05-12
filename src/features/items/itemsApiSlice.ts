@@ -19,14 +19,7 @@ export type Item = Omit<RawItem, "_id"> & {
   id: string;
 };
 
-type ItemsEntity = {
-  ids: string[];
-  entities: {
-    [id: string]: Item;
-  };
-};
-
-const itemsAdapter: EntityAdapter<ItemsEntity> = createEntityAdapter({});
+const itemsAdapter: EntityAdapter<Item> = createEntityAdapter({});
 
 type InitialState = ReturnType<typeof itemsAdapter.getInitialState>;
 
@@ -50,12 +43,9 @@ export const itemsApiSlice = apiSlice.injectEndpoints({
         return itemsAdapter.setAll(initialState, loadedItems);
       },
       providesTags: (result, error, arg) => {
-        if (result?.ids) {
-          return [
-            { type: "Item", id: "LIST" },
-            ...result.ids.map((id) => ({ type: "Item", id })),
-          ];
-        }
+        result ? 
+          [...result?.ids.map(( id ) => ({ type: "Item", id })), { type: "Item", id: "LIST" }] : 
+          [{ type: "Item", id: "LIST" }];
       },
     }),
     addNewItem: builder.mutation({

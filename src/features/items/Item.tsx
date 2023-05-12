@@ -8,11 +8,11 @@ const DEFAULT_PHOTO_URL = "./no-image.png";
 const MAX_DESCRIPTION_LENGTH = 50;
 
 const Item = ({ id }) => {
-  const item = useSelector(state => selectItemById(state, id));
+  const item = useSelector((state) => selectItemById(state, id));
 
   const dispatch = useDispatch();
 
-  const handleAddToCart = e => {
+  const handleAddToCart = (e) => {
     e.preventDefault();
     dispatch(addToCart(item));
   };
@@ -40,9 +40,12 @@ const Item = ({ id }) => {
             : item.description.slice(0, MAX_DESCRIPTION_LENGTH) + "..."}
         </p>
         <p className="item__price">Price: {`${item.price} $`}</p>
-        <button className="item__add-to-cart-button" onClick={handleAddToCart}>
+        <MyButton
+          className="item__add-to-cart-button"
+          onClick={handleAddToCart}
+        >
           Add to cart
-        </button>
+        </MyButton>
       </main>
     </Link>
   );

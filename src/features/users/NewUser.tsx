@@ -12,7 +12,7 @@ const NewUser = () => {
   const [addNewUser, { isLoading, isSuccess, isError, error }] =
     useAddNewUserMutation();
 
-  const handleReset = e => {
+  const handleReset = (e) => {
     e.preventDefault();
     setUsername("");
     setPassword("");
@@ -20,7 +20,7 @@ const NewUser = () => {
     setIsAdmin(false);
   };
 
-  const handleAddNewUser = e => {
+  const handleAddNewUser = (e) => {
     handleReset(e);
     // should validate the form here and be awaited
     addNewUser({ username, password, isAdmin }); // todo add result handling
@@ -37,21 +37,21 @@ const NewUser = () => {
           id="username"
           type="text"
           value={username}
-          onChange={e => setUsername(e.currentTarget.value)}
+          onChange={(e) => setUsername(e.currentTarget.value)}
         />
         <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
           value={password}
-          onChange={e => setPassword(e.currentTarget.value)}
+          onChange={(e) => setPassword(e.currentTarget.value)}
         />
         <label htmlFor="confirm-password">Confirm password</label>
         <input
           type="password"
           id="confirm-password"
           value={confirmPassword}
-          onChange={e => setConfirmPassword(e.currentTarget.value)}
+          onChange={(e) => setConfirmPassword(e.currentTarget.value)}
         />
         <div>
           <label htmlFor="admin">Admin</label>
@@ -62,8 +62,8 @@ const NewUser = () => {
             onChange={() => setIsAdmin(!isAdmin)}
           />
         </div>
-        <button onClick={handleAddNewUser}>Add</button>
-        <button onClick={handleReset}>Reset</button>
+        <MyButton onClick={handleAddNewUser}>Add</MyButton>
+        <MyButton onClick={handleReset}>Reset</MyButton>
       </form>
     </main>
   );

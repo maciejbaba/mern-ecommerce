@@ -21,7 +21,7 @@ const ItemsList = ({ isPublicPage }) => {
   if (isSuccess) {
     content = (
       <div className="items-list">
-        {items.ids.map(itemId => (
+        {items.ids.map((itemId) => (
           <Item key={itemId} id={itemId} />
         ))}
       </div>
@@ -39,12 +39,12 @@ const ItemsList = ({ isPublicPage }) => {
   return (
     <main>
       {!isPublicPage && ( // used to hide the add item button on the public page
-        <button
+        <MyButton
           className="items-list__add-item-button"
           onClick={handleAddNewItem}
         >
           Add item
-        </button>
+        </MyButton>
       )}
       {content}
     </main>

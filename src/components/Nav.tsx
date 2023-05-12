@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "../css/Nav.css";
 import { useState } from "react";
+import MyButton from "./myButton";
 
 const closeButtonIcon = (
   <svg
@@ -60,15 +61,18 @@ const Nav = () => {
   return (
     <nav className="nav">
       <div className="nav__mobile-nav">
-        <button className="nav__mobile-open-button" onClick={handleMenuShow}>
+        <MyButton className="nav__mobile-open-button" onClick={handleMenuShow}>
           {openButtonIcon}
-        </button>
+        </MyButton>
       </div>
       {isOpen && (
         <div className="nav__mobile-links">
-          <button className="nav__mobile-close-button" onClick={handleMenuShow}>
+          <MyButton
+            className="nav__mobile-close-button"
+            onClick={handleMenuShow}
+          >
             {closeButtonIcon}
-          </button>
+          </MyButton>
           <Link onClick={handleLinkCloseMobileMenu} to="/">
             Home
           </Link>
@@ -82,12 +86,12 @@ const Nav = () => {
             Users
           </Link>
           {isLogged ? (
-            <button
+            <MyButton
               className="nav__mobile__logout-button"
               onClick={handleLogout}
             >
               Logout
-            </button>
+            </MyButton>
           ) : (
             <Link to="/Login" onClick={handleLinkCloseMobileMenu}>
               Login
@@ -101,12 +105,12 @@ const Nav = () => {
         <Link to="/Items">Items</Link>
         <Link to="/Users">Users</Link>
         {isLogged ? (
-          <button
+          <MyButton
             className="nav__desktop__logout-button"
             onClick={handleLogout}
           >
             Logout
-          </button>
+          </MyButton>
         ) : (
           <Link to="/Login">Login</Link>
         )}

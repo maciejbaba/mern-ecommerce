@@ -9,22 +9,24 @@ export const changeDateFormat = (mongoDBDate: string): string => {
   if (typeof mongoDBDate !== "string") return "Not a string";
   if (!mongoDBDate) return "Empty date";
 
-  const ddmmyyyyDate: string = new Date(mongoDBDate).toLocaleDateString("en-GB");
+  const ddmmyyyyDate: string = new Date(mongoDBDate).toLocaleDateString(
+    "en-GB"
+  );
   return ddmmyyyyDate;
 };
 
 const User = ({ id }) => {
-  const user = useSelector(state => selectUserById(state, id));
+  const user = useSelector((state) => selectUserById(state, id));
   const navigate = useNavigate();
 
   const [deleteUser, { isLoading, isError, error }] = useDeleteUserMutation();
 
-  const handleEditUser = e => {
+  const handleEditUser = (e) => {
     e.preventDefault();
     navigate(`/users/editUser/${user.id}`);
   };
 
-  const handleDeleteUser = e => {
+  const handleDeleteUser = (e) => {
     e.preventDefault();
     deleteUser(user);
     if (isError) return alert(error);
@@ -40,8 +42,8 @@ const User = ({ id }) => {
       <p>Created at: {changeDateFormat(user.createdAt)}</p>
       <p>Last update: {changeDateFormat(user.updatedAt)}</p>
       <div className="user__buttons">
-        <button onClick={handleEditUser}>Edit</button>
-        <button onClick={handleDeleteUser}>Delete</button>
+        <MyButton onClick={handleEditUser}>Edit</MyButton>
+        <MyButton onClick={handleDeleteUser}>Delete</MyButton>
       </div>
       {isLoading && <p>Deleting user...</p>}
     </div>
