@@ -14,7 +14,7 @@ type ItemProps = {
   id: EntityId;
 };
 
-const Item = ({ id }: ItemProps) => {
+const Item = ({ id }: ItemProps): JSX.Element => {
   const item = useSelector((state: RootState) => selectItemById(state, id));
   const dispatch = useDispatch();
 
@@ -29,7 +29,6 @@ const Item = ({ id }: ItemProps) => {
       </div>
     );
   } else {
-
     const handleAddToCart = (
       e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
@@ -70,9 +69,8 @@ const Item = ({ id }: ItemProps) => {
         </main>
       </Link>
     );
-
-    return content;
   }
+  return content;
 };
 
 export default Item;
