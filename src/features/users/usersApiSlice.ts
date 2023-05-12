@@ -2,6 +2,7 @@ import {
   createSelector,
   createEntityAdapter,
   EntityAdapter,
+  EntityState,
 } from "@reduxjs/toolkit";
 import { apiSlice } from "../../app/api/apiSlice";
 import { RootState } from "../../app/store";
@@ -29,7 +30,7 @@ const initialState: InitialState = usersAdapter.getInitialState();
 
 export const usersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getUsers: builder.query({
+    getUsers: builder.query<EntityState<User>, void>({
       query: () => ({
         url: "/users",
         method: "GET",
@@ -103,9 +104,7 @@ export const {
   useDeleteUserMutation,
 } = usersApiSlice;
 
-export const selectUsers = usersApiSlice.endpoints.getUsers.select(
-  (state: RootState) => state
-);
+export const selectUsers = usersApiSlice.endpoints.getUsers.select();
 
 const selectUsersData = createSelector(
   selectUsers,

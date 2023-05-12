@@ -2,6 +2,7 @@ import {
   createSelector,
   createEntityAdapter,
   EntityAdapter,
+  EntityState,
 } from "@reduxjs/toolkit";
 import { apiSlice } from "../../app/api/apiSlice";
 import { RootState } from "../../app/store";
@@ -28,7 +29,7 @@ const initialState: InitialState = itemsAdapter.getInitialState();
 
 export const itemsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getItems: builder.query({
+    getItems: builder.query<EntityState<Item>, void>({
       query: () => ({
         url: "/items",
         method: "GET",
@@ -94,9 +95,7 @@ export const {
   useDeleteItemMutation,
 } = itemsApiSlice;
 
-export const selectItems = itemsApiSlice.endpoints.getItems.select(
-  (state: RootState) => state
-);
+export const selectItems = itemsApiSlice.endpoints.getItems.select();
 
 const selectItemsData = createSelector(
   selectItems,
