@@ -3,6 +3,7 @@ import { useGetUsersQuery } from "./usersApiSlice";
 import User from "./User";
 import { useNavigate, Link } from "react-router-dom";
 import MyButton from "../../components/myButton";
+import { EntityId } from "@reduxjs/toolkit";
 
 const UsersList = () => {
   const navigate = useNavigate();
@@ -36,13 +37,17 @@ const UsersList = () => {
         </div>
       </main>
     );
-  } else if (isError) {
+  } else if (isError && "data" in error) {
     content = (
       <div>
         <p>Snap! ERROR</p>
-        <p>{error.status} {JSON.stringify(error.data)}</p>
+        <p>
+          {error.status} {JSON.stringify(error)}
+        </p>
       </div>
     );
+  } else if (isError) {
+    content = <p>{JSON.stringify(error)}</p>;
   }
 
   return (

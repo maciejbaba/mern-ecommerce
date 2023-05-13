@@ -4,6 +4,7 @@ import "../../css/User.css";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../../app/store";
 import MyButton from "../../components/myButton";
+import { EntityId } from "@reduxjs/toolkit";
 
 export const changeDateFormat = (mongoDBDate: string): string => {
   // example, returns "18/03/2023" from "2023-03-18T20:06:37.926Z"
@@ -18,7 +19,7 @@ export const changeDateFormat = (mongoDBDate: string): string => {
 };
 
 type UserProps = {
-  id: string;
+  id: EntityId;
 };
 
 const User = ({ id }: UserProps) => {
