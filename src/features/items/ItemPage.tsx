@@ -11,7 +11,7 @@ const ItemPage = () => {
 
   const dispatch = useDispatch();
 
-  let content;
+  let content = <p>Loading item data...</p>; // basic JSX.Element otherwise TS complains
 
   if (!id) {
     content = (

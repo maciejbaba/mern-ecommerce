@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import MyButton from "../../components/myButton";
 import { Item } from "../items/itemsApiSlice";
 
-const Cart = () => {
+const Cart = (): JSX.Element => {
   const items: Item[] = useSelector(selectCartItems);
 
   const navigate = useNavigate();
@@ -20,9 +20,9 @@ const Cart = () => {
 
   const handleRemoveAll = () => dispatch(emptyCart());
 
-  let content;
+  let content = <p>Loading cart...</p>; // basic JSX.Element otherwise TS complains
 
-  if (items.length === 0) {
+  if (items.length === 0 || !items) {
     content = <p className="cart__empty-cart">Your cart is empty</p>;
   }
 

@@ -4,10 +4,10 @@ import { useSelector } from "react-redux";
 import { selectUserById } from "./usersApiSlice";
 import { RootState } from "../../app/store";
 
-const UserPage = () => {
+const UserPage = (): JSX.Element => {
   const { id } = useParams();
 
-  let content;
+  let content = <p>Loading user...</p>; // basic JSX.Element otherwise TS complains
 
   if (!id) {
     content = <p>Invalid user ID</p>;
