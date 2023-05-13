@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import "../css/Nav.css";
 import { useState } from "react";
+import MyButton from "./myButton";
+import MyLink from "./MyLink";
 
 const closeButtonIcon = (
   <svg
@@ -60,38 +62,41 @@ const Nav = () => {
   return (
     <nav className="nav">
       <div className="nav__mobile-nav">
-        <button className="nav__mobile-open-button" onClick={handleMenuShow}>
+        <MyButton className="nav__mobile-open-button" onClick={handleMenuShow}>
           {openButtonIcon}
-        </button>
+        </MyButton>
       </div>
       {isOpen && (
         <div className="nav__mobile-links">
-          <button className="nav__mobile-close-button" onClick={handleMenuShow}>
+          <MyButton
+            className="nav__mobile-close-button"
+            onClick={handleMenuShow}
+          >
             {closeButtonIcon}
-          </button>
-          <Link onClick={handleLinkCloseMobileMenu} to="/">
+          </MyButton>
+          <MyLink onClick={handleLinkCloseMobileMenu} to="/">
             Home
-          </Link>
-          <Link onClick={handleLinkCloseMobileMenu} to="/Cart">
+          </MyLink>
+          <MyLink onClick={handleLinkCloseMobileMenu} to="/Cart">
             Cart
-          </Link>
-          <Link onClick={handleLinkCloseMobileMenu} to="/Items">
+          </MyLink>
+          <MyLink onClick={handleLinkCloseMobileMenu} to="/Items">
             Items
-          </Link>
-          <Link onClick={handleLinkCloseMobileMenu} to="/Users">
+          </MyLink>
+          <MyLink onClick={handleLinkCloseMobileMenu} to="/Users">
             Users
-          </Link>
+          </MyLink>
           {isLogged ? (
-            <button
+            <MyButton
               className="nav__mobile__logout-button"
               onClick={handleLogout}
             >
               Logout
-            </button>
+            </MyButton>
           ) : (
-            <Link to="/Login" onClick={handleLinkCloseMobileMenu}>
+            <MyLink to="/Login" onClick={handleLinkCloseMobileMenu}>
               Login
-            </Link>
+            </MyLink>
           )}
         </div>
       )}
@@ -101,12 +106,12 @@ const Nav = () => {
         <Link to="/Items">Items</Link>
         <Link to="/Users">Users</Link>
         {isLogged ? (
-          <button
+          <MyButton
             className="nav__desktop__logout-button"
             onClick={handleLogout}
           >
             Logout
-          </button>
+          </MyButton>
         ) : (
           <Link to="/Login">Login</Link>
         )}

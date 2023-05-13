@@ -1,16 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Item } from "../items/itemsApiSlice";
 
-const saveItemsToLocalStorage = items =>
+const saveItemsToLocalStorage = (items: Item[]) =>
   localStorage.setItem("cartItems", JSON.stringify(items));
 
-const getItemsFromLocalStorage = () => {
-  const items = localStorage.getItem("cartItems");
+const getItemsFromLocalStorage = (): Item[] | [] => {
+  const items: string | null = localStorage.getItem("cartItems");
   return items ? JSON.parse(items) : [];
 };
 
 const removeItemsFromLocalStorage = () => localStorage.removeItem("cartItems");
 
-const initialState = {
+type CartState = {
+  items: Item[] | [];
+  total: number;
+  quantity: number;
+};
+
+const initialState: CartState = {
   items: getItemsFromLocalStorage(),
   total: 0,
   quantity: 0,
@@ -20,21 +27,21 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action) => {
+    addToCart: (state, action: PayloadAction<Item>): void => {
       const item = action.payload;
       state.items = [...state.items, item];
       state.quantity = state.items.length;
       state.total = state.items.reduce((acc, item) => acc + item.price, 0);
       saveItemsToLocalStorage(state.items);
     },
-    removeFromCart: (state, action) => {
+    removeFromCart: (state, action: PayloadAction<Item>): void => {
       const item = action.payload;
       state.items = state.items.filter(cartItem => cartItem.id !== item.id);
       state.quantity = state.items.length;
       state.total = state.items.reduce((acc, item) => acc + item.price, 0);
       saveItemsToLocalStorage(state.items);
     },
-    emptyCart: state => {
+    emptyCart: (state): void => {
       state = { ...initialState };
       removeItemsFromLocalStorage();
     },
@@ -43,6 +50,6 @@ export const cartSlice = createSlice({
 
 export const { addToCart, removeFromCart, emptyCart } = cartSlice.actions;
 
-export const selectCartItems = state => state.cart.items;
+export const selectCartItems = (state: { cart: CartState }) => state.cart.items;
 
 export default cartSlice.reducer;

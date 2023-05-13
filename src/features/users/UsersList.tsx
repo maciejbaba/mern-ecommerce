@@ -2,6 +2,8 @@ import "../../css/UsersList.css";
 import { useGetUsersQuery } from "./usersApiSlice";
 import User from "./User";
 import { useNavigate, Link } from "react-router-dom";
+import MyButton from "../../components/myButton";
+import { EntityId } from "@reduxjs/toolkit";
 
 const UsersList = () => {
   const navigate = useNavigate();
@@ -27,7 +29,7 @@ const UsersList = () => {
           <h1>Users</h1>
         </div>
         <div className="users-list__links-list">
-          {users.ids.map(userId => (
+          {users.ids.map((userId) => (
             <Link to={`/users/${userId}`} key={userId}>
               <User id={userId} />
             </Link>
@@ -35,20 +37,24 @@ const UsersList = () => {
         </div>
       </main>
     );
-  } else if (isError) {
+  } else if (isError && "data" in error) {
     content = (
       <div>
         <p>Snap! ERROR</p>
-        <p>{error.message}</p>
+        <p>
+          {error.status} {JSON.stringify(error)}
+        </p>
       </div>
     );
+  } else if (isError) {
+    content = <p>{JSON.stringify(error)}</p>;
   }
 
   return (
     <>
-      <button className="users-list__add-user-button" onClick={handleAddUser}>
+      <MyButton className="users-list__add-user-button" onClick={handleAddUser}>
         Add user
-      </button>
+      </MyButton>
       <div className="users-list">{content}</div>
     </>
   );

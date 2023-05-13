@@ -1,13 +1,35 @@
-import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
+import {
+  createSelector,
+  createEntityAdapter,
+  EntityAdapter,
+  EntityState,
+} from "@reduxjs/toolkit";
 import { apiSlice } from "../../app/api/apiSlice";
+import { RootState } from "../../app/store";
 
-const itemsAdapter = createEntityAdapter({});
+type RawItem = {
+  _id: string;
+  name: string;
+  price: number;
+  description: string;
+  photoURL: string;
+  createdAt: string;
+  updatedAt: string;
+};
 
-const initialState = itemsAdapter.getInitialState();
+export type Item = Omit<RawItem, "_id"> & {
+  id: string;
+};
+
+const itemsAdapter: EntityAdapter<Item> = createEntityAdapter({});
+
+type InitialState = ReturnType<typeof itemsAdapter.getInitialState>;
+
+const initialState: InitialState = itemsAdapter.getInitialState();
 
 export const itemsApiSlice = apiSlice.injectEndpoints({
-  endpoints: builder => ({
-    getItems: builder.query({
+  endpoints: (builder) => ({
+    getItems: builder.query<EntityState<Item>, void>({
       query: () => ({
         url: "/items",
         method: "GET",
@@ -15,24 +37,23 @@ export const itemsApiSlice = apiSlice.injectEndpoints({
           return response.status === 200 && !result.isError;
         },
       }),
-      transformResponse: responseData => {
-        const loadedItems = responseData.map(item => {
-          item.id = item._id;
-          return item;
+      transformResponse: (responseData: RawItem[]) => {
+        const loadedItems: Item[] = responseData.map((item: RawItem): Item => {
+          const newItem = { id: item._id, ...item };
+          return newItem;
         });
         return itemsAdapter.setAll(initialState, loadedItems);
       },
-      providesTags: (result, error, arg) => {
-        if (result?.ids) {
-          return [
-            { type: "Item", id: "LIST" },
-            ...result.ids.map(id => ({ type: "Item", id })),
-          ];
-        }
-      },
+      providesTags: (result) =>
+        result
+          ? [
+              ...result?.ids.map((id) => ({ type: "Item" as const, id })),
+              { type: "Item", id: "LIST" },
+            ]
+          : [{ type: "Item", id: "LIST" }],
     }),
     addNewItem: builder.mutation({
-      query: newItemData => ({
+      query: (newItemData) => ({
         url: "/items",
         method: "POST",
         body: {
@@ -42,7 +63,7 @@ export const itemsApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: [{ type: "Item", id: "LIST" }],
     }),
     updateItem: builder.mutation({
-      query: newItemData => ({
+      query: (newItemData) => ({
         url: "/items",
         method: "PATCH",
         body: {
@@ -78,11 +99,13 @@ export const selectItems = itemsApiSlice.endpoints.getItems.select();
 
 const selectItemsData = createSelector(
   selectItems,
-  itemsResult => itemsResult.data
+  (itemsResult) => itemsResult.data
 );
 
 export const {
   selectAll: selectAllItems,
   selectById: selectItemById,
   selectIds: selectItemsIds,
-} = itemsAdapter.getSelectors(state => selectItemsData(state) ?? initialState);
+} = itemsAdapter.getSelectors(
+  (state: RootState) => selectItemsData(state) ?? initialState
+);

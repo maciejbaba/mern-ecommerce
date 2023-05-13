@@ -2,8 +2,13 @@ import Item from "./Item";
 import "../../css/ItemsList.css";
 import { useGetItemsQuery } from "./itemsApiSlice";
 import { useNavigate } from "react-router-dom";
+import MyButton from "../../components/myButton";
 
-const ItemsList = ({ isPublicPage }) => {
+type ItemsListProps = {
+  isPublicPage?: boolean;
+};
+
+const ItemsList = ({ isPublicPage }: ItemsListProps) => {
   const { data: items, isLoading, isSuccess, isError } = useGetItemsQuery();
 
   const navigate = useNavigate();
@@ -21,7 +26,7 @@ const ItemsList = ({ isPublicPage }) => {
   if (isSuccess) {
     content = (
       <div className="items-list">
-        {items.ids.map(itemId => (
+        {items.ids.map((itemId) => (
           <Item key={itemId} id={itemId} />
         ))}
       </div>
@@ -39,12 +44,12 @@ const ItemsList = ({ isPublicPage }) => {
   return (
     <main>
       {!isPublicPage && ( // used to hide the add item button on the public page
-        <button
+        <MyButton
           className="items-list__add-item-button"
           onClick={handleAddNewItem}
         >
           Add item
-        </button>
+        </MyButton>
       )}
       {content}
     </main>

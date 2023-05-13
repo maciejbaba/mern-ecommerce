@@ -2,11 +2,12 @@ import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import "../css/Public.css";
 import ItemsList from "../features/items/ItemsList";
+import MyButton from "./myButton";
 
 const Public = () => {
-  const itemsListRef = useRef();
+  const itemsListRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const isPublicPage = true; // change this functionality to button on public page
+  const isPublicPage: boolean = true; // change this functionality to button on public page
 
   const handleBrowseItemsButtonClick = () => {
     itemsListRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -21,22 +22,22 @@ const Public = () => {
       <div className="public__hero">
         <h1>Welcome to our store!</h1>
         <p>We hope that you will find something for yourself</p>
-        <button
+        <MyButton
           className="public__browse-items-button"
           onClick={handleBrowseItemsButtonClick}
         >
           Browse Items
-        </button>
+        </MyButton>
       </div>
       <div ref={itemsListRef}>
         <ItemsList isPublicPage={isPublicPage} />
       </div>
-      <button
+      <MyButton
         className="public__more-items-button"
         onClick={handleMoreItemsButton}
       >
         More items
-      </button>
+      </MyButton>
     </main>
   );
 };

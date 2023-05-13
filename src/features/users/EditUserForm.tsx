@@ -1,18 +1,26 @@
 import { useState } from "react";
 import "../../css/EditUserForm.css";
 import { useUpdateUserMutation } from "./usersApiSlice";
+import MyButton from "../../components/myButton";
+import type { User } from "./usersApiSlice";
 
-const EditUserForm = ({ user }) => {
-  const [username, setUsername] = useState(user.username);
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+type EditUserFormProps = {
+  user: User;
+};
+
+const EditUserForm = ({ user }: EditUserFormProps) => {
+  const [username, setUsername] = useState<string>(user.username);
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const fetchedChecked = user.isAdmin ? true : false; // gets rid of warning in console about controlled/uncontrolled input
-  const [isAdmin, setIsAdmin] = useState(fetchedChecked);
-  const [active, setActive] = useState(user.active); // todo - change to user.isActive
+  const [isAdmin, setIsAdmin] = useState<boolean>(fetchedChecked);
+  const [active, setActive] = useState<boolean>(user.active); // todo - change to user.isActive
 
   const [updateUser, { isSuccess, isLoading, error }] = useUpdateUserMutation(); // add error handling here
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords do not match");
@@ -30,10 +38,12 @@ const EditUserForm = ({ user }) => {
 
     if (isSuccess) {
       alert("User has been updated successfully");
+    } else if (error) {
+      alert("Something went wrong");
     }
   };
 
-  const handleReset = e => {
+  const handleReset = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     setUsername(user.username);
     setPassword("");
@@ -42,11 +52,15 @@ const EditUserForm = ({ user }) => {
     setActive(user.active);
   };
 
-  const handleUsernameChange = e => setUsername(e.target.value);
-  const handlePasswordChange = e => setPassword(e.target.value);
-  const handleConfirmPasswordChange = e => setConfirmPassword(e.target.value);
-  const handleAdminChange = () => setIsAdmin(prevIsAdmin => !prevIsAdmin);
-  const handleActiveChange = () => setActive(prevIsActive => !prevIsActive);
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setUsername(e.target.value);
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setPassword(e.target.value);
+  const handleConfirmPasswordChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => setConfirmPassword(e.target.value);
+  const handleAdminChange = () => setIsAdmin((prevIsAdmin) => !prevIsAdmin);
+  const handleActiveChange = () => setActive((prevIsActive) => !prevIsActive);
 
   return (
     <main>
@@ -93,8 +107,8 @@ const EditUserForm = ({ user }) => {
             onChange={handleActiveChange}
           />
         </div>
-        <button onClick={handleSubmit}>Submit</button>
-        <button onClick={handleReset}>Reset</button>
+        <MyButton onClick={handleSubmit}>Submit</MyButton>
+        <MyButton onClick={handleReset}>Reset</MyButton>
       </form>
     </main>
   );

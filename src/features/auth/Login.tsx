@@ -2,6 +2,7 @@ import "../../css/Login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../../app/api/apiSlice";
+import MyButton from "../../components/myButton";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -12,15 +13,15 @@ const Login = () => {
     navigate("/register");
   };
 
-  const handleUsernameChange = e => {
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.currentTarget.value);
   };
 
-  const handlePasswordChange = e => {
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.currentTarget.value);
   };
 
-  const handleLogin = e => {
+  const handleLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     fetch(`${baseUrl}/auth/login`, {
       method: "POST",
@@ -29,7 +30,7 @@ const Login = () => {
       },
       body: JSON.stringify({ username, password }),
     })
-      .then(res => {
+      .then((res) => {
         return res.json();
       })
       .then(({ accessToken }) => {
@@ -64,17 +65,17 @@ const Login = () => {
           value={password}
           onChange={handlePasswordChange}
         />
-        <button className="login__login-button" onClick={handleLogin}>
+        <MyButton className="login__login-button" onClick={handleLogin}>
           Login
-        </button>
+        </MyButton>
       </form>
 
       <div>
         <p>
           Don't have an account?{" "}
-          <button className="login__register-button" onClick={handleRegister}>
+          <MyButton className="login__register-button" onClick={handleRegister}>
             Register
-          </button>
+          </MyButton>
         </p>
       </div>
     </main>

@@ -2,17 +2,18 @@ import { useState } from "react";
 import "../../css/NewUser.css";
 import { useAddNewUserMutation } from "./usersApiSlice";
 import { useNavigate } from "react-router-dom";
+import MyButton from "../../components/myButton";
 
 const NewUser = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   const [addNewUser, { isLoading, isSuccess, isError, error }] =
     useAddNewUserMutation();
 
-  const handleReset = e => {
+  const handleReset = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     setUsername("");
     setPassword("");
@@ -20,10 +21,17 @@ const NewUser = () => {
     setIsAdmin(false);
   };
 
-  const handleAddNewUser = e => {
-    handleReset(e);
-    // should validate the form here and be awaited
-    addNewUser({ username, password, isAdmin }); // todo add result handling
+  const handleAddNewUser = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    await addNewUser({ username, password, isAdmin });
+
+    if (isSuccess) {
+      alert("User has been added successfully");
+      navigate("/users");
+    } else if (isError) {
+      alert("Something went wrong");
+    }
   };
 
   const navigate = useNavigate();
@@ -37,33 +45,33 @@ const NewUser = () => {
           id="username"
           type="text"
           value={username}
-          onChange={e => setUsername(e.currentTarget.value)}
+          onChange={(e) => setUsername(e.currentTarget.value)}
         />
         <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
           value={password}
-          onChange={e => setPassword(e.currentTarget.value)}
+          onChange={(e) => setPassword(e.currentTarget.value)}
         />
         <label htmlFor="confirm-password">Confirm password</label>
         <input
           type="password"
           id="confirm-password"
           value={confirmPassword}
-          onChange={e => setConfirmPassword(e.currentTarget.value)}
+          onChange={(e) => setConfirmPassword(e.currentTarget.value)}
         />
         <div>
           <label htmlFor="admin">Admin</label>
           <input
             type="checkbox"
             id="admin"
-            value={isAdmin}
+            value={isAdmin ? "true" : "false"}
             onChange={() => setIsAdmin(!isAdmin)}
           />
         </div>
-        <button onClick={handleAddNewUser}>Add</button>
-        <button onClick={handleReset}>Reset</button>
+        <MyButton onClick={handleAddNewUser}>Add</MyButton>
+        <MyButton onClick={handleReset}>Reset</MyButton>
       </form>
     </main>
   );
