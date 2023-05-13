@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "../css/Nav.css";
 import { useState } from "react";
 import MyButton from "./myButton";
+import MyLink from "./MyLink";
 
 const closeButtonIcon = (
   <svg
@@ -73,18 +74,18 @@ const Nav = () => {
           >
             {closeButtonIcon}
           </MyButton>
-          <Link onClick={handleLinkCloseMobileMenu} to="/">
+          <MyLink onClick={handleLinkCloseMobileMenu} to="/">
             Home
-          </Link>
-          <Link onClick={handleLinkCloseMobileMenu} to="/Cart">
+          </MyLink>
+          <MyLink onClick={handleLinkCloseMobileMenu} to="/Cart">
             Cart
-          </Link>
-          <Link onClick={handleLinkCloseMobileMenu} to="/Items">
+          </MyLink>
+          <MyLink onClick={handleLinkCloseMobileMenu} to="/Items">
             Items
-          </Link>
-          <Link onClick={handleLinkCloseMobileMenu} to="/Users">
+          </MyLink>
+          <MyLink onClick={handleLinkCloseMobileMenu} to="/Users">
             Users
-          </Link>
+          </MyLink>
           {isLogged ? (
             <MyButton
               className="nav__mobile__logout-button"
@@ -93,9 +94,9 @@ const Nav = () => {
               Logout
             </MyButton>
           ) : (
-            <Link to="/Login" onClick={handleLinkCloseMobileMenu}>
+            <MyLink to="/Login" onClick={handleLinkCloseMobileMenu}>
               Login
-            </Link>
+            </MyLink>
           )}
         </div>
       )}
