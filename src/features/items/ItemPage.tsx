@@ -6,7 +6,7 @@ import { addToCart } from "../cart/cartSlice";
 import MyButton from "../../components/myButton";
 
 const ItemPage = () => {
-  let { id } = useParams();
+  const { id } = useParams();
   const { data: items, isLoading, isSuccess, isError } = useGetItemsQuery();
 
   const dispatch = useDispatch();
@@ -21,8 +21,6 @@ const ItemPage = () => {
     );
   }
 
-  const newId = Number(id);
-
   if (isLoading) {
     content = (
       <main className="item-page__loading">
@@ -31,8 +29,8 @@ const ItemPage = () => {
     );
   }
 
-  if (isSuccess) {
-    const item = items.entities[newId];
+  if (isSuccess && id) {
+    const item = items.entities[id];
 
     if (!item) {
       content = (
