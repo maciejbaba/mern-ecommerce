@@ -7,7 +7,7 @@ import { RootState } from "../../app/store";
 import { EntityId } from "@reduxjs/toolkit";
 import MyButton from "../../components/myButton";
 
-const DEFAULT_PHOTO_URL = "./no-image.png";
+const DEFAULT_PHOTO_URL = "no-image.png";
 const MAX_DESCRIPTION_LENGTH = 50;
 
 type ItemProps = {
