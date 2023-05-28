@@ -15,6 +15,8 @@ const ItemsList = ({ isPublicPage }: ItemsListProps) => {
 
   const handleAddNewItem = () => navigate("/items/newItem");
 
+  const handleRemoveItems = () => navigate("/items/remove");
+
   let content;
 
   if (isLoading) {
@@ -44,12 +46,20 @@ const ItemsList = ({ isPublicPage }: ItemsListProps) => {
   return (
     <main>
       {!isPublicPage && ( // used to hide the add item button on the public page
-        <MyButton
-          className="items-list__add-item-button"
-          onClick={handleAddNewItem}
-        >
-          Add item
-        </MyButton>
+        <>
+          <MyButton
+            className="items-list__add-item-button"
+            onClick={handleAddNewItem}
+          >
+            Add item
+          </MyButton>
+          <MyButton
+            className="items-list__remove-items-button"
+            onClick={handleRemoveItems}
+          >
+            Remove items
+          </MyButton>
+        </>
       )}
       {content}
     </main>

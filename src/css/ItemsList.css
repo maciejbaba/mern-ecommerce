@@ -12,6 +12,12 @@
   right: 1rem;
 }
 
+.items-list__remove-items-button {
+  padding: 0.2rem;
+  position: fixed;
+  right: 6rem;
+}
+
 .items-list__loading {
   padding: 2rem;
   width: 90vw;
