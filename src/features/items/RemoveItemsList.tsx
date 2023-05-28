@@ -1,9 +1,16 @@
+import { EntityId } from "@reduxjs/toolkit";
 import MyButton from "../../components/myButton";
 import "../../css/RemoveItemsList.css";
 import Item from "./Item";
-import { useGetItemsQuery } from "./itemsApiSlice";
+import { RootState } from "../../app/store";
+import {
+  useGetItemsQuery,
+  useDeleteItemMutation,
+  selectItemById,
+} from "./itemsApiSlice";
+import { useSelector } from "react-redux";
 
-const RemoveItemsList = () => {
+const RemoveItemsList = (): JSX.Element => {
   const {
     data: items,
     isLoading,
@@ -12,9 +19,24 @@ const RemoveItemsList = () => {
     error,
   } = useGetItemsQuery();
 
-  const handleDeleteItemFromStore = () => {};
+  const [deleteItem, { isSuccess: isDeleted ,isLoading: isDeleting, isError: isDeleteError }] =
+    useDeleteItemMutation();
 
-  let content;
+  const handleDeleteItemFromStore = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: EntityId
+  ) => {
+    e.preventDefault();
+    const item = items?.entities[id];
+    if (!item) return alert("Item not found");
+    if (item) {
+      await deleteItem(item);
+      if (isDeleted) return alert("Item deleted");
+      if (isDeleteError) return alert(error);
+    }
+  };
+
+  let content = <p>Base value</p>;
 
   if (isLoading) {
     content = <p>Loading items...</p>;
@@ -26,9 +48,12 @@ const RemoveItemsList = () => {
         </div>
         <div className="remove-items__items-list">
           {items.ids.map((itemId) => (
-            <div className="remove-items__item-div">
-              <Item id={itemId} key={itemId} />
-              <MyButton className="remove-items__remove-item-button" onClick={handleDeleteItemFromStore}>
+            <div className="remove-items__item-div" key={itemId}>
+              <Item id={itemId} />
+              <MyButton
+                className="remove-items__remove-item-button"
+                onClick={(e) => handleDeleteItemFromStore(e, itemId)}
+              >
                 Delete item from store
               </MyButton>
             </div>

@@ -73,10 +73,14 @@ export const itemsApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: (result, error, arg) => [{ type: "Item", id: arg.id }],
     }),
     deleteItem: builder.mutation({
-      query: ({ id }) => ({
+      query: ({ name }) => ({
         url: "/items",
         method: "DELETE",
-        body: { id },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        body: { name },
       }),
       invalidatesTags: (result, error, arg) => [
         {
