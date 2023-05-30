@@ -15,3 +15,18 @@
   gap: 1rem;
   margin: 1rem;
 }
+
+.user__edit-button {
+  padding: .2rem .8rem;
+  background-color: lightblue;
+  border-radius: .4rem;
+  cursor: pointer;
+}
+
+.user__delete-button {
+  padding: .2rem .8rem;
+  border-radius: .4rem;
+  cursor: pointer;
+  background-color: red;
+  color: white;
+}
