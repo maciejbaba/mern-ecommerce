@@ -8,6 +8,7 @@
 
 .items-list__add-item-button {
   padding: 0.2rem;
+  cursor: pointer;
   position: fixed;
   right: 1rem;
 }
@@ -15,6 +16,7 @@
 .items-list__remove-items-button {
   padding: 0.2rem;
   position: fixed;
+  cursor: pointer;
   right: 6rem;
 }
 

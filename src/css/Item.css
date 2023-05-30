@@ -20,4 +20,5 @@
 
 .item__add-to-cart-button {
   padding: 0.2rem;
+  cursor: pointer;
 }

@@ -70,6 +70,7 @@
 .nav__mobile-close-button {
   position: fixed;
   top: 1rem;
+  cursor: pointer;
   right: 1rem;
   border: none;
   background: inherit;
@@ -82,6 +83,7 @@
 .nav__mobile-open-button {
   display: none;
   position: fixed;
+  cursor: pointer;
   top: 1rem;
   right: 1rem;
   border: none;
@@ -98,5 +100,6 @@
   }
   .nav__mobile-open-button {
     display: block;
+    cursor: pointer;
   }
 }
