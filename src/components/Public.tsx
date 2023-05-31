@@ -7,7 +7,7 @@ import MyButton from "./myButton";
 const Public = () => {
   const itemsListRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const isPublicPage: boolean = true; // change this functionality to button on public page
+  const isPublicPage: boolean = true;
 
   const handleBrowseItemsButtonClick = () => {
     itemsListRef.current?.scrollIntoView({ behavior: "smooth" });
