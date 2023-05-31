@@ -15,6 +15,7 @@ import Register from "./features/auth/Register";
 import Cart from "./features/cart/Cart";
 import Checkout from "./components/Checkout";
 import RemoveItemsList from "./features/items/RemoveItemsList";
+import EditItem from "./features/items/EditItem";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route index element={<ItemsList />} />
             <Route path="remove" element={<RemoveItemsList />} />
             <Route path="item/:id" element={<ItemPage />} />
+            <Route path="editItem/:id" element={<EditItem />} />
             <Route path="newItem" element={<NewItem />} />
           </Route>
           <Route path="register" element={<Register />} />
