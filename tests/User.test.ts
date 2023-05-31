@@ -22,3 +22,4 @@ test("Should handle empty strings just in case", () => {
   const actual: string = changeDateFormat(emptyString);
   expect(actual).toBe(expected);
 });
+
