@@ -7,7 +7,6 @@ import MyButton from "./myButton";
 const Public = () => {
   const itemsListRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const isPublicPage: boolean = true;
 
   const handleBrowseItemsButtonClick = () => {
     itemsListRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -30,7 +29,7 @@ const Public = () => {
         </MyButton>
       </div>
       <div ref={itemsListRef}>
-        <ItemsList isPublicPage={isPublicPage} />
+        <ItemsList />
       </div>
       <MyButton
         className="public__more-items-button"

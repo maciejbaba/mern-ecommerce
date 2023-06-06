@@ -1,23 +1,17 @@
+.items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 3rem;  
+}
+
 .items-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  width: 90vw;
   text-align: center;
-}
-
-.items-list__add-item-button {
-  padding: 0.2rem;
-  cursor: pointer;
-  position: fixed;
-  right: 1rem;
-}
-
-.items-list__remove-items-button {
-  padding: 0.2rem;
-  position: fixed;
-  cursor: pointer;
-  right: 6rem;
 }
 
 .items-list__loading {
