@@ -22,6 +22,10 @@
 }
 
 .item__add-to-cart-button {
-  padding: 0.2rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-weight: bolder;
+  background-color: #038ae3;
+  color: white;
   cursor: pointer;
 }

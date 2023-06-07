@@ -1,6 +1,6 @@
 import { EntityId } from "@reduxjs/toolkit";
 import MyButton from "../../components/myButton";
-import "../../css/RemoveItemsList.css";
+import "../../css/ManageItemsList.css";
 import Item from "./Item";
 import {
   useGetItemsQuery,
@@ -53,26 +53,26 @@ const RemoveItemsList = (): JSX.Element => {
     content = <p>Loading items...</p>;
   } else if (isSuccess) {
     content = (
-      <main className="remove-items__main">
+      <main className="manage-items__main">
         <div>
           <h1>Items</h1>
         </div>
-        <div className="remove-items__items-list">
+        <div className="manage-items__items-list">
           {items.ids.map((itemId) => (
-            <div className="remove-items__item-div" key={itemId}>
+            <div className="manage-items__item-div" key={itemId}>
               <Item id={itemId} />
               <MyButton
-                className="remove-items__edit-item-button"
+                className="manage-items__edit-item-button"
                 onClick={(e) => handleEditItemButton(e, itemId)}
               >
                 Edit item
               </MyButton>
 
               <MyButton
-                className="remove-items__remove-item-button"
+                className="manage-items__remove-item-button"
                 onClick={(e) => handleDeleteItemFromStore(e, itemId)}
               >
-                Delete item from store
+                Delete item from the store
               </MyButton>
             </div>
           ))}

@@ -1,4 +1,4 @@
-.remove-items__items-list {
+.manage-items__items-list {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,7 +6,7 @@
   justify-content: center;
 }
 
-.remove-items__main {
+.manage-items__main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,18 +14,29 @@
   gap: 4rem;
 }
 
-.remove-items__item-div {
+.manage-items__item-div {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.remove-items__remove-item-button {
+.manage-items__remove-item-button {
   padding: .5rem;
   cursor: pointer;
-  margin: 1rem;
   background-color: red;
+  color: white;
+  font-weight: bolder;
+  border-radius: .5rem;
+  margin-bottom: 1rem;
+}
+
+.manage-items__edit-item-button {
+  padding: .5rem;
+  cursor: pointer;
+  border-radius: .5rem;
+  margin: .5rem;
+  background-color: #038ae3;
   color: white;
   font-weight: bolder;
 }
