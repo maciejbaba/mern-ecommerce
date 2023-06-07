@@ -66,6 +66,10 @@ export const itemsApiSlice = apiSlice.injectEndpoints({
       query: (newItemData) => ({
         url: "/items",
         method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
         body: {
           ...newItemData,
         },

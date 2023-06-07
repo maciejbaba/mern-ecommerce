@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { selectItemById } from "./itemsApiSlice";
 import { RootState } from "../../app/store";
 import EditItemForm from "./EditItemForm";
+import "../../css/EditItem.css";
 
 const EditItem = () => {
   const { id } = useParams();

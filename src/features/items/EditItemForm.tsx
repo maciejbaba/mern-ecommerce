@@ -1,6 +1,8 @@
 import { Item } from "./itemsApiSlice";
 import { useState } from "react";
 import { useUpdateItemMutation } from "./itemsApiSlice";
+import "../../css/EditItemForm.css";
+import MyButton from "../../components/myButton";
 
 type EditItemFormProps = {
   item: Item;
@@ -34,7 +36,7 @@ const EditItemForm = ({ item }: EditItemFormProps) => {
   };
 
   const handleEditItemFormSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
     await updateItem({ id: item.id, name, description, price, photoURL });
@@ -46,7 +48,51 @@ const EditItemForm = ({ item }: EditItemFormProps) => {
     }
   };
 
-  return <div>EditItemForm</div>;
+  return (
+    <main className="edit-item-form">
+      <h2>Edit Item</h2>
+      <form action="" className="edit-item-form__form">
+        <label htmlFor="name">Name</label>
+        <input
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleNameChange}
+        />
+
+        <label htmlFor="description">Description</label>
+        <textarea
+          name="description"
+          value={description}
+          onChange={handleDescriptionChange}
+        />
+
+        <label htmlFor="price">Price</label>
+        <input
+          type="number"
+          name="price"
+          value={price}
+          onChange={handlePriceChange}
+        />
+
+        <label htmlFor="photoURL">Photo URL</label>
+        <input
+          type="text"
+          name="photoURL"
+          value={photoURL}
+          onChange={handlePhotoUrlChange}
+        />
+
+        <MyButton
+          onClick={(e) => handleEditItemFormSubmit(e)}
+          disabled={isLoading}
+        >
+          {isLoading ? "Updating..." : "Update"}
+        </MyButton>
+        {isSuccess && <p>Item has been updated</p>}
+      </form>
+    </main>
+  );
 };
 
 export default EditItemForm;
