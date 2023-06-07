@@ -53,7 +53,6 @@ const Item = ({ id }: ItemProps): JSX.Element => {
             }
           />
           <h2 className="item__name">{item.name}</h2>{" "}
-          {/* change magic number */}
           <p className="item__description">
             {item.description.length < MAX_DESCRIPTION_LENGTH
               ? item.description

@@ -15,6 +15,7 @@ import Register from "./features/auth/Register";
 import Cart from "./features/cart/Cart";
 import Checkout from "./components/Checkout";
 import ManageItemsList from "./features/items/ManageItemsList";
+import EditItem from "./features/items/EditItem";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="items">
             <Route index element={<ItemsList />} />
             <Route path="manage" element={<ManageItemsList />} />
+            <Route path="edit/:id" element={<EditItem />} />
             <Route path="item/:id" element={<ItemPage />} />
             <Route path="newItem" element={<NewItem />} />
           </Route>

@@ -2,13 +2,12 @@ import { EntityId } from "@reduxjs/toolkit";
 import MyButton from "../../components/myButton";
 import "../../css/RemoveItemsList.css";
 import Item from "./Item";
-import { RootState } from "../../app/store";
 import {
   useGetItemsQuery,
   useDeleteItemMutation,
   selectItemById,
 } from "./itemsApiSlice";
-import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const RemoveItemsList = (): JSX.Element => {
   const {
@@ -19,8 +18,20 @@ const RemoveItemsList = (): JSX.Element => {
     error,
   } = useGetItemsQuery();
 
-  const [deleteItem, { isSuccess: isDeleted ,isLoading: isDeleting, isError: isDeleteError }] =
-    useDeleteItemMutation();
+  const navigate = useNavigate();
+
+  const [
+    deleteItem,
+    { isSuccess: isDeleted, isLoading: isDeleting, isError: isDeleteError },
+  ] = useDeleteItemMutation();
+
+  const handleEditItemButton = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: EntityId
+  ) => {
+    e.preventDefault();
+    navigate(`/items/edit/${id}`);
+  };
 
   const handleDeleteItemFromStore = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -50,6 +61,13 @@ const RemoveItemsList = (): JSX.Element => {
           {items.ids.map((itemId) => (
             <div className="remove-items__item-div" key={itemId}>
               <Item id={itemId} />
+              <MyButton
+                className="remove-items__edit-item-button"
+                onClick={(e) => handleEditItemButton(e, itemId)}
+              >
+                Edit item
+              </MyButton>
+
               <MyButton
                 className="remove-items__remove-item-button"
                 onClick={(e) => handleDeleteItemFromStore(e, itemId)}
