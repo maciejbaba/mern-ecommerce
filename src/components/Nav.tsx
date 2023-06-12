@@ -89,6 +89,9 @@ const Nav = () => {
           <MyLink onClick={handleLinkCloseMobileMenu} to="/users">
             Users
           </MyLink>
+          <MyLink onClick={handleLinkCloseMobileMenu} to="/users/newUser">
+            Add user
+          </MyLink>
           {isLogged ? (
             <MyButton
               className="nav__mobile__logout-button"
@@ -109,6 +112,7 @@ const Nav = () => {
         <Link to="/items">Items</Link>
         <Link to="/items/manage">Manage items</Link>
         <Link to="/users">Users</Link>
+        <Link to="/users/newUser">Add user</Link>
         {isLogged ? (
           <MyButton
             className="nav__desktop__logout-button"

@@ -1,15 +1,9 @@
 import "../../css/UsersList.css";
 import { useGetUsersQuery } from "./usersApiSlice";
 import User from "./User";
-import { useNavigate, Link } from "react-router-dom";
-import MyButton from "../../components/myButton";
-import { EntityId } from "@reduxjs/toolkit";
+import { Link } from "react-router-dom";
 
 const UsersList = () => {
-  const navigate = useNavigate();
-
-  const handleAddUser = () => navigate("/users/newUser");
-
   const {
     data: users,
     isLoading,
@@ -50,14 +44,7 @@ const UsersList = () => {
     content = <p>{JSON.stringify(error)}</p>;
   }
 
-  return (
-    <>
-      <MyButton className="users-list__add-user-button" onClick={handleAddUser}>
-        Add user
-      </MyButton>
-      <div className="users-list">{content}</div>
-    </>
-  );
+  return <div className="users-list">{content}</div>;
 };
 
 export default UsersList;
