@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export let baseUrl: string = "https://mern-ecommerce-api-pt6x.onrender.com";
 
 if (window.location.origin.includes("localhost")) {
-  baseUrl = "http://localhost:3500";
+  baseUrl = "http://192.168.0.14:3500"; // my server ip on local network
 }
 
 export const apiSlice = createApi({
