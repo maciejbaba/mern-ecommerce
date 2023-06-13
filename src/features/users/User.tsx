@@ -58,8 +58,8 @@ const User = ({ id }: UserProps) => {
         <p><strong>Created at: </strong>{changeDateFormat(user.createdAt)}</p>
         <p><strong>Last update: </strong>{changeDateFormat(user.updatedAt)}</p>
         <div className="user__buttons">
-          <MyButton className="user__edit-button" onClick={handleEditUser}>Edit</MyButton>
-          <MyButton className="user__delete-button" onClick={handleDeleteUser}>Delete</MyButton>
+          <MyButton className="user__edit-button" onClick={handleEditUser}>Edit user</MyButton>
+          <MyButton className="user__delete-button" onClick={handleDeleteUser}>Delete user</MyButton>
         </div>
         {isLoading && <p>Deleting user...</p>}
       </div>
