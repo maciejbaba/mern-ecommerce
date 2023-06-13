@@ -16,7 +16,7 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
   const [isAdmin, setIsAdmin] = useState<boolean>(fetchedChecked);
   const [active, setActive] = useState<boolean>(user.active); // todo - change to user.isActive
 
-  const [updateUser, { isSuccess, isLoading, error }] = useUpdateUserMutation(); // add error handling here
+  const [updateUser, { isSuccess, isLoading, error }] = useUpdateUserMutation();
 
   const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>

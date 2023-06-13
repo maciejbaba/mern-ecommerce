@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUserById } from "./usersApiSlice";
 import { RootState } from "../../app/store";
+import "../../css/UserPage.css";
 
 const UserPage = (): JSX.Element => {
   const { id } = useParams();
@@ -20,7 +21,7 @@ const UserPage = (): JSX.Element => {
       content = <p>User not found</p>;
     } else if (user) {
       content = (
-        <main style={{ textAlign: "center" }}>
+        <main className="user-page">
           <h1>User {user.username}</h1>
           <User id={id} />
         </main>

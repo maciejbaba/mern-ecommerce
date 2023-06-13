@@ -7,7 +7,7 @@ const Layout = () => {
     <>
       <ScrollToTop />
       <Header />
-      {/* very hacky */}
+      {/* very hacky, used marginTop in order to prevent hiding under header which has position fixed */}
       <div style={{ marginTop: "5rem" }}>
         <Outlet />
       </div>

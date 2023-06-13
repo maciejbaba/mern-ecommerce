@@ -16,11 +16,13 @@
 }
 
 .public__browse-items-button {
-  padding: 0.2rem;
+  padding: .5rem;
   border-radius: 0.3rem;
+  cursor: pointer;
 }
 
 .public__more-items-button {
-  padding: 0.2rem;
+  padding: .5rem;
+  cursor: pointer;
   border-radius: 0.3rem;
 }

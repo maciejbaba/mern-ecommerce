@@ -18,8 +18,10 @@
 
 .login__login-button {
   padding: 0.2rem;
+  cursor: pointer;
 }
 
 .login__register-button {
   padding: 0.2rem;
+  cursor: pointer;
 }

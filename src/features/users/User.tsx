@@ -52,14 +52,14 @@ const User = ({ id }: UserProps) => {
 
     content = (
       <div className="user">
-        <p>Username: {user.username}</p>
-        <p>Status: {user.active ? "Active" : "Unactive"}</p>
-        <p>isAdmin: {user.isAdmin ? "Yes" : "No"}</p>
-        <p>Created at: {changeDateFormat(user.createdAt)}</p>
-        <p>Last update: {changeDateFormat(user.updatedAt)}</p>
+        <p><strong>Username: </strong>{user.username}</p>
+        <p><strong>Status: </strong>{user.active ? "Active" : "Unactive"}</p>
+        <p><strong>isAdmin: </strong>{user.isAdmin ? "Yes" : "No"}</p>
+        <p><strong>Created at: </strong>{changeDateFormat(user.createdAt)}</p>
+        <p><strong>Last update: </strong>{changeDateFormat(user.updatedAt)}</p>
         <div className="user__buttons">
-          <MyButton onClick={handleEditUser}>Edit</MyButton>
-          <MyButton onClick={handleDeleteUser}>Delete</MyButton>
+          <MyButton className="user__edit-button" onClick={handleEditUser}>Edit user</MyButton>
+          <MyButton className="user__delete-button" onClick={handleDeleteUser}>Delete user</MyButton>
         </div>
         {isLoading && <p>Deleting user...</p>}
       </div>

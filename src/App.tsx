@@ -14,7 +14,8 @@ import EditUser from "./features/users/EditUser";
 import Register from "./features/auth/Register";
 import Cart from "./features/cart/Cart";
 import Checkout from "./components/Checkout";
-import RemoveItemsList from "./features/items/RemoveItemsList";
+import ManageItemsList from "./features/items/ManageItemsList";
+import EditItem from "./features/items/EditItem";
 
 function App() {
   return (
@@ -35,7 +36,8 @@ function App() {
           </Route>
           <Route path="items">
             <Route index element={<ItemsList />} />
-            <Route path="remove" element={<RemoveItemsList />} />
+            <Route path="manage" element={<ManageItemsList />} />
+            <Route path="edit/:id" element={<EditItem />} />
             <Route path="item/:id" element={<ItemPage />} />
             <Route path="newItem" element={<NewItem />} />
           </Route>

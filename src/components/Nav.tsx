@@ -77,14 +77,20 @@ const Nav = () => {
           <MyLink onClick={handleLinkCloseMobileMenu} to="/">
             Home
           </MyLink>
-          <MyLink onClick={handleLinkCloseMobileMenu} to="/Cart">
+          <MyLink onClick={handleLinkCloseMobileMenu} to="/cart">
             Cart
           </MyLink>
-          <MyLink onClick={handleLinkCloseMobileMenu} to="/Items">
+          <MyLink onClick={handleLinkCloseMobileMenu} to="/items">
             Items
           </MyLink>
-          <MyLink onClick={handleLinkCloseMobileMenu} to="/Users">
+          <MyLink onClick={handleLinkCloseMobileMenu} to="/items/manage">
+            Manage items
+          </MyLink>
+          <MyLink onClick={handleLinkCloseMobileMenu} to="/users">
             Users
+          </MyLink>
+          <MyLink onClick={handleLinkCloseMobileMenu} to="/users/newUser">
+            Add user
           </MyLink>
           {isLogged ? (
             <MyButton
@@ -102,9 +108,11 @@ const Nav = () => {
       )}
       <div className="nav__desktop-nav">
         <Link to="/">Home</Link>
-        <Link to="/Cart">Cart</Link>
-        <Link to="/Items">Items</Link>
-        <Link to="/Users">Users</Link>
+        <Link to="/cart">Cart</Link>
+        <Link to="/items">Items</Link>
+        <Link to="/items/manage">Manage items</Link>
+        <Link to="/users">Users</Link>
+        <Link to="/users/newUser">Add user</Link>
         {isLogged ? (
           <MyButton
             className="nav__desktop__logout-button"
@@ -113,7 +121,7 @@ const Nav = () => {
             Logout
           </MyButton>
         ) : (
-          <Link to="/Login">Login</Link>
+          <Link to="/login">Login</Link>
         )}
       </div>
     </nav>

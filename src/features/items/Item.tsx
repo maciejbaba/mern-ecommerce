@@ -7,7 +7,7 @@ import { RootState } from "../../app/store";
 import { EntityId } from "@reduxjs/toolkit";
 import MyButton from "../../components/myButton";
 
-const DEFAULT_PHOTO_URL = "./no-image.png";
+const DEFAULT_PHOTO_URL = "no-image.png";
 const MAX_DESCRIPTION_LENGTH = 50;
 
 type ItemProps = {
@@ -53,7 +53,6 @@ const Item = ({ id }: ItemProps): JSX.Element => {
             }
           />
           <h2 className="item__name">{item.name}</h2>{" "}
-          {/* change magic number */}
           <p className="item__description">
             {item.description.length < MAX_DESCRIPTION_LENGTH
               ? item.description
