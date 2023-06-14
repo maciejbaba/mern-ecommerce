@@ -16,13 +16,15 @@ const getItemsFromLocalStorage = (): CartItem[] | [] => {
 const removeItemsFromLocalStorage = () => localStorage.removeItem("cartItems");
 
 type CartState = {
-  items: CartItem[] | [];
+  items: CartItem[];
   total: number;
 };
 
+const items: CartItem[] = getItemsFromLocalStorage();
+
 const initialState: CartState = {
-  items: getItemsFromLocalStorage(),
-  total: 0,
+  items,
+  total: items.reduce((acc, item) => acc + item.price * item.quantity, 0), 
 };
 
 export const cartSlice = createSlice({

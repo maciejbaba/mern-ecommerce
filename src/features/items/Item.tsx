@@ -8,7 +8,7 @@ import { EntityId } from "@reduxjs/toolkit";
 import MyButton from "../../components/myButton";
 
 const DEFAULT_PHOTO_URL = "no-image.png";
-const MAX_DESCRIPTION_LENGTH = 50;
+export const MAX_DESCRIPTION_LENGTH = 40;
 
 type ItemProps = {
   id: EntityId;

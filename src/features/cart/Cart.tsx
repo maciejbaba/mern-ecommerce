@@ -9,6 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import MyButton from "../../components/myButton";
 import { CartItem } from "./cartSlice";
+import { MAX_DESCRIPTION_LENGTH } from "../items/Item";
 
 const Cart = (): JSX.Element => {
   const items: CartItem[] = useSelector(selectCartItems);
@@ -47,14 +48,19 @@ const Cart = (): JSX.Element => {
                 alt={`${item.name}`}
               />
               <h2>{item.name}</h2>
-              <p>
-                {item.description.length > 50
-                  ? item.description.slice(0, 50) + "..."
+              <p className="cart__description">
+                {item.description.length > MAX_DESCRIPTION_LENGTH
+                  ? item.description.slice(0, MAX_DESCRIPTION_LENGTH) + "..."
                   : item.description}
               </p>
-              <p>{item.price}</p>
+              <p>{item.price} $</p>
               <p>Quantity: {item.quantity}</p>
-              <MyButton onClick={() => handleRemoveItem(item)}>Remove</MyButton>
+              <MyButton
+                className="cart__user-item__remove-button"
+                onClick={() => handleRemoveItem(item)}
+              >
+                Remove from the cart
+              </MyButton>
             </div>
           ))}
         </div>
@@ -65,7 +71,7 @@ const Cart = (): JSX.Element => {
           >
             Remove all items
           </MyButton>
-          <p className="cart__footer__total-p">{total}</p>
+          <p className="cart__footer__total-p">Total amount: {total} $</p>
           <MyButton className="cart__buy-items-button" onClick={handleBuy}>
             Buy items
           </MyButton>
