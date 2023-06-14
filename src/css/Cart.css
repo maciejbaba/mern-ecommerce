@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
 }
 
 .cart__heading {
@@ -10,9 +11,11 @@
 }
 
 .cart__img {
-  width: 50%;
-  height: 50%;
+  max-width: 15rem;
+  aspect-ratio: 1/1;
   object-fit: cover;
+  max-height: 15rem;
+  border-radius: 1rem;
 }
 
 .cart__user-items-list {
@@ -22,19 +25,23 @@
   grid-template-columns: 1fr 1fr;
 }
 
+.cart__footer {
+  position: fixed;
+  border-top: 1px solid rgb(202, 202, 202);
+  bottom: 0;
+  height: 3rem;
+  width: 100%;
+  left: 0;
+}
+
 .cart__remove-all-button {
   padding: 0.2rem;
   cursor: pointer;
-  position: fixed;
-  right: 2rem;
 }
 
 .cart__buy-items-button {
   padding: 0.2rem;
-  position: fixed;
   cursor: pointer;
-  top: 9rem;
-  right: 2rem;
 }
 
 .cart__empty-cart {
