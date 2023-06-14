@@ -6,7 +6,7 @@ import MyButton from "../../components/myButton";
 const NewItem = () => {
   const [name, setName] = useState<string>();
   const [description, setDescription] = useState<string>();
-  const [price, setPrice] = useState<number>();
+  const [price, setPrice] = useState<number>(0);
   const [photoURL, setPhotoURL] = useState<string>();
 
   const [addNewItem, { isSuccess, isLoading, isError }] =
@@ -68,8 +68,12 @@ const NewItem = () => {
           />
         </div>
         <div className="new-item__buttons">
-          <MyButton className="new-item__buttons-add" onClick={handleSubmit}>Add</MyButton>
-          <MyButton className="new-item__buttons-reset" onClick={handleReset}>Reset</MyButton>
+          <MyButton className="new-item__buttons-add" onClick={handleSubmit}>
+            Add
+          </MyButton>
+          <MyButton className="new-item__buttons-reset" onClick={handleReset}>
+            Reset
+          </MyButton>
         </div>
         <div className="new-item__result">
           {isSuccess && <p>Item added!</p>}
