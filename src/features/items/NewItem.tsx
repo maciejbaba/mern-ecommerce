@@ -59,17 +59,17 @@ const NewItem = () => {
           />
         </div>
         <div className="new-item__input-container">
-          <label htmlFor="imageURL">Image URL</label>
+          <label htmlFor="photoURL">Photo URL</label>
           <input
             type="text"
-            id="imageURL"
+            id="photoURL"
             value={photoURL}
             onChange={(e) => setPhotoURL(e.target.value)}
           />
         </div>
         <div className="new-item__buttons">
-          <MyButton onClick={handleSubmit}>Add</MyButton>
-          <MyButton onClick={handleReset}>Reset</MyButton>
+          <MyButton className="new-item__buttons-add" onClick={handleSubmit}>Add</MyButton>
+          <MyButton className="new-item__buttons-reset" onClick={handleReset}>Reset</MyButton>
         </div>
         <div className="new-item__result">
           {isSuccess && <p>Item added!</p>}
