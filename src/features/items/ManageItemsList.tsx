@@ -37,7 +37,7 @@ const RemoveItemsList = (): JSX.Element => {
     const item = items?.entities[id];
     if (!item) return alert("Item not found");
     if (item) {
-      await deleteItem(item);
+      await deleteItem(item.id);
       if (isDeleted) return alert("Item deleted");
       if (isDeleteError) return alert(error);
     }
