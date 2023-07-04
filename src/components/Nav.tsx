@@ -3,6 +3,10 @@ import "../css/Nav.css";
 import { useState } from "react";
 import MyButton from "./myButton";
 import MyLink from "./MyLink";
+import { useDispatch } from "react-redux";
+import { clearSession } from "../features/auth/sessionSlice";
+import { selectToken } from "../features/auth/sessionSlice";
+import { useSelector } from "react-redux";
 
 const closeButtonIcon = (
   <svg
@@ -39,12 +43,13 @@ const openButtonIcon = (
 );
 
 const Nav = () => {
-  const token = localStorage.getItem("token");
+  const token = useSelector(selectToken);
   const [isLogged, setIsLogged] = useState(token ? true : false);
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    dispatch(clearSession());
     setIsLogged(false);
     alert("You have been logged out");
   };

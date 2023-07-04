@@ -1,10 +1,18 @@
-
-
 const Admin = () => {
+  const token = localStorage.getItem("token");
 
-  return (
-    <div>Admin</div>
-  )
-}
+  if (!token) {
+    return (
+      <div>
+        Not logged in, in order to see the admin panel you have to be logged in
+        and be an admin
+      </div>
+    );
+  }
 
-export default Admin
+  console.log(token);
+
+  return <div>Admin</div>;
+};
+
+export default Admin;

@@ -3,11 +3,30 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../../app/api/apiSlice";
 import MyButton from "../../components/myButton";
+import { useDispatch } from "react-redux";
+import { setSession } from "./sessionSlice";
+
+const loginRequest = async (username: string, password: string) => {
+  try {
+    const response = await fetch(`${baseUrl}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleRegister = () => {
     navigate("/register");
@@ -23,26 +42,16 @@ const Login = () => {
 
   const handleLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    fetch(`${baseUrl}/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then(({ accessToken }) => {
-        if (accessToken) {
-          localStorage.setItem("token", accessToken);
-          alert("Login successful");
-          navigate("/");
-          window.location.reload();
-        } else {
-          alert("Invalid username or password");
-        }
-      });
+    loginRequest(username, password).then((data) => {
+      if (data) {
+        const token = data.accessToken;
+        const user = data.user;
+        dispatch(setSession({ token, user }));
+        navigate("/");
+      } else {
+        alert("Wrong username or password");
+      }
+    });
   };
 
   return (
