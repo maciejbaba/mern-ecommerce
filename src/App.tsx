@@ -16,6 +16,7 @@ import Cart from "./features/cart/Cart";
 import Checkout from "./components/Checkout";
 import ManageItemsList from "./features/items/ManageItemsList";
 import EditItem from "./features/items/EditItem";
+import Admin from "./features/auth/Admin";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route element={<Prefetch />}>
           <Route index element={<Public />} />
           <Route path="login" element={<Login />} />
+          <Route path="admin" element={<Admin />} />
           <Route path="cart">
             <Route index element={<Cart />} />
             <Route path="checkout" element={<Checkout />} />
