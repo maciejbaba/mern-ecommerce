@@ -1,7 +1,12 @@
-const Admin = () => {
-  const token = localStorage.getItem("token");
+import { useSelector } from "react-redux"
+import { selectUser } from "../auth/sessionSlice"
 
-  if (!token) {
+const Admin = () => {
+  const user = useSelector(selectUser);
+  console.log(user);
+  
+  
+  if (!user) {
     return (
       <div>
         Not logged in, in order to see the admin panel you have to be logged in
@@ -10,9 +15,11 @@ const Admin = () => {
     );
   }
 
-  console.log(token);
+  if (!user.isAdmin) {
+    return <div>You are not an admin</div>;
+  }
 
-  return <div>Admin</div>;
+  return <div>Admin panel</div>;
 };
 
 export default Admin;

@@ -43,7 +43,8 @@ const openButtonIcon = (
 );
 
 const Nav = () => {
-  const token = useSelector(selectToken);
+  const token = useSelector(selectToken) ?? localStorage.getItem("token");
+  console.log(token)
   const [isLogged, setIsLogged] = useState(token ? true : false);
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();

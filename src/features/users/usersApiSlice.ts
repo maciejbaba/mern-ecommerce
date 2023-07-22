@@ -6,6 +6,7 @@ import {
 } from "@reduxjs/toolkit";
 import { apiSlice } from "../../app/api/apiSlice";
 import { RootState } from "../../app/store";
+import { getTokenFromLocalStorage } from "../auth/sessionSlice";
 
 // basic type for user
 type RawUser = {
@@ -69,7 +70,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token") || "",
+          Authorization: "Bearer " + getTokenFromLocalStorage() ?? "",
         },
         body: {
           ...newUserData,
@@ -83,7 +84,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token") || "",
+          Authorization: "Bearer " + getTokenFromLocalStorage() ?? "",
         },
         body: { id },
       }),
