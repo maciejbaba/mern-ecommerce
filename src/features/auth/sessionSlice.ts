@@ -1,16 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../users/usersApiSlice";
 
-const saveTokenToLocalStorage = (token: string | null) => {
-  if (token) {
-    localStorage.setItem("token", token);
-  } else {
-    console.log("no token to save");
-  }
-};
-
-export const getTokenFromLocalStorage = () => {
-  return localStorage.getItem("token") ?? "";
+const saveTokenToLocalStorage = (token: string) => {
+  localStorage.setItem("token", token);
 };
 
 const deleteTokenFromLocalStorage = () => {
@@ -33,9 +25,17 @@ export const sessionSlice = createSlice({
   reducers: {
     setSession: (state, action: PayloadAction<InitialState>) => {
       const { user, token } = action.payload;
-      state.user = user;
-      state.token = token;
-      saveTokenToLocalStorage(token);
+      if (user && token) {
+        state.user = user;
+        state.token = token;
+        saveTokenToLocalStorage(token);
+      }
+      if (!user) {
+        console.log("no user");
+      }
+      if (!token) {
+        console.log("no token");
+      }
     },
     clearSession: (state) => {
       state = initialState;

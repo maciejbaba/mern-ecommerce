@@ -68,7 +68,7 @@ export const itemsApiSlice = apiSlice.injectEndpoints({
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + localStorage.getItem("token") ?? "",
         },
         body: {
           ...newItemData,
@@ -82,7 +82,7 @@ export const itemsApiSlice = apiSlice.injectEndpoints({
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + localStorage.getItem("token") ?? "",
         },
         body: { id },
       }),
