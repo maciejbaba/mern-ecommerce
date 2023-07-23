@@ -37,8 +37,6 @@ export const sessionSlice = createSlice({
   reducers: {
     setSession: (state, action: PayloadAction<InitialState>) => {
       const { user, token } = action.payload;
-      console.log(user, token);
-
       if (user && token) {
         state.user = user;
         state.token = token;
