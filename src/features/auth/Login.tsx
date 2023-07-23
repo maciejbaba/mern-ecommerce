@@ -5,6 +5,7 @@ import { baseUrl } from "../../app/api/apiSlice";
 import MyButton from "../../components/myButton";
 import { useDispatch } from "react-redux";
 import { setSession } from "./sessionSlice";
+import type { User } from "../users/usersApiSlice";
 
 const loginRequest = async (username: string, password: string) => {
   try {
@@ -52,9 +53,17 @@ const Login = () => {
     }
     loginRequest(username, password).then((data) => {
       if (data) {
-        const token = data.accessToken;
-        const user = data.user;
-        dispatch(setSession({ token, user }));
+        const token: string = data.accessToken;
+        const user: User = data.user;
+        if (!user) {
+          alert("no user")
+          return;
+        }
+        if (!token) {
+          alert("no token")
+          return;
+        }
+        dispatch(setSession({ user, token }));
         navigate("/");
       } else {
         alert("Wrong username or password");

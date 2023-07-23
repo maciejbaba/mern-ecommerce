@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import "../css/Nav.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MyButton from "./myButton";
 import MyLink from "./MyLink";
 import { useDispatch } from "react-redux";
-import { clearSession } from "../features/auth/sessionSlice";
-import { selectToken } from "../features/auth/sessionSlice";
+import { clearSession, selectToken } from "../features/auth/sessionSlice";
 import { useSelector } from "react-redux";
 
 const closeButtonIcon = (
@@ -43,8 +42,11 @@ const openButtonIcon = (
 );
 
 const Nav = () => {
-  const token = useSelector(selectToken) ?? localStorage.getItem("token");
+  const token = useSelector(selectToken);
   const [isLogged, setIsLogged] = useState(token ? true : false);
+  useEffect(() => {
+    setIsLogged(token ? true : false);
+  }, [token]);
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
 

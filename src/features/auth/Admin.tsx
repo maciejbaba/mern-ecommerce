@@ -6,7 +6,6 @@ import MyButton from "../../components/myButton";
 
 const Admin = () => {
   const user = useSelector(selectUser);
-  console.log(user);
   const navigate = useNavigate();
 
   const handleLoginClick = () => {

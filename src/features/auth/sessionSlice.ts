@@ -1,8 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../users/usersApiSlice";
+import { RootState } from "../../app/store";
 
 const saveTokenToLocalStorage = (token: string) => {
   localStorage.setItem("token", token);
+};
+
+const saveUserToLocalStorage = (user: User) => {
+  localStorage.setItem("user", JSON.stringify(user));
+};
+
+const deleteUserFromLocalStorage = () => {
+  localStorage.removeItem("user");
 };
 
 const deleteTokenFromLocalStorage = () => {
@@ -14,9 +23,12 @@ type InitialState = {
   token: string | null;
 };
 
+const localToken = localStorage.getItem("token");
+const notParsedUser = localStorage.getItem("user");
+
 const initialState: InitialState = {
-  user: null,
-  token: null,
+  user: notParsedUser ? JSON.parse(notParsedUser) : null,
+  token: localToken,
 };
 
 export const sessionSlice = createSlice({
@@ -25,9 +37,12 @@ export const sessionSlice = createSlice({
   reducers: {
     setSession: (state, action: PayloadAction<InitialState>) => {
       const { user, token } = action.payload;
+      console.log(user, token);
+
       if (user && token) {
         state.user = user;
         state.token = token;
+        saveUserToLocalStorage(user);
         saveTokenToLocalStorage(token);
       }
       if (!user) {
@@ -38,7 +53,9 @@ export const sessionSlice = createSlice({
       }
     },
     clearSession: (state) => {
-      state = initialState;
+      state.token = null;
+      state.user = null;
+      deleteUserFromLocalStorage();
       deleteTokenFromLocalStorage();
     },
   },
@@ -48,7 +65,5 @@ export const { setSession, clearSession } = sessionSlice.actions;
 
 export default sessionSlice.reducer;
 
-export const selectUser = (state: { session: InitialState }) =>
-  state.session.user;
-export const selectToken = (state: { session: InitialState }) =>
-  state.session.token;
+export const selectToken = (state: RootState) => state.session.token;
+export const selectUser = (state: RootState) => state.session.user;
