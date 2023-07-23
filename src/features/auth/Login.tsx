@@ -42,6 +42,14 @@ const Login = () => {
 
   const handleLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
+    if (!username) {
+      alert("Username is required");
+      return;
+    } // change this two later to more user friendly
+    if (!password) {
+      alert("Password is required");
+      return;
+    }
     loginRequest(username, password).then((data) => {
       if (data) {
         const token = data.accessToken;
