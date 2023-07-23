@@ -3,6 +3,7 @@ import { selectUser } from "../auth/sessionSlice";
 import "../../css/Admin.css";
 import { useNavigate } from "react-router-dom";
 import MyButton from "../../components/myButton";
+import MyLink from "../../components/MyLink";
 
 const Admin = () => {
   const user = useSelector(selectUser);
@@ -38,7 +39,13 @@ const Admin = () => {
     );
   }
 
-  return <div className="admin">Admin panel</div>;
+  return <div className="admin">
+    <h1>Admin panel</h1>
+    <div className="admin__links">
+    <MyLink className="admin__link" to="/admin/users">Users</MyLink>
+    <MyLink className="admin__link" to="/admin/manageItems">Items</MyLink>
+    </div>
+  </div>;
 };
 
 export default Admin;

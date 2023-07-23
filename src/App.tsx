@@ -25,24 +25,25 @@ function App() {
         <Route element={<Prefetch />}>
           <Route index element={<Public />} />
           <Route path="login" element={<Login />} />
-          <Route path="admin" element={<Admin />} />
+          <Route path="admin">
+            <Route index element={<Admin />} />
+            <Route path="users">
+              <Route index element={<UsersList />} />
+              <Route path="newUser" element={<NewUser />} />
+              <Route path=":id" element={<UserPage />} />
+              <Route path="editUser/:id" element={<EditUser />} />
+            </Route>
+            <Route path="manageItems" element={<ManageItemsList />}>
+              <Route path="edit/:id" element={<EditItem />} />
+              <Route path="item/:id" element={<ItemPage />} />
+              <Route path="newItem" element={<NewItem />} />
+            </Route>
+          </Route>
           <Route path="cart">
             <Route index element={<Cart />} />
             <Route path="checkout" element={<Checkout />} />
           </Route>
-          <Route path="users">
-            <Route index element={<UsersList />} />
-            <Route path="newUser" element={<NewUser />} />
-            <Route path=":id" element={<UserPage />} />
-            <Route path="editUser/:id" element={<EditUser />} />
-          </Route>
-          <Route path="items">
-            <Route index element={<ItemsList />} />
-            <Route path="manage" element={<ManageItemsList />} />
-            <Route path="edit/:id" element={<EditItem />} />
-            <Route path="item/:id" element={<ItemPage />} />
-            <Route path="newItem" element={<NewItem />} />
-          </Route>
+          <Route path="items" element={<ItemsList />} />
           <Route path="register" element={<Register />} />
           <Route path="*" element={<Missing />} />
         </Route>
