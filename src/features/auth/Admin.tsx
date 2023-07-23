@@ -29,7 +29,14 @@ const Admin = () => {
   }
 
   if (!user.isAdmin) {
-    return <div className="admin__not-admin">You are not an admin</div>;
+    return (
+      <div className="admin__not-admin">
+        <p>
+          <span className="text-red">You are not an admin</span>, in order to be
+          one contact proper person
+        </p>
+      </div>
+    );
   }
 
   return <div className="admin">Admin panel</div>;

@@ -13,3 +13,20 @@
   max-width: 50vw;
   text-align: center;
 }
+
+
+.admin__not-admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  gap: 2rem;
+}
+
+.admin__not-admin p {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  max-width: 50vw;
+  text-align: center;
+}
