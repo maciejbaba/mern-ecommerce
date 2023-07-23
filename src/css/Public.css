@@ -20,6 +20,8 @@
   border-radius: 0.5rem;
   cursor: pointer;
   font-weight: bolder;
+  color: white;
+  background-color: green;
 }
 
 .public__more-items-button {
@@ -27,4 +29,6 @@
   cursor: pointer;
   border-radius: 0.5rem;
   font-weight: bolder;
+  color: white;
+  background-color: green;
 }

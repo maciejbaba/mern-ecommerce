@@ -1,3 +1,9 @@
+:root {
+  --BLUE: #1e90ff;
+  --GREEN: green;
+  --RED: red;
+}
+
 * {
   margin: 0;
   padding: 0;
