@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useGetItemsQuery } from "./itemsApiSlice";
 import "../../css/ItemPage.css";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../cart/cartSlice";
+import { CartItem, addToCart } from "../cart/cartSlice";
 import MyButton from "../../components/myButton";
 
 const ItemPage = () => {
@@ -42,7 +42,8 @@ const ItemPage = () => {
         </main>
       );
     } else {
-      const handleAddToCart = () => dispatch(addToCart(item)); // function declaration is inside else block to prevent dispatching undefined
+      const cartItem: CartItem = { ...item, quantity: 1 }; // create cartItem object from item object, for now quantity is set to 1 by default
+      const handleAddToCart = () => dispatch(addToCart(cartItem)); // function declaration is inside else block to prevent dispatching undefined
 
       content = (
         <main className="item-page">
