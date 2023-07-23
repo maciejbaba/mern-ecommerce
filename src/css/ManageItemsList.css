@@ -21,6 +21,25 @@
   justify-content: center;
 }
 
+.manage-items__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+}
+
+.manage-items__add-item-button {
+  padding: .5rem;
+  cursor: pointer;
+  border-radius: .5rem;
+  background-color: #038ae3;
+  color: white;
+  font-weight: bolder;
+}
+
+
 .manage-items__remove-item-button {
   padding: .5rem;
   cursor: pointer;

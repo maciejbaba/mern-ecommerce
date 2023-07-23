@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import "../css/Nav.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MyButton from "./myButton";
 import MyLink from "./MyLink";
+import { useDispatch } from "react-redux";
+import { clearSession, selectToken } from "../features/auth/sessionSlice";
+import { useSelector } from "react-redux";
 
 const closeButtonIcon = (
   <svg
@@ -39,12 +42,16 @@ const openButtonIcon = (
 );
 
 const Nav = () => {
-  const token = localStorage.getItem("token");
+  const token = useSelector(selectToken);
   const [isLogged, setIsLogged] = useState(token ? true : false);
+  useEffect(() => {
+    setIsLogged(token ? true : false);
+  }, [token]);
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    dispatch(clearSession());
     setIsLogged(false);
     alert("You have been logged out");
   };
@@ -83,14 +90,8 @@ const Nav = () => {
           <MyLink onClick={handleLinkCloseMobileMenu} to="/items">
             Items
           </MyLink>
-          <MyLink onClick={handleLinkCloseMobileMenu} to="/items/manage">
-            Manage items
-          </MyLink>
-          <MyLink onClick={handleLinkCloseMobileMenu} to="/users">
-            Users
-          </MyLink>
-          <MyLink onClick={handleLinkCloseMobileMenu} to="/users/newUser">
-            Add user
+          <MyLink onClick={handleLinkCloseMobileMenu} to="/admin">
+            Admin
           </MyLink>
           {isLogged ? (
             <MyButton
@@ -110,9 +111,7 @@ const Nav = () => {
         <Link to="/">Home</Link>
         <Link to="/cart">Cart</Link>
         <Link to="/items">Items</Link>
-        <Link to="/items/manage">Manage items</Link>
-        <Link to="/users">Users</Link>
-        <Link to="/users/newUser">Add user</Link>
+        <Link to="/admin">Admin</Link>
         {isLogged ? (
           <MyButton
             className="nav__desktop__logout-button"

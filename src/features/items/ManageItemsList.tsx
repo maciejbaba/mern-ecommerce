@@ -2,11 +2,7 @@ import { EntityId } from "@reduxjs/toolkit";
 import MyButton from "../../components/myButton";
 import "../../css/ManageItemsList.css";
 import Item from "./Item";
-import {
-  useGetItemsQuery,
-  useDeleteItemMutation,
-  selectItemById,
-} from "./itemsApiSlice";
+import { useGetItemsQuery, useDeleteItemMutation } from "./itemsApiSlice";
 import { useNavigate } from "react-router-dom";
 
 const RemoveItemsList = (): JSX.Element => {
@@ -41,7 +37,7 @@ const RemoveItemsList = (): JSX.Element => {
     const item = items?.entities[id];
     if (!item) return alert("Item not found");
     if (item) {
-      await deleteItem(item);
+      await deleteItem(item.id);
       if (isDeleted) return alert("Item deleted");
       if (isDeleteError) return alert(error);
     }
@@ -54,8 +50,17 @@ const RemoveItemsList = (): JSX.Element => {
   } else if (isSuccess) {
     content = (
       <main className="manage-items__main">
-        <div>
+        <div className="manage-items__head">
           <h1>Items</h1>
+          <MyButton
+            className="manage-items__add-item-button"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/items/newItem");
+            }}
+          >
+            Add new item
+          </MyButton>
         </div>
         <div className="manage-items__items-list">
           {items.ids.map((itemId) => (

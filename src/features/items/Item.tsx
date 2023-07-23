@@ -1,14 +1,14 @@
 import { useSelector, useDispatch } from "react-redux";
 import { selectItemById } from "./itemsApiSlice";
 import "../../css/Item.css";
-import { addToCart } from "../cart/cartSlice";
+import { CartItem, addToCart } from "../cart/cartSlice";
 import { Link } from "react-router-dom";
 import { RootState } from "../../app/store";
 import { EntityId } from "@reduxjs/toolkit";
 import MyButton from "../../components/myButton";
 
 const DEFAULT_PHOTO_URL = "no-image.png";
-const MAX_DESCRIPTION_LENGTH = 50;
+export const MAX_DESCRIPTION_LENGTH = 40;
 
 type ItemProps = {
   id: EntityId;
@@ -18,7 +18,7 @@ const Item = ({ id }: ItemProps): JSX.Element => {
   const item = useSelector((state: RootState) => selectItemById(state, id));
   const dispatch = useDispatch();
 
-  let content;
+  let content = <div></div>;
 
   if (!item) {
     content = (
@@ -33,7 +33,11 @@ const Item = ({ id }: ItemProps): JSX.Element => {
       e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
       e.preventDefault();
-      dispatch(addToCart(item)); // function declaration is inside else block to prevent dispatching undefined
+      const cartItem: CartItem = {
+        ...item,
+        quantity: 1,
+      };
+      dispatch(addToCart(cartItem)); // function declaration is inside else block to prevent dispatching undefined
     };
 
     content = (
@@ -58,7 +62,7 @@ const Item = ({ id }: ItemProps): JSX.Element => {
               ? item.description
               : item.description.slice(0, MAX_DESCRIPTION_LENGTH) + "..."}
           </p>
-          <p className="item__price">Price: {`${item.price} $`}</p>
+          <p className="item__price">Price: {item.price} $</p>
           <MyButton
             className="item__add-to-cart-button"
             onClick={handleAddToCart}

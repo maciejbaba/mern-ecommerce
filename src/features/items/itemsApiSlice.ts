@@ -68,7 +68,7 @@ export const itemsApiSlice = apiSlice.injectEndpoints({
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + localStorage.getItem("token") ?? "",
         },
         body: {
           ...newItemData,
@@ -77,14 +77,14 @@ export const itemsApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: (result, error, arg) => [{ type: "Item", id: arg.id }],
     }),
     deleteItem: builder.mutation({
-      query: ({ name }) => ({
+      query: ({ id }) => ({
         url: "/items",
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + localStorage.getItem("token") ?? "",
         },
-        body: { name },
+        body: { id },
       }),
       invalidatesTags: (result, error, arg) => [
         {

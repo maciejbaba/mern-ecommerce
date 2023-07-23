@@ -17,12 +17,18 @@
 
 .public__browse-items-button {
   padding: .5rem;
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
   cursor: pointer;
+  font-weight: bolder;
+  color: white;
+  background-color: green;
 }
 
 .public__more-items-button {
   padding: .5rem;
   cursor: pointer;
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
+  font-weight: bolder;
+  color: white;
+  background-color: green;
 }

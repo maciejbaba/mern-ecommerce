@@ -40,7 +40,7 @@ const User = ({ id }: UserProps) => {
 
   let content;
 
-  if (!user) {
+  if (!user) { // change this nesting to returns instead of content
     content = <p>User not found</p>;
   } else {
     const handleEditUser = (

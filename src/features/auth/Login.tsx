@@ -3,11 +3,31 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../../app/api/apiSlice";
 import MyButton from "../../components/myButton";
+import { useDispatch } from "react-redux";
+import { setSession } from "./sessionSlice";
+import type { User } from "../users/usersApiSlice";
+
+const loginRequest = async (username: string, password: string) => {
+  try {
+    const response = await fetch(`${baseUrl}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleRegister = () => {
     navigate("/register");
@@ -23,26 +43,32 @@ const Login = () => {
 
   const handleLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    fetch(`${baseUrl}/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then(({ accessToken }) => {
-        if (accessToken) {
-          localStorage.setItem("token", accessToken);
-          alert("Login successful");
-          navigate("/");
-          window.location.reload();
-        } else {
-          alert("Invalid username or password");
+    if (!username) {
+      alert("Username is required");
+      return;
+    } // change this two later to more user friendly
+    if (!password) {
+      alert("Password is required");
+      return;
+    }
+    loginRequest(username, password).then((data) => {
+      if (data) {
+        const token: string = data.accessToken;
+        const user: User = data.user;
+        if (!user) {
+          alert("no user")
+          return;
         }
-      });
+        if (!token) {
+          alert("no token")
+          return;
+        }
+        dispatch(setSession({ user, token }));
+        navigate("/");
+      } else {
+        alert("Wrong username or password");
+      }
+    });
   };
 
   return (

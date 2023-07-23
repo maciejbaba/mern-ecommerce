@@ -30,7 +30,7 @@ const ItemsList = () => {
     );
   }
 
-  return null;
+  return <div>If you see this the items cannot be loaded</div>;
 };
 
 export default ItemsList;

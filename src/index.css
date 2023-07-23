@@ -1,3 +1,13 @@
+:root {
+  --BLUE: #1e90ff;
+  --GREEN: green;
+  --RED: red;
+  --BLUE-HOVER: #187bcd;
+  --GREEN-HOVER: #008000;
+  --RED-HOVER: #ff0000;
+  --BORDER: #c5c1c1;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,10 +20,60 @@ a {
 }
 
 body {
-  min-height: 100vh;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c5c1c1;
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #b0a2a2;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--BLUE);
+  color: white;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--BLUE-HOVER);
+}
+
+.secondary-button {
+  background-color: var(--GREEN);
+}
+
+.secondary-button:hover {
+  background-color: var(--GREEN-HOVER);
+}
+
+.danger-button {
+  background-color: var(--RED);
+}
+
+.danger-button:hover {
+  background-color: var(--RED-HOVER);
+}
+
+.text-red {
+  color: red;
 }
