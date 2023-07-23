@@ -28,7 +28,9 @@ const Register = () => {
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.currentTarget.value);
   };
-  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleConfirmPasswordChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setConfirmPassword(e.currentTarget.value);
   };
 
@@ -60,9 +62,7 @@ const Register = () => {
           value={confirmPassword}
           onChange={handleConfirmPasswordChange}
         />
-        <MyButton onClick={handleRegister} style={{ padding: ".2rem" }}>
-          Register
-        </MyButton>
+        <MyButton onClick={handleRegister}>Register</MyButton>
       </form>
     </main>
   );

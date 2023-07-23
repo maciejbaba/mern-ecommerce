@@ -1,12 +1,37 @@
 .register {
-  text-align: center;
-  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem auto;
+  gap: 1rem;
 }
 
 .register__form {
-  padding: 1rem;
+  padding: 1.5rem 4rem;
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 0.5rem;
+  border-radius: 1rem;
   align-items: center;
+  border: 1px solid #ccc;
+}
+
+.register__form input {
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  outline: none;
+}
+
+/* there is only one button in the register form */
+.register__form button {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bolder;
+  color: white;
+  margin-top: .5rem;
+  background-color: var(--GREEN);
 }
