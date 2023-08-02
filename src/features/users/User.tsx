@@ -34,7 +34,7 @@ const User = ({ id }: UserProps) => {
     e.preventDefault();
     deleteUser(user);
     if (isError) return alert(error);
-    navigate("/users");
+    navigate("/admin/users");
     alert("User deleted");
   };
 
@@ -47,7 +47,7 @@ const User = ({ id }: UserProps) => {
       e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
       e.preventDefault();
-      navigate(`/users/editUser/${user.id}`);
+      navigate(`/admin/users/editUser/${user.id}`);
     };
 
     content = (

@@ -30,7 +30,7 @@ const NewUser = () => {
 
     if (isSuccess) {
       alert("User has been added successfully");
-      navigate("/users");
+      navigate("/admin/users");
     } else if (isError) {
       alert("Something went wrong");
     }

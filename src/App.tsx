@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import Layout from "./components/Layout";
 import Public from "./components/Public";
 import ItemPage from "./features/items/ItemPage";
@@ -17,15 +17,31 @@ import Checkout from "./components/Checkout";
 import ManageItemsList from "./features/items/ManageItemsList";
 import EditItem from "./features/items/EditItem";
 import Admin from "./features/auth/Admin";
+import { useSelector } from "react-redux";
+import { selectUser } from "./features/auth/sessionSlice";
+import type { User } from "./features/users/usersApiSlice";
 
-function App() {
+type ProtectedRouteProps = {
+  user: User | null;
+};
+
+const ProtectedRoute = ({ user }: ProtectedRouteProps) => {
+  if (!user?.isAdmin) {
+    return <Login />;
+  }
+  return <Outlet />;
+};
+
+const App = () => {
+  const user = useSelector(selectUser);
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route element={<Prefetch />}>
           <Route index element={<Public />} />
           <Route path="login" element={<Login />} />
-          <Route path="admin">
+          <Route path="admin" element={<ProtectedRoute user={user} />}>
             <Route index element={<Admin />} />
             <Route path="users">
               <Route index element={<UsersList />} />
@@ -35,7 +51,6 @@ function App() {
             </Route>
             <Route path="manageItems" element={<ManageItemsList />}>
               <Route path="edit/:id" element={<EditItem />} />
-              <Route path="item/:id" element={<ItemPage />} />
               <Route path="newItem" element={<NewItem />} />
             </Route>
           </Route>
@@ -44,12 +59,13 @@ function App() {
             <Route path="checkout" element={<Checkout />} />
           </Route>
           <Route path="items" element={<ItemsList />} />
+          <Route path="item/:id" element={<ItemPage />} />
           <Route path="register" element={<Register />} />
           <Route path="*" element={<Missing />} />
         </Route>
       </Route>
     </Routes>
   );
-}
+};
 
 export default App;

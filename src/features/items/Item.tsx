@@ -41,7 +41,7 @@ const Item = ({ id }: ItemProps): JSX.Element => {
     };
 
     content = (
-      <Link to={`/items/item/${item.id}`}>
+      <Link to={`/item/${item.id}`}>
         <main className="item">
           <img
             className="item__img"

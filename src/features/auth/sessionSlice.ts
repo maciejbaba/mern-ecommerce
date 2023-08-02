@@ -6,14 +6,6 @@ const saveTokenToLocalStorage = (token: string) => {
   localStorage.setItem("token", token);
 };
 
-const saveUserToLocalStorage = (user: User) => {
-  localStorage.setItem("user", JSON.stringify(user));
-};
-
-const deleteUserFromLocalStorage = () => {
-  localStorage.removeItem("user");
-};
-
 const deleteTokenFromLocalStorage = () => {
   localStorage.removeItem("token");
 };
@@ -40,7 +32,6 @@ export const sessionSlice = createSlice({
       if (user && token) {
         state.user = user;
         state.token = token;
-        saveUserToLocalStorage(user);
         saveTokenToLocalStorage(token);
       }
       if (!user) {
@@ -53,7 +44,6 @@ export const sessionSlice = createSlice({
     clearSession: (state) => {
       state.token = null;
       state.user = null;
-      deleteUserFromLocalStorage();
       deleteTokenFromLocalStorage();
     },
   },

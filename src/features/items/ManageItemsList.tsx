@@ -26,7 +26,7 @@ const RemoveItemsList = (): JSX.Element => {
     id: EntityId
   ) => {
     e.preventDefault();
-    navigate(`/items/edit/${id}`);
+    navigate(`/admin/manageItems/edit/${id}`);
   };
 
   const handleDeleteItemFromStore = async (
@@ -56,7 +56,7 @@ const RemoveItemsList = (): JSX.Element => {
             className="manage-items__add-item-button"
             onClick={(e) => {
               e.preventDefault();
-              navigate("/items/newItem");
+              navigate("/admin/manageItems/newItem");
             }}
           >
             Add new item
