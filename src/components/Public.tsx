@@ -12,10 +12,6 @@ const Public = () => {
     itemsListRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleMoreItemsButton = () => {
-    navigate("/items");
-  };
-
   return (
     <main className="public">
       <div className="public__hero">
@@ -33,7 +29,7 @@ const Public = () => {
       </div>
       <MyButton
         className="public__more-items-button"
-        onClick={handleMoreItemsButton}
+        onClick={() => navigate("/items")}
       >
         More items
       </MyButton>

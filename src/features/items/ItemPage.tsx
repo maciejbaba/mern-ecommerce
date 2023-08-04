@@ -52,7 +52,7 @@ const ItemPage = () => {
           <p>Description {item.description}</p>
           <p>Price: {`${item.price} $`}</p>
           <MyButton
-            className="item-page__add-to-cart-button"
+            className="button"
             onClick={handleAddToCart}
           >
             Add to cart
