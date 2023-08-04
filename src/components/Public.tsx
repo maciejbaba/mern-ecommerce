@@ -29,7 +29,7 @@ const Public = () => {
         </MyButton>
       </div>
       <div ref={itemsListRef}>
-        <ItemsList />
+        <ItemsList amountToShow={10}/>
       </div>
       <MyButton
         className="public__more-items-button"
