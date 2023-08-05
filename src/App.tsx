@@ -26,10 +26,10 @@ type ProtectedRouteProps = {
 };
 
 const ProtectedRoute = ({ user }: ProtectedRouteProps) => {
-  if (user?.isAdmin) {
-    return <Outlet />;
-  }
-  return <Login />;
+  if (!user) return <Login />;
+  if (user.isAdmin) return <Outlet />;
+  if (!user.isAdmin) return <Admin />; // admin handles the case when user is not an admin
+  return null;
 };
 
 const App = () => {

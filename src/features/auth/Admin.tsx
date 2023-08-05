@@ -9,22 +9,9 @@ const Admin = () => {
   const user = useSelector(selectUser);
   const navigate = useNavigate();
 
-  if (!user) {
-    return (
-      <div className="admin__not-logged">
-        <p>
-          <span className="text-red">Not logged in</span>, in order to see the
-          admin panel <span className="text-red">you have to be logged in</span>{" "}
-          and be <span className="text-red">an admin</span>
-        </p>
-        <MyButton className="button" onClick={() => navigate("/login")}>
-          Login
-        </MyButton>
-      </div>
-    );
-  }
+  if (!user) navigate("/login");
 
-  if (!user.isAdmin) {
+  if (!user?.isAdmin) {
     return (
       <div className="admin__not-admin">
         <p>

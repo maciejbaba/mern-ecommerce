@@ -53,7 +53,6 @@ const Nav = () => {
   const handleLogout = () => {
     dispatch(clearSession());
     setIsLogged(false);
-    alert("You have been logged out");
   };
 
   const handleMenuShow = () => {
