@@ -1,7 +1,6 @@
 .manage-items__items-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  
   gap: 4rem;
   justify-content: center;
 }
@@ -58,4 +57,16 @@
   background-color: #038ae3;
   color: white;
   font-weight: bolder;
+}
+
+@media screen and (max-width: 1000px) {
+  .manage-items__items-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .manage-items__items-list {
+    grid-template-columns: 1fr;
+  }
 }
