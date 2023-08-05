@@ -5,7 +5,7 @@ import Item from "./Item";
 import { useGetItemsQuery, useDeleteItemMutation } from "./itemsApiSlice";
 import { useNavigate } from "react-router-dom";
 
-const RemoveItemsList = (): JSX.Element => {
+const ManageItemsList = (): JSX.Element => {
   const {
     data: items,
     isLoading,
@@ -20,14 +20,6 @@ const RemoveItemsList = (): JSX.Element => {
     deleteItem,
     { isSuccess: isDeleted, isLoading: isDeleting, isError: isDeleteError },
   ] = useDeleteItemMutation();
-
-  const handleEditItemButton = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    id: EntityId
-  ) => {
-    e.preventDefault();
-    navigate(`/admin/manageItems/edit/${id}`);
-  };
 
   const handleDeleteItemFromStore = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -68,7 +60,9 @@ const RemoveItemsList = (): JSX.Element => {
               <Item id={itemId} />
               <MyButton
                 className="manage-items__edit-item-button"
-                onClick={(e) => handleEditItemButton(e, itemId)}
+                onClick={() => {
+                  navigate(`/admin/manageItems/edit/${itemId}`);
+                }}
               >
                 Edit item
               </MyButton>
@@ -100,4 +94,4 @@ const RemoveItemsList = (): JSX.Element => {
   return content;
 };
 
-export default RemoveItemsList;
+export default ManageItemsList;

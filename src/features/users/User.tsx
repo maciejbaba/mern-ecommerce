@@ -40,26 +40,46 @@ const User = ({ id }: UserProps) => {
 
   let content;
 
-  if (!user) { // change this nesting to returns instead of content
+  if (!user) {
+    // change this nesting to returns instead of content
     content = <p>User not found</p>;
   } else {
     const handleEditUser = (
       e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
       e.preventDefault();
-      navigate(`/admin/users/editUser/${user.id}`);
+      navigate(`/admin/users/edit/${user.id}`);
     };
 
     content = (
       <div className="user">
-        <p><strong>Username: </strong>{user.username}</p>
-        <p><strong>Status: </strong>{user.active ? "Active" : "Unactive"}</p>
-        <p><strong>isAdmin: </strong>{user.isAdmin ? "Yes" : "No"}</p>
-        <p><strong>Created at: </strong>{changeDateFormat(user.createdAt)}</p>
-        <p><strong>Last update: </strong>{changeDateFormat(user.updatedAt)}</p>
+        <p>
+          <strong>Username: </strong>
+          {user.username}
+        </p>
+        <p>
+          <strong>Status: </strong>
+          {user.active ? "Active" : "Unactive"}
+        </p>
+        <p>
+          <strong>isAdmin: </strong>
+          {user.isAdmin ? "Yes" : "No"}
+        </p>
+        <p>
+          <strong>Created at: </strong>
+          {changeDateFormat(user.createdAt)}
+        </p>
+        <p>
+          <strong>Last update: </strong>
+          {changeDateFormat(user.updatedAt)}
+        </p>
         <div className="user__buttons">
-          <MyButton className="user__edit-button" onClick={handleEditUser}>Edit user</MyButton>
-          <MyButton className="user__delete-button" onClick={handleDeleteUser}>Delete user</MyButton>
+          <MyButton className="user__edit-button" onClick={handleEditUser}>
+            Edit user
+          </MyButton>
+          <MyButton className="user__delete-button" onClick={handleDeleteUser}>
+            Delete user
+          </MyButton>
         </div>
         {isLoading && <p>Deleting user...</p>}
       </div>
