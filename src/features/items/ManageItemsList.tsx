@@ -57,7 +57,7 @@ const ManageItemsList = (): JSX.Element => {
         <div className="manage-items__items-list">
           {items.ids.map((itemId) => (
             <div className="manage-items__item-div" key={itemId}>
-              <Item id={itemId} />
+              <Item id={itemId} showAddToCartButton={false} />
               <MyButton
                 className="manage-items__edit-item-button"
                 onClick={() => {

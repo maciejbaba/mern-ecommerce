@@ -1,6 +1,6 @@
 .manage-items__items-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);  
+  grid-template-columns: repeat(3, 1fr);
   gap: 4rem;
   justify-content: center;
 }
@@ -26,34 +26,32 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-
 }
 
 .manage-items__add-item-button {
-  padding: .5rem;
+  padding: 0.5rem;
   cursor: pointer;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   background-color: #038ae3;
   color: white;
   font-weight: bolder;
 }
 
-
 .manage-items__remove-item-button {
-  padding: .5rem;
+  padding: 0.5rem;
   cursor: pointer;
   background-color: red;
   color: white;
   font-weight: bolder;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   margin-bottom: 1rem;
 }
 
 .manage-items__edit-item-button {
-  padding: .5rem;
+  padding: 0.5rem;
   cursor: pointer;
-  border-radius: .5rem;
-  margin: .5rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0 0.5rem;
   background-color: #038ae3;
   color: white;
   font-weight: bolder;
