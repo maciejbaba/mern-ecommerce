@@ -9,10 +9,6 @@ const Admin = () => {
   const user = useSelector(selectUser);
   const navigate = useNavigate();
 
-  const handleLoginClick = () => {
-    navigate("/login");
-  };
-
   if (!user) {
     return (
       <div className="admin__not-logged">
@@ -21,7 +17,7 @@ const Admin = () => {
           admin panel <span className="text-red">you have to be logged in</span>{" "}
           and be <span className="text-red">an admin</span>
         </p>
-        <MyButton className="button" onClick={handleLoginClick}>
+        <MyButton className="button" onClick={() => navigate("/login")}>
           Login
         </MyButton>
       </div>
@@ -39,13 +35,19 @@ const Admin = () => {
     );
   }
 
-  return <div className="admin">
-    <h1>Admin panel</h1>
-    <div className="admin__links">
-    <MyLink className="admin__link" to="/admin/users">Users</MyLink>
-    <MyLink className="admin__link" to="/admin/manageItems">Items</MyLink>
+  return (
+    <div className="admin">
+      <h1>Admin panel</h1>
+      <div className="admin__links">
+        <MyLink className="admin__link" to="/admin/users">
+          Users
+        </MyLink>
+        <MyLink className="admin__link" to="/admin/manageItems">
+          Items
+        </MyLink>
+      </div>
     </div>
-  </div>;
+  );
 };
 
 export default Admin;
