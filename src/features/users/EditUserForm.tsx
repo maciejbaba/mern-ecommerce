@@ -63,7 +63,7 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
   const handleActiveChange = () => setActive((prevIsActive) => !prevIsActive);
 
   return (
-    <main>
+    <main className="edit-user">
       <h1>Edit user</h1>
       <form action="" className="edit-user-form">
         <label htmlFor="username">Username</label>
@@ -107,8 +107,10 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
             onChange={handleActiveChange}
           />
         </div>
-        <MyButton onClick={handleSubmit}>Submit</MyButton>
-        <MyButton onClick={handleReset}>Reset</MyButton>
+        <div className="edit-user__buttons">
+        <MyButton className="button" onClick={handleSubmit}>Submit</MyButton>
+        <MyButton className="button danger-button" onClick={handleReset}>Reset</MyButton>
+        </div>
       </form>
     </main>
   );
