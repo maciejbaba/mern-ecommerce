@@ -87,7 +87,7 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
           value={confirmPassword}
           onChange={handleConfirmPasswordChange}
         />
-        <div>
+        <div className="checkbox-div">
           <label htmlFor="admin" id="admin">
             Admin
           </label>
@@ -98,7 +98,7 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
             onChange={handleAdminChange}
           />
         </div>
-        <div>
+        <div className="checkbox-div">
           <label htmlFor="active">Active</label>
           <input
             type="checkbox"
