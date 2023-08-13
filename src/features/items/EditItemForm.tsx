@@ -49,9 +49,9 @@ const EditItemForm = ({ item }: EditItemFormProps) => {
   };
 
   return (
-    <main className="edit-item-form">
+    <main className="edit-item">
       <h2>Edit Item</h2>
-      <form action="" className="edit-item-form__form">
+      <form action="" className="edit-item-form">
         <label htmlFor="name">Name</label>
         <input
           type="text"
@@ -84,6 +84,7 @@ const EditItemForm = ({ item }: EditItemFormProps) => {
         />
 
         <MyButton
+          className="button"
           onClick={(e) => handleEditItemFormSubmit(e)}
           disabled={isLoading}
         >

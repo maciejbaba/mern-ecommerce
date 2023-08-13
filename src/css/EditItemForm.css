@@ -1,15 +1,34 @@
-.edit-item-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+.edit-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
-.edit-item-form__form {
+.edit-item-form {
   display: flex;
   text-align: center;
   justify-content: center;
   flex-direction: column;
-  gap: .2rem;
+  gap: 0.5rem;
+}
+
+.edit-item-form > input,
+.edit-item-form > textarea {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--BORDER);
+  outline: none;
+}
+
+.edit-item-form > textarea {
+  width: 30vw;
+  height: 20vh;
+}
+
+@media screen and (max-width: 768px) {
+  .edit-item-form > textarea {
+    width: 80vw;
+  }
 }
