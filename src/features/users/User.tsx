@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import "../../css/User.css";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../../app/store";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 import { EntityId } from "@reduxjs/toolkit";
 
 export const changeDateFormat = (mongoDBDate: string): string => {

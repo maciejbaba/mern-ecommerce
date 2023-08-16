@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import "../css/Public.css";
 import ItemsList from "../features/items/ItemsList";
-import MyButton from "./myButton";
+import MyButton from "./MyButton";
 
 const Public = () => {
   const itemsListRef = useRef<HTMLDivElement>(null);
@@ -25,7 +25,7 @@ const Public = () => {
         </MyButton>
       </div>
       <div ref={itemsListRef}>
-        <ItemsList amountToShow={10}/>
+        <ItemsList amountToShow={10} />
       </div>
       <MyButton
         className="public__more-items-button"

@@ -1,5 +1,5 @@
 import { EntityId } from "@reduxjs/toolkit";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 import "../../css/ManageItemsList.css";
 import Item from "./Item";
 import { useGetItemsQuery, useDeleteItemMutation } from "./itemsApiSlice";
@@ -48,7 +48,7 @@ const ManageItemsList = (): JSX.Element => {
             className="manage-items__add-item-button"
             onClick={(e) => {
               e.preventDefault();
-              navigate("/admin/manageItems/newItem");
+              navigate("/admin/items/newItem");
             }}
           >
             Add new item
@@ -61,7 +61,7 @@ const ManageItemsList = (): JSX.Element => {
               <MyButton
                 className="manage-items__edit-item-button"
                 onClick={() => {
-                  navigate(`/admin/manageItems/edit/${itemId}`);
+                  navigate(`/admin/items/edit/${itemId}`);
                 }}
               >
                 Edit item

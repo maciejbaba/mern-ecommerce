@@ -5,7 +5,7 @@ import { CartItem, addToCart } from "../cart/cartSlice";
 import { Link } from "react-router-dom";
 import { RootState } from "../../app/store";
 import { EntityId } from "@reduxjs/toolkit";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 
 const DEFAULT_PHOTO_URL = "/src/images/no-image.png";
 export const MAX_DESCRIPTION_LENGTH = 40;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAddNewItemMutation } from "./itemsApiSlice";
 import "../../css/NewItem.css";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 
 const NewItem = () => {
   const [name, setName] = useState<string>();

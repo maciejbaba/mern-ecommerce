@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../css/Nav.css";
 import { useEffect, useState } from "react";
-import MyButton from "./myButton";
+import MyButton from "./MyButton";
 import MyLink from "./MyLink";
 import { useDispatch } from "react-redux";
 import { clearSession, selectToken } from "../features/auth/sessionSlice";

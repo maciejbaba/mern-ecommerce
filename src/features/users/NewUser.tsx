@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../../css/NewUser.css";
 import { useAddNewUserMutation } from "./usersApiSlice";
 import { useNavigate } from "react-router-dom";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 
 const NewUser = () => {
   const [username, setUsername] = useState<string>("");
@@ -79,8 +79,15 @@ const NewUser = () => {
           />
         </div>
         <div className="new-user__buttons">
-          <MyButton className="new-user__buttons-add" onClick={handleAddNewUser}>Add user</MyButton>
-          <MyButton className="new-user__buttons-reset" onClick={handleReset}>Reset</MyButton>
+          <MyButton
+            className="new-user__buttons-add"
+            onClick={handleAddNewUser}
+          >
+            Add user
+          </MyButton>
+          <MyButton className="new-user__buttons-reset" onClick={handleReset}>
+            Reset
+          </MyButton>
         </div>
       </form>
     </main>

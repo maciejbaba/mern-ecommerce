@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../auth/sessionSlice";
 import "../../css/Admin.css";
 import { useNavigate } from "react-router-dom";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 import MyLink from "../../components/MyLink";
 
 const Admin = () => {
@@ -29,7 +29,7 @@ const Admin = () => {
         <MyLink className="admin__link" to="/admin/users">
           Users
         </MyLink>
-        <MyLink className="admin__link" to="/admin/manageItems">
+        <MyLink className="admin__link" to="/admin/items">
           Items
         </MyLink>
       </div>

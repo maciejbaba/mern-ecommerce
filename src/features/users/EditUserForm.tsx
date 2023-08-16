@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../../css/EditUserForm.css";
 import { useUpdateUserMutation } from "./usersApiSlice";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 import type { User } from "./usersApiSlice";
 
 type EditUserFormProps = {
@@ -108,8 +108,12 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
           />
         </div>
         <div className="edit-user__buttons">
-        <MyButton className="button" onClick={handleSubmit}>Submit</MyButton>
-        <MyButton className="button danger-button" onClick={handleReset}>Reset</MyButton>
+          <MyButton className="button" onClick={handleSubmit}>
+            Submit
+          </MyButton>
+          <MyButton className="button danger-button" onClick={handleReset}>
+            Reset
+          </MyButton>
         </div>
       </form>
     </main>

@@ -2,7 +2,7 @@ import { Item } from "./itemsApiSlice";
 import { useState } from "react";
 import { useUpdateItemMutation } from "./itemsApiSlice";
 import "../../css/EditItemForm.css";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 
 type EditItemFormProps = {
   item: Item;
@@ -82,14 +82,19 @@ const EditItemForm = ({ item }: EditItemFormProps) => {
           value={photoURL}
           onChange={handlePhotoUrlChange}
         />
-
-        <MyButton
-          className="button"
-          onClick={(e) => handleEditItemFormSubmit(e)}
-          disabled={isLoading}
+        <div
+          style={{
+            marginTop: ".5rem",
+          }}
         >
-          {isLoading ? "Updating..." : "Update"}
-        </MyButton>
+          <MyButton
+            className="button"
+            onClick={(e) => handleEditItemFormSubmit(e)}
+            disabled={isLoading}
+          >
+            {isLoading ? "Updating..." : "Update"}
+          </MyButton>
+        </div>
         {isSuccess && <p>Item has been updated</p>}
       </form>
     </main>

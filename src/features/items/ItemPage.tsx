@@ -3,7 +3,7 @@ import { useGetItemsQuery } from "./itemsApiSlice";
 import "../../css/ItemPage.css";
 import { useDispatch } from "react-redux";
 import { CartItem, addToCart } from "../cart/cartSlice";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 
 const ItemPage = () => {
   const { id } = useParams();

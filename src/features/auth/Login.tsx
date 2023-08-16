@@ -2,10 +2,14 @@ import "../../css/Login.css";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { baseUrl } from "../../app/api/apiSlice";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 import { useDispatch } from "react-redux";
 import { setSession } from "./sessionSlice";
 import type { User } from "../users/usersApiSlice";
+
+const blackText = {
+  color: "green",
+};
 
 const loginRequest = async (username: string, password: string) => {
   try {
@@ -96,6 +100,26 @@ const Login = () => {
           >
             Register
           </MyButton>
+        </p>
+      </div>
+      <div className="login__hint">
+        <p>
+          <strong>For admin access</strong>
+        </p>
+        <p>
+          username <strong style={blackText}>admin</strong>
+        </p>
+        <p>
+          password <strong style={blackText}>admin</strong>
+        </p>
+        <p>
+          <strong>For normal user</strong>
+        </p>
+        <p>
+          username <strong style={blackText}>user</strong>
+        </p>
+        <p>
+          password <strong style={blackText}>user</strong>
         </p>
       </div>
     </main>
