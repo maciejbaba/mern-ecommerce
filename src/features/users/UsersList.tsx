@@ -27,7 +27,7 @@ const UsersList = () => {
           <h1>Users</h1>
         </div>
         <div style={{ margin: "1rem" }}>
-          <MyButton className="button" onClick={() => navigate("/users/new")}>
+          <MyButton className="button" onClick={() => navigate("/admin/users/newUser")}>
             Add User
           </MyButton>
         </div>

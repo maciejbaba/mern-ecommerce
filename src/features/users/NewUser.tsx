@@ -40,52 +40,43 @@ const NewUser = () => {
     <main className="new-user">
       <h1>Add new user</h1>
       <form action="" className="new-user__form">
-        <label htmlFor="username">
-          <strong>Username</strong>
-        </label>
+        <label htmlFor="username">Username</label>
         <input
           id="username"
           type="text"
           value={username}
           onChange={(e) => setUsername(e.currentTarget.value)}
         />
-        <label htmlFor="password">
-          <strong>Password</strong>
-        </label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
           value={password}
           onChange={(e) => setPassword(e.currentTarget.value)}
         />
-        <label htmlFor="confirm-password">
-          <strong>Confirm password</strong>
-        </label>
+        <label htmlFor="confirm-password">Confirm password</label>
         <input
           type="password"
           id="confirm-password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.currentTarget.value)}
         />
-        <div className="new-user__input-container-admin">
-          <label htmlFor="admin">
-            <strong>Admin</strong>
+        <div className="checkbox-div">
+          <label htmlFor="admin" id="admin">
+            Admin
           </label>
           <input
             type="checkbox"
             id="admin"
-            value={isAdmin ? "true" : "false"}
+            checked={isAdmin}
             onChange={() => setIsAdmin(!isAdmin)}
           />
         </div>
         <div className="new-user__buttons">
-          <MyButton
-            className="new-user__buttons-add"
-            onClick={handleAddNewUser}
-          >
+          <MyButton className="button" onClick={handleAddNewUser}>
             Add user
           </MyButton>
-          <MyButton className="new-user__buttons-reset" onClick={handleReset}>
+          <MyButton className="button danger-button" onClick={handleReset}>
             Reset
           </MyButton>
         </div>
