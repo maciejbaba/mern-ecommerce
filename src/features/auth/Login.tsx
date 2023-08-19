@@ -77,14 +77,14 @@ const Login = () => {
           id="username"
           type="text"
           value={username}
-          onChange={(e) => setUsername(e.currentTarget.value)}
+          onChange={({ currentTarget }) => setUsername(currentTarget.value)}
         />
         <label htmlFor="password">Password</label>
         <input
           id="password"
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.currentTarget.value)}
+          onChange={({ currentTarget }) => setPassword(currentTarget.value)}
         />
         <MyButton className="login__login-button" onClick={handleLogin}>
           Login

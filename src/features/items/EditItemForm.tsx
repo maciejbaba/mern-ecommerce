@@ -35,10 +35,7 @@ const EditItemForm = ({ item }: EditItemFormProps) => {
     setPhotoURL(e.target.value);
   };
 
-  const handleEditItemFormSubmit = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    e.preventDefault();
+  const handleEditItemFormSubmit = async () => {
     await updateItem({ id: item.id, name, description, price, photoURL });
     if (isError) {
       alert("Something went wrong");
@@ -89,7 +86,10 @@ const EditItemForm = ({ item }: EditItemFormProps) => {
         >
           <MyButton
             className="button"
-            onClick={(e) => handleEditItemFormSubmit(e)}
+            onClick={(e) => {
+              e.preventDefault();
+              handleEditItemFormSubmit();
+            }}
             disabled={isLoading}
           >
             {isLoading ? "Updating..." : "Update"}

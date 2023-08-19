@@ -45,21 +45,23 @@ const NewUser = () => {
           id="username"
           type="text"
           value={username}
-          onChange={(e) => setUsername(e.currentTarget.value)}
+          onChange={({ currentTarget }) => setUsername(currentTarget.value)}
         />
         <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
           value={password}
-          onChange={(e) => setPassword(e.currentTarget.value)}
+          onChange={({ currentTarget }) => setPassword(currentTarget.value)}
         />
         <label htmlFor="confirm-password">Confirm password</label>
         <input
           type="password"
           id="confirm-password"
           value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.currentTarget.value)}
+          onChange={({ currentTarget }) =>
+            setConfirmPassword(currentTarget.value)
+          }
         />
         <div className="checkbox-div">
           <label htmlFor="admin" id="admin">

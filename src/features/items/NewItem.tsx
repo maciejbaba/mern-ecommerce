@@ -35,7 +35,7 @@ const NewItem = () => {
             type="text"
             id="name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={({ target }) => setName(target.value)}
           />
         </div>
         <div className="new-item__input-container">
@@ -46,7 +46,7 @@ const NewItem = () => {
             placeholder="Enter a description..."
             maxLength={200}
             rows={4}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={({ target }) => setDescription(target.value)}
           />
         </div>
         <div className="new-item__input-container">
@@ -55,7 +55,7 @@ const NewItem = () => {
             type="number"
             id="price"
             value={price}
-            onChange={(e) => setPrice(Number(e.target.value))}
+            onChange={({ target }) => setPrice(Number(target.value))}
           />
         </div>
         <div className="new-item__input-container">
@@ -64,7 +64,7 @@ const NewItem = () => {
             type="text"
             id="photoURL"
             value={photoURL}
-            onChange={(e) => setPhotoURL(e.target.value)}
+            onChange={({ target }) => setPhotoURL(target.value)}
           />
         </div>
         <div className="new-item__buttons">

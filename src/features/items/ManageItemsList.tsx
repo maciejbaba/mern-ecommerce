@@ -21,11 +21,7 @@ const ManageItemsList = (): JSX.Element => {
     { isSuccess: isDeleted, isLoading: isDeleting, isError: isDeleteError },
   ] = useDeleteItemMutation();
 
-  const handleDeleteItemFromStore = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    id: EntityId
-  ) => {
-    e.preventDefault();
+  const handleDeleteItemFromStore = async (id: EntityId) => {
     const item = items?.entities[id];
     if (!item) return alert("Item not found");
     if (item) {
@@ -69,7 +65,10 @@ const ManageItemsList = (): JSX.Element => {
 
               <MyButton
                 className="manage-items__remove-item-button"
-                onClick={(e) => handleDeleteItemFromStore(e, itemId)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleDeleteItemFromStore(itemId);
+                }}
               >
                 Delete item from the store
               </MyButton>
