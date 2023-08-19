@@ -2,13 +2,15 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../users/usersApiSlice";
 import { RootState } from "../../app/store";
 
-const saveTokenToLocalStorage = (token: string) => {
+const saveTokenToLocalStorage = (token: string) =>
   localStorage.setItem("token", token);
-};
 
-const deleteTokenFromLocalStorage = () => {
-  localStorage.removeItem("token");
-};
+const deleteTokenFromLocalStorage = () => localStorage.removeItem("token");
+
+const saveUserToLocalStorage = (user: User) =>
+  localStorage.setItem("user", JSON.stringify(user));
+
+const deleteUserFromLocalStorage = () => localStorage.removeItem("user");
 
 type InitialState = {
   user: User | null;
@@ -33,6 +35,7 @@ export const sessionSlice = createSlice({
         state.user = user;
         state.token = token;
         saveTokenToLocalStorage(token);
+        saveUserToLocalStorage(user);
       }
       if (!user) {
         console.log("no user");
@@ -44,6 +47,7 @@ export const sessionSlice = createSlice({
     clearSession: (state) => {
       state.token = null;
       state.user = null;
+      deleteUserFromLocalStorage();
       deleteTokenFromLocalStorage();
     },
   },

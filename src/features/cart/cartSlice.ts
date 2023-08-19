@@ -24,7 +24,7 @@ const items: CartItem[] = getItemsFromLocalStorage();
 
 const initialState: CartState = {
   items,
-  total: items.reduce((acc, item) => acc + item.price * item.quantity, 0), 
+  total: items.reduce((acc, item) => acc + item.price * item.quantity, 0),
 };
 
 export const cartSlice = createSlice({
@@ -55,7 +55,10 @@ export const cartSlice = createSlice({
           : cartItem;
       });
       state.items = state.items.filter((cartItem) => cartItem.quantity > 0);
-      state.total = state.items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+      state.total = state.items.reduce(
+        (acc, item) => acc + item.price * item.quantity,
+        0
+      );
       saveItemsToLocalStorage(state.items);
     },
     emptyCart: (state): void => {
