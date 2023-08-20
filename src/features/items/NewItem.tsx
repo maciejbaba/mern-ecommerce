@@ -68,10 +68,10 @@ const NewItem = () => {
           />
         </div>
         <div className="new-item__buttons">
-          <MyButton className="new-item__buttons-add" onClick={handleSubmit}>
+          <MyButton className="button" onClick={handleSubmit}>
             Add
           </MyButton>
-          <MyButton className="new-item__buttons-reset" onClick={handleReset}>
+          <MyButton className="button danger-button" onClick={handleReset}>
             Reset
           </MyButton>
         </div>
