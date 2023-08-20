@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../../css/NewUser.css";
 import { useAddNewUserMutation } from "./usersApiSlice";
 import { useNavigate } from "react-router-dom";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 
 const NewUser = () => {
   const [username, setUsername] = useState<string>("");
@@ -40,47 +40,48 @@ const NewUser = () => {
     <main className="new-user">
       <h1>Add new user</h1>
       <form action="" className="new-user__form">
-        <label htmlFor="username">
-          <strong>Username</strong>
-        </label>
+        <label htmlFor="username">Username</label>
         <input
           id="username"
           type="text"
+          autoComplete="new-username"
           value={username}
-          onChange={(e) => setUsername(e.currentTarget.value)}
+          onChange={({ currentTarget }) => setUsername(currentTarget.value)}
         />
-        <label htmlFor="password">
-          <strong>Password</strong>
-        </label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
+          autoComplete="new-password"
           value={password}
-          onChange={(e) => setPassword(e.currentTarget.value)}
+          onChange={({ currentTarget }) => setPassword(currentTarget.value)}
         />
-        <label htmlFor="confirm-password">
-          <strong>Confirm password</strong>
-        </label>
+        <label htmlFor="confirm-password">Confirm password</label>
         <input
           type="password"
           id="confirm-password"
+          autoComplete="new-password"
           value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.currentTarget.value)}
+          onChange={({ currentTarget }) =>
+            setConfirmPassword(currentTarget.value)
+          }
         />
-        <div className="new-user__input-container-admin">
-          <label htmlFor="admin">
-            <strong>Admin</strong>
-          </label>
+        <div className="checkbox-div">
+          <label htmlFor="admin">Admin</label>
           <input
             type="checkbox"
             id="admin"
-            value={isAdmin ? "true" : "false"}
+            checked={isAdmin}
             onChange={() => setIsAdmin(!isAdmin)}
           />
         </div>
         <div className="new-user__buttons">
-          <MyButton className="new-user__buttons-add" onClick={handleAddNewUser}>Add user</MyButton>
-          <MyButton className="new-user__buttons-reset" onClick={handleReset}>Reset</MyButton>
+          <MyButton className="button" onClick={handleAddNewUser}>
+            Add user
+          </MyButton>
+          <MyButton className="button danger-button" onClick={handleReset}>
+            Reset
+          </MyButton>
         </div>
       </form>
     </main>

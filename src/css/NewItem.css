@@ -21,25 +21,6 @@
   margin: 1rem;
 }
 
-.new-item__buttons button {
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  font-weight: bolder;
-  color: white;
-}
-
-.new-item__buttons button:hover {
-  cursor: pointer;
-}
-
-.new-item__buttons-add {
-  background-color: #038ae3;
-}
-
-.new-item__buttons-reset {
-  background-color: red;
-}
-
 .new-item__input-container {
   display: flex;
   align-items: center;
@@ -51,15 +32,19 @@
 }
 
 .new-item__input-container textarea {
-  width: 12rem;
-  font-size: 0.8rem;
+  padding: 0.3rem;
   border-radius: 0.5rem;
+  border: 1px solid var(--BORDER);
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
 }
 
 .new-item__input-container input {
-  width: 12rem;
-  font-size: 0.8rem;
-  border: solid 1px black;
-  border-radius: 0.4rem;
-  padding: 0.2rem;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--BORDER);
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
 }

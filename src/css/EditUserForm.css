@@ -1,5 +1,30 @@
+.edit-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
 .edit-user-form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0.5rem;
+}
+
+.edit-user-form > input {
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--BORDER);
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
+}
+
+.edit-user__buttons {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }

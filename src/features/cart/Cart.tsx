@@ -7,7 +7,7 @@ import {
   selectCartTotal,
 } from "./cartSlice";
 import { useNavigate } from "react-router-dom";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 import { CartItem } from "./cartSlice";
 import { MAX_DESCRIPTION_LENGTH } from "../items/Item";
 

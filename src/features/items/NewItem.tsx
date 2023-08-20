@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAddNewItemMutation } from "./itemsApiSlice";
 import "../../css/NewItem.css";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 
 const NewItem = () => {
   const [name, setName] = useState<string>();
@@ -34,19 +34,21 @@ const NewItem = () => {
           <input
             type="text"
             id="name"
+            autoComplete="new-name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={({ target }) => setName(target.value)}
           />
         </div>
         <div className="new-item__input-container">
           <label htmlFor="description">Description</label>
           <textarea
             id="description"
+            autoComplete="new-description"
             value={description}
             placeholder="Enter a description..."
             maxLength={200}
             rows={4}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={({ target }) => setDescription(target.value)}
           />
         </div>
         <div className="new-item__input-container">
@@ -55,7 +57,7 @@ const NewItem = () => {
             type="number"
             id="price"
             value={price}
-            onChange={(e) => setPrice(Number(e.target.value))}
+            onChange={({ target }) => setPrice(Number(target.value))}
           />
         </div>
         <div className="new-item__input-container">
@@ -64,14 +66,14 @@ const NewItem = () => {
             type="text"
             id="photoURL"
             value={photoURL}
-            onChange={(e) => setPhotoURL(e.target.value)}
+            onChange={({ target }) => setPhotoURL(target.value)}
           />
         </div>
         <div className="new-item__buttons">
-          <MyButton className="new-item__buttons-add" onClick={handleSubmit}>
+          <MyButton className="button" onClick={handleSubmit}>
             Add
           </MyButton>
-          <MyButton className="new-item__buttons-reset" onClick={handleReset}>
+          <MyButton className="button danger-button" onClick={handleReset}>
             Reset
           </MyButton>
         </div>

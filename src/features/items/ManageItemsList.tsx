@@ -1,11 +1,11 @@
 import { EntityId } from "@reduxjs/toolkit";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 import "../../css/ManageItemsList.css";
 import Item from "./Item";
 import { useGetItemsQuery, useDeleteItemMutation } from "./itemsApiSlice";
 import { useNavigate } from "react-router-dom";
 
-const RemoveItemsList = (): JSX.Element => {
+const ManageItemsList = (): JSX.Element => {
   const {
     data: items,
     isLoading,
@@ -21,23 +21,11 @@ const RemoveItemsList = (): JSX.Element => {
     { isSuccess: isDeleted, isLoading: isDeleting, isError: isDeleteError },
   ] = useDeleteItemMutation();
 
-  const handleEditItemButton = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    id: EntityId
-  ) => {
-    e.preventDefault();
-    navigate(`/admin/manageItems/edit/${id}`);
-  };
-
-  const handleDeleteItemFromStore = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    id: EntityId
-  ) => {
-    e.preventDefault();
+  const handleDeleteItemFromStore = async (id: EntityId) => {
     const item = items?.entities[id];
     if (!item) return alert("Item not found");
     if (item) {
-      await deleteItem(item.id);
+      await deleteItem(item);
       if (isDeleted) return alert("Item deleted");
       if (isDeleteError) return alert(error);
     }
@@ -56,7 +44,7 @@ const RemoveItemsList = (): JSX.Element => {
             className="manage-items__add-item-button"
             onClick={(e) => {
               e.preventDefault();
-              navigate("/admin/manageItems/newItem");
+              navigate("/admin/items/newItem");
             }}
           >
             Add new item
@@ -65,17 +53,22 @@ const RemoveItemsList = (): JSX.Element => {
         <div className="manage-items__items-list">
           {items.ids.map((itemId) => (
             <div className="manage-items__item-div" key={itemId}>
-              <Item id={itemId} />
+              <Item id={itemId} showAddToCartButton={false} />
               <MyButton
                 className="manage-items__edit-item-button"
-                onClick={(e) => handleEditItemButton(e, itemId)}
+                onClick={() => {
+                  navigate(`/admin/items/edit/${itemId}`);
+                }}
               >
                 Edit item
               </MyButton>
 
               <MyButton
                 className="manage-items__remove-item-button"
-                onClick={(e) => handleDeleteItemFromStore(e, itemId)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleDeleteItemFromStore(itemId);
+                }}
               >
                 Delete item from the store
               </MyButton>
@@ -100,4 +93,4 @@ const RemoveItemsList = (): JSX.Element => {
   return content;
 };
 
-export default RemoveItemsList;
+export default ManageItemsList;

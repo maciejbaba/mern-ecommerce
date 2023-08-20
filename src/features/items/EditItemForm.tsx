@@ -2,7 +2,7 @@ import { Item } from "./itemsApiSlice";
 import { useState } from "react";
 import { useUpdateItemMutation } from "./itemsApiSlice";
 import "../../css/EditItemForm.css";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 
 type EditItemFormProps = {
   item: Item;
@@ -35,10 +35,7 @@ const EditItemForm = ({ item }: EditItemFormProps) => {
     setPhotoURL(e.target.value);
   };
 
-  const handleEditItemFormSubmit = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    e.preventDefault();
+  const handleEditItemFormSubmit = async () => {
     await updateItem({ id: item.id, name, description, price, photoURL });
     if (isError) {
       alert("Something went wrong");
@@ -49,20 +46,22 @@ const EditItemForm = ({ item }: EditItemFormProps) => {
   };
 
   return (
-    <main className="edit-item-form">
+    <main className="edit-item">
       <h2>Edit Item</h2>
-      <form action="" className="edit-item-form__form">
+      <form action="" className="edit-item-form">
         <label htmlFor="name">Name</label>
         <input
           type="text"
-          name="name"
+          id="name"
+          autoComplete="new-name"
           value={name}
           onChange={handleNameChange}
         />
 
         <label htmlFor="description">Description</label>
         <textarea
-          name="description"
+          id="description"
+          autoComplete="new-description"
           value={description}
           onChange={handleDescriptionChange}
         />
@@ -70,7 +69,8 @@ const EditItemForm = ({ item }: EditItemFormProps) => {
         <label htmlFor="price">Price</label>
         <input
           type="number"
-          name="price"
+          autoComplete="new-price"
+          id="price"
           value={price}
           onChange={handlePriceChange}
         />
@@ -78,17 +78,27 @@ const EditItemForm = ({ item }: EditItemFormProps) => {
         <label htmlFor="photoURL">Photo URL</label>
         <input
           type="text"
-          name="photoURL"
+          id="photoURL"
+          autoComplete="new-photoURL"
           value={photoURL}
           onChange={handlePhotoUrlChange}
         />
-
-        <MyButton
-          onClick={(e) => handleEditItemFormSubmit(e)}
-          disabled={isLoading}
+        <div
+          style={{
+            marginTop: ".5rem",
+          }}
         >
-          {isLoading ? "Updating..." : "Update"}
-        </MyButton>
+          <MyButton
+            className="button"
+            onClick={(e) => {
+              e.preventDefault();
+              handleEditItemFormSubmit();
+            }}
+            disabled={isLoading}
+          >
+            {isLoading ? "Updating..." : "Update"}
+          </MyButton>
+        </div>
         {isSuccess && <p>Item has been updated</p>}
       </form>
     </main>

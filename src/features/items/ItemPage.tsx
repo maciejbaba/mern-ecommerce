@@ -3,7 +3,7 @@ import { useGetItemsQuery } from "./itemsApiSlice";
 import "../../css/ItemPage.css";
 import { useDispatch } from "react-redux";
 import { CartItem, addToCart } from "../cart/cartSlice";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 
 const ItemPage = () => {
   const { id } = useParams();
@@ -49,12 +49,11 @@ const ItemPage = () => {
         <main className="item-page">
           <h1>Item {item.name}</h1>
           <img className="item-page__img" src={item.photoURL} alt={item.name} />
-          <p>Description {item.description}</p>
-          <p>Price: {`${item.price} $`}</p>
-          <MyButton
-            className="item-page__add-to-cart-button"
-            onClick={handleAddToCart}
-          >
+          <p>{item.description}</p>
+          <p>
+            <strong>Price:</strong> {`${item.price} $`}
+          </p>
+          <MyButton className="button" onClick={handleAddToCart}>
             Add to cart
           </MyButton>
         </main>

@@ -1,7 +1,7 @@
 import { useAddNewUserMutation } from "../users/usersApiSlice";
 import React, { useState } from "react";
 import "../../css/Register.css";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 
 const Register = () => {
   const [username, setUsername] = useState("");

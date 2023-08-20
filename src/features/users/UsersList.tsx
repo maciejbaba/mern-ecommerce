@@ -2,6 +2,8 @@ import "../../css/UsersList.css";
 import { useGetUsersQuery } from "./usersApiSlice";
 import User from "./User";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import MyButton from "../../components/MyButton";
 
 const UsersList = () => {
   const {
@@ -11,6 +13,8 @@ const UsersList = () => {
     isError,
     error,
   } = useGetUsersQuery();
+
+  const navigate = useNavigate();
 
   let content;
 
@@ -22,9 +26,14 @@ const UsersList = () => {
         <div>
           <h1>Users</h1>
         </div>
+        <div style={{ margin: "1rem" }}>
+          <MyButton className="button" onClick={() => navigate("/admin/users/newUser")}>
+            Add User
+          </MyButton>
+        </div>
         <div className="users-list__links-list">
           {users.ids.map((userId) => (
-            <Link to={`/users/${userId}`} key={userId}>
+            <Link to={`/admin/users/${userId}`} key={userId}>
               <User id={userId} />
             </Link>
           ))}

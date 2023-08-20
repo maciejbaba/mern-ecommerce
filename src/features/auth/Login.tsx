@@ -1,11 +1,15 @@
 import "../../css/Login.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { baseUrl } from "../../app/api/apiSlice";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 import { useDispatch } from "react-redux";
 import { setSession } from "./sessionSlice";
 import type { User } from "../users/usersApiSlice";
+
+const blackText = {
+  color: "green",
+};
 
 const loginRequest = async (username: string, password: string) => {
   try {
@@ -28,18 +32,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const handleRegister = () => {
-    navigate("/register");
-  };
-
-  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.currentTarget.value);
-  };
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.currentTarget.value);
-  };
+  const location = useLocation();
 
   const handleLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -56,15 +49,17 @@ const Login = () => {
         const token: string = data.accessToken;
         const user: User = data.user;
         if (!user) {
-          alert("no user")
+          alert("no user");
           return;
         }
         if (!token) {
-          alert("no token")
+          alert("no token");
           return;
         }
         dispatch(setSession({ user, token }));
-        navigate("/");
+        location.pathname === "/login"
+          ? navigate("/")
+          : navigate(location.pathname);
       } else {
         alert("Wrong username or password");
       }
@@ -81,15 +76,17 @@ const Login = () => {
         <input
           id="username"
           type="text"
+          autoComplete="username"
           value={username}
-          onChange={handleUsernameChange}
+          onChange={({ currentTarget }) => setUsername(currentTarget.value)}
         />
         <label htmlFor="password">Password</label>
         <input
           id="password"
           type="password"
+          autoComplete="current-password"
           value={password}
-          onChange={handlePasswordChange}
+          onChange={({ currentTarget }) => setPassword(currentTarget.value)}
         />
         <MyButton className="login__login-button" onClick={handleLogin}>
           Login
@@ -99,9 +96,32 @@ const Login = () => {
       <div>
         <p>
           Don't have an account?{" "}
-          <MyButton className="login__register-button" onClick={handleRegister}>
+          <MyButton
+            className="login__register-button"
+            onClick={() => navigate("/register")}
+          >
             Register
           </MyButton>
+        </p>
+      </div>
+      <div className="login__hint">
+        <p>
+          <strong>For admin access</strong>
+        </p>
+        <p>
+          username <strong style={blackText}>admin</strong>
+        </p>
+        <p>
+          password <strong style={blackText}>admin</strong>
+        </p>
+        <p>
+          <strong>For normal user</strong>
+        </p>
+        <p>
+          username <strong style={blackText}>user</strong>
+        </p>
+        <p>
+          password <strong style={blackText}>user</strong>
         </p>
       </div>
     </main>

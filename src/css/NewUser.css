@@ -5,44 +5,26 @@
   gap: 0.5rem;
 }
 
+.new-user__form > input {
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--BORDER);
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
+}
+
 .new-user {
   display: flex;
   gap: 1rem;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
 .new-user__buttons {
+  margin-top: 0.5rem;
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: 1rem;
-  align-items: center;
-  width: 100%;
-  margin: 1rem;
-}
-
-.new-user__buttons button {
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  color: white;
-  font-weight: bolder;
-}
-
-.new-user__buttons button:hover {
-  cursor: pointer;
-}
-
-.new-user__buttons-add {
-  background-color: #038ae3;
-}
-
-.new-user__buttons-reset {
-  background-color: red;
-}
-
-.new-user__input-container-admin {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
 }

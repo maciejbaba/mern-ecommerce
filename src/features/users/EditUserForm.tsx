@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../../css/EditUserForm.css";
 import { useUpdateUserMutation } from "./usersApiSlice";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 import type { User } from "./usersApiSlice";
 
 type EditUserFormProps = {
@@ -63,13 +63,14 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
   const handleActiveChange = () => setActive((prevIsActive) => !prevIsActive);
 
   return (
-    <main>
+    <main className="edit-user">
       <h1>Edit user</h1>
       <form action="" className="edit-user-form">
         <label htmlFor="username">Username</label>
         <input
           type="text"
           id="username"
+          autoComplete="new-username"
           value={username}
           onChange={handleUsernameChange}
         />
@@ -77,6 +78,7 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
         <input
           type="password"
           id="password"
+          autoComplete="new-password"
           value={password}
           onChange={handlePasswordChange}
         />
@@ -84,13 +86,12 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
         <input
           type="password"
           id="confirm-password"
+          autoComplete="new-password"
           value={confirmPassword}
           onChange={handleConfirmPasswordChange}
         />
-        <div>
-          <label htmlFor="admin" id="admin">
-            Admin
-          </label>
+        <div className="checkbox-div">
+          <label htmlFor="admin">Admin</label>
           <input
             type="checkbox"
             id="admin"
@@ -98,7 +99,7 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
             onChange={handleAdminChange}
           />
         </div>
-        <div>
+        <div className="checkbox-div">
           <label htmlFor="active">Active</label>
           <input
             type="checkbox"
@@ -107,8 +108,14 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
             onChange={handleActiveChange}
           />
         </div>
-        <MyButton onClick={handleSubmit}>Submit</MyButton>
-        <MyButton onClick={handleReset}>Reset</MyButton>
+        <div className="edit-user__buttons">
+          <MyButton className="button" onClick={handleSubmit}>
+            Submit
+          </MyButton>
+          <MyButton className="button danger-button" onClick={handleReset}>
+            Reset
+          </MyButton>
+        </div>
       </form>
     </main>
   );

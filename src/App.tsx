@@ -26,10 +26,10 @@ type ProtectedRouteProps = {
 };
 
 const ProtectedRoute = ({ user }: ProtectedRouteProps) => {
-  if (!user?.isAdmin) {
-    return <Login />;
-  }
-  return <Outlet />;
+  if (!user) return <Login />;
+  if (user.isAdmin) return <Outlet />;
+  if (!user.isAdmin) return <Admin />; // admin handles the case when user is not an admin
+  return null;
 };
 
 const App = () => {
@@ -47,9 +47,10 @@ const App = () => {
               <Route index element={<UsersList />} />
               <Route path="newUser" element={<NewUser />} />
               <Route path=":id" element={<UserPage />} />
-              <Route path="editUser/:id" element={<EditUser />} />
+              <Route path="edit/:id" element={<EditUser />} />
             </Route>
-            <Route path="manageItems" element={<ManageItemsList />}>
+            <Route path="items">
+              <Route index element={<ManageItemsList />} />
               <Route path="edit/:id" element={<EditItem />} />
               <Route path="newItem" element={<NewItem />} />
             </Route>

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import "../css/Public.css";
 import ItemsList from "../features/items/ItemsList";
-import MyButton from "./myButton";
+import MyButton from "./MyButton";
 
 const Public = () => {
   const itemsListRef = useRef<HTMLDivElement>(null);
@@ -10,10 +10,6 @@ const Public = () => {
 
   const handleBrowseItemsButtonClick = () => {
     itemsListRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const handleMoreItemsButton = () => {
-    navigate("/items");
   };
 
   return (
@@ -29,11 +25,11 @@ const Public = () => {
         </MyButton>
       </div>
       <div ref={itemsListRef}>
-        <ItemsList />
+        <ItemsList amountToShow={10} />
       </div>
       <MyButton
         className="public__more-items-button"
-        onClick={handleMoreItemsButton}
+        onClick={() => navigate("/items")}
       >
         More items
       </MyButton>

@@ -5,16 +5,17 @@ import { CartItem, addToCart } from "../cart/cartSlice";
 import { Link } from "react-router-dom";
 import { RootState } from "../../app/store";
 import { EntityId } from "@reduxjs/toolkit";
-import MyButton from "../../components/myButton";
+import MyButton from "../../components/MyButton";
 
-const DEFAULT_PHOTO_URL = "no-image.png";
+const DEFAULT_PHOTO_URL = "/src/images/no-image.png";
 export const MAX_DESCRIPTION_LENGTH = 40;
 
 type ItemProps = {
   id: EntityId;
+  showAddToCartButton?: boolean;
 };
 
-const Item = ({ id }: ItemProps): JSX.Element => {
+const Item = ({ id, showAddToCartButton = true }: ItemProps): JSX.Element => {
   const item = useSelector((state: RootState) => selectItemById(state, id));
   const dispatch = useDispatch();
 
@@ -63,12 +64,14 @@ const Item = ({ id }: ItemProps): JSX.Element => {
               : item.description.slice(0, MAX_DESCRIPTION_LENGTH) + "..."}
           </p>
           <p className="item__price">Price: {item.price} $</p>
-          <MyButton
-            className="item__add-to-cart-button"
-            onClick={handleAddToCart}
-          >
-            Add to cart
-          </MyButton>
+          {showAddToCartButton && (
+            <MyButton
+              className="item__add-to-cart-button"
+              onClick={handleAddToCart}
+            >
+              Add to cart
+            </MyButton>
+          )}
         </main>
       </Link>
     );
