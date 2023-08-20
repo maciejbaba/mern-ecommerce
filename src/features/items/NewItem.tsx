@@ -34,6 +34,7 @@ const NewItem = () => {
           <input
             type="text"
             id="name"
+            autoComplete="new-name"
             value={name}
             onChange={({ target }) => setName(target.value)}
           />
@@ -42,6 +43,7 @@ const NewItem = () => {
           <label htmlFor="description">Description</label>
           <textarea
             id="description"
+            autoComplete="new-description"
             value={description}
             placeholder="Enter a description..."
             maxLength={200}

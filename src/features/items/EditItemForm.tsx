@@ -52,14 +52,16 @@ const EditItemForm = ({ item }: EditItemFormProps) => {
         <label htmlFor="name">Name</label>
         <input
           type="text"
-          name="name"
+          id="name"
+          autoComplete="new-name"
           value={name}
           onChange={handleNameChange}
         />
 
         <label htmlFor="description">Description</label>
         <textarea
-          name="description"
+          id="description"
+          autoComplete="new-description"
           value={description}
           onChange={handleDescriptionChange}
         />
@@ -67,7 +69,8 @@ const EditItemForm = ({ item }: EditItemFormProps) => {
         <label htmlFor="price">Price</label>
         <input
           type="number"
-          name="price"
+          autoComplete="new-price"
+          id="price"
           value={price}
           onChange={handlePriceChange}
         />
@@ -75,7 +78,8 @@ const EditItemForm = ({ item }: EditItemFormProps) => {
         <label htmlFor="photoURL">Photo URL</label>
         <input
           type="text"
-          name="photoURL"
+          id="photoURL"
+          autoComplete="new-photoURL"
           value={photoURL}
           onChange={handlePhotoUrlChange}
         />

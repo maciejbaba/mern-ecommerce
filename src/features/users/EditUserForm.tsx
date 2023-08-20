@@ -70,6 +70,7 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
         <input
           type="text"
           id="username"
+          autoComplete="new-username"
           value={username}
           onChange={handleUsernameChange}
         />
@@ -77,6 +78,7 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
         <input
           type="password"
           id="password"
+          autoComplete="new-password"
           value={password}
           onChange={handlePasswordChange}
         />
@@ -84,13 +86,12 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
         <input
           type="password"
           id="confirm-password"
+          autoComplete="new-password"
           value={confirmPassword}
           onChange={handleConfirmPasswordChange}
         />
         <div className="checkbox-div">
-          <label htmlFor="admin" id="admin">
-            Admin
-          </label>
+          <label htmlFor="admin">Admin</label>
           <input
             type="checkbox"
             id="admin"

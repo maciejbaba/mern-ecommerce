@@ -16,15 +16,16 @@
 
 .edit-item-form > input,
 .edit-item-form > textarea {
-  padding: 0.5rem 1rem;
+  padding: 0.3rem;
   border-radius: 0.5rem;
+  font-size: 1rem;
   border: 1px solid var(--BORDER);
+  width: 100%;
   outline: none;
 }
 
 .edit-item-form > textarea {
-  width: 30vw;
-  height: 20vh;
+  height: 10rem;
 }
 
 @media screen and (max-width: 768px) {

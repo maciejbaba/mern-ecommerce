@@ -44,6 +44,7 @@ const NewUser = () => {
         <input
           id="username"
           type="text"
+          autoComplete="new-username"
           value={username}
           onChange={({ currentTarget }) => setUsername(currentTarget.value)}
         />
@@ -51,6 +52,7 @@ const NewUser = () => {
         <input
           type="password"
           id="password"
+          autoComplete="new-password"
           value={password}
           onChange={({ currentTarget }) => setPassword(currentTarget.value)}
         />
@@ -58,15 +60,14 @@ const NewUser = () => {
         <input
           type="password"
           id="confirm-password"
+          autoComplete="new-password"
           value={confirmPassword}
           onChange={({ currentTarget }) =>
             setConfirmPassword(currentTarget.value)
           }
         />
         <div className="checkbox-div">
-          <label htmlFor="admin" id="admin">
-            Admin
-          </label>
+          <label htmlFor="admin">Admin</label>
           <input
             type="checkbox"
             id="admin"

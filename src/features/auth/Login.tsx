@@ -76,6 +76,7 @@ const Login = () => {
         <input
           id="username"
           type="text"
+          autoComplete="username"
           value={username}
           onChange={({ currentTarget }) => setUsername(currentTarget.value)}
         />
@@ -83,6 +84,7 @@ const Login = () => {
         <input
           id="password"
           type="password"
+          autoComplete="current-password"
           value={password}
           onChange={({ currentTarget }) => setPassword(currentTarget.value)}
         />
