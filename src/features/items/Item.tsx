@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 import { RootState } from "../../app/store";
 import { EntityId } from "@reduxjs/toolkit";
 import MyButton from "../../components/MyButton";
+import { useState } from "react";
 
-const DEFAULT_PHOTO_URL = "/src/images/no-image.png";
+const DEFAULT_PHOTO_URL = "/images/no-image.png";
 export const MAX_DESCRIPTION_LENGTH = 40;
 
 type ItemProps = {
@@ -18,6 +19,7 @@ type ItemProps = {
 const Item = ({ id, showAddToCartButton = true }: ItemProps): JSX.Element => {
   const item = useSelector((state: RootState) => selectItemById(state, id));
   const dispatch = useDispatch();
+  const [imageSrc, setImageSrc] = useState(item?.photoURL ?? DEFAULT_PHOTO_URL);
 
   let content = <div></div>;
 
@@ -46,16 +48,11 @@ const Item = ({ id, showAddToCartButton = true }: ItemProps): JSX.Element => {
         <main className="item">
           <img
             className="item__img"
-            src={
-              item.photoURL === DEFAULT_PHOTO_URL
-                ? DEFAULT_PHOTO_URL
-                : item.photoURL
-            }
-            alt={
-              item.photoURL === DEFAULT_PHOTO_URL
-                ? "Image didn't load"
-                : `Photo of ${item.name}`
-            }
+            src={imageSrc}
+            height={150}
+            width={100}
+            alt={item.name}
+            onError={() => setImageSrc("/images/no-image.png")}
           />
           <h2 className="item__name">{item.name}</h2>{" "}
           <p className="item__description">

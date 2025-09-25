@@ -27,12 +27,15 @@ const UsersList = () => {
           <h1>Users</h1>
         </div>
         <div style={{ margin: "1rem" }}>
-          <MyButton className="button" onClick={() => navigate("/admin/users/newUser")}>
+          <MyButton
+            className="button"
+            onClick={() => navigate("/admin/users/newUser")}
+          >
             Add User
           </MyButton>
         </div>
         <div className="users-list__links-list">
-          {users.ids.map((userId) => (
+          {users?.ids.map((userId) => (
             <Link to={`/admin/users/${userId}`} key={userId}>
               <User id={userId} />
             </Link>
@@ -40,7 +43,7 @@ const UsersList = () => {
         </div>
       </main>
     );
-  } else if (isError && "data" in error) {
+  } else if (isError && error && "data" in error) {
     content = (
       <div>
         <p>Snap! ERROR</p>

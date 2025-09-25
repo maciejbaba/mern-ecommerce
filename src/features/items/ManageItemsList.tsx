@@ -51,7 +51,7 @@ const ManageItemsList = (): JSX.Element => {
           </MyButton>
         </div>
         <div className="manage-items__items-list">
-          {items.ids.map((itemId) => (
+          {items?.ids.map((itemId) => (
             <div className="manage-items__item-div" key={itemId}>
               <Item id={itemId} showAddToCartButton={false} />
               <MyButton
@@ -77,7 +77,7 @@ const ManageItemsList = (): JSX.Element => {
         </div>
       </main>
     );
-  } else if (isError && "data" in error) {
+  } else if (isError && error && "data" in error) {
     content = (
       <div>
         <p>Snap! ERROR</p>

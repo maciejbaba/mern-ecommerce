@@ -18,7 +18,7 @@ const ItemsList = ({ amountToShow = 0 }: ItemsListProps) => {
       <div className="items">
         <h1>Items</h1>
         <div className="items-list">
-          {items.ids.slice(0, amountToShow).map((itemId) => (
+          {items?.ids.slice(0, amountToShow).map((itemId) => (
             <Item key={itemId} id={itemId} />
           ))}
         </div>
@@ -31,7 +31,7 @@ const ItemsList = ({ amountToShow = 0 }: ItemsListProps) => {
       <div className="items">
         <h1>Items</h1>
         <div className="items-list">
-          {items.ids.map((itemId) => (
+          {items?.ids.map((itemId) => (
             <Item key={itemId} id={itemId} />
           ))}
         </div>

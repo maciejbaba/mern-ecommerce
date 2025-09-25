@@ -4,10 +4,14 @@ import "../../css/ItemPage.css";
 import { useDispatch } from "react-redux";
 import { CartItem, addToCart } from "../cart/cartSlice";
 import MyButton from "../../components/MyButton";
+import { useState } from "react";
 
 const ItemPage = () => {
   const { id } = useParams();
   const { data: items, isLoading, isSuccess, isError } = useGetItemsQuery();
+  const [imageSrc, setImageSrc] = useState(
+    items?.entities[id ?? ""]?.photoURL ?? "images/no-image.png"
+  );
 
   const dispatch = useDispatch();
 
@@ -30,7 +34,7 @@ const ItemPage = () => {
   }
 
   if (isSuccess && id) {
-    const item = items.entities[id];
+    const item = items?.entities[id];
 
     if (!item) {
       content = (
@@ -48,7 +52,12 @@ const ItemPage = () => {
       content = (
         <main className="item-page">
           <h1>Item {item.name}</h1>
-          <img className="item-page__img" src={item.photoURL} alt={item.name} />
+          <img
+            className="item-page__img"
+            src={imageSrc}
+            alt={item.name}
+            onError={() => setImageSrc("/images/no-image.png")}
+          />
           <p>{item.description}</p>
           <p>
             <strong>Price:</strong> {`${item.price} $`}

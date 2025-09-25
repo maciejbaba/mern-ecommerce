@@ -32,7 +32,8 @@ const User = ({ id }: UserProps) => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    deleteUser(user);
+    if (!user) return;
+    deleteUser({ id: user.id });
     if (isError) return alert(error);
     navigate("/admin/users");
     alert("User deleted");

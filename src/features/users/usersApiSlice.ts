@@ -22,6 +22,11 @@ export type User = Omit<RawUser, "_id"> & {
   id: string;
 };
 
+// type for user data that includes password (for registration and updates)
+export type UserWithPassword = User & {
+  password: string;
+};
+
 const usersAdapter: EntityAdapter<User> = createEntityAdapter({});
 
 type InitialState = ReturnType<typeof usersAdapter.getInitialState>;
@@ -69,7 +74,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token") ?? "",
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
         body: {
           ...newUserData,
@@ -83,7 +88,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token") ?? "",
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
         body: { id },
       }),
