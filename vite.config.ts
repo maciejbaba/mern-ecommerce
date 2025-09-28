@@ -10,6 +10,11 @@ export default defineConfig({
     outDir: "build",
   },
   plugins: [react(), viteTsconfigPaths(), svgrPlugin()],
+  server: {
+    hmr: {
+      port: 24678,
+    },
+  },
   test: {
     globals: true,
     environment: "jsdom",
